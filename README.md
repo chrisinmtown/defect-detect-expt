@@ -1,12 +1,14 @@
 # Defect-Detection Experiment
 
-This repository has the materials required for replicating a defect-detection
-experiment that was developed by Basili/Selby in 1985 and extended by Kamsties/Lott
-in 1994. Both English- and German-language versions are included here.  These
-materials were used to replicate the experiment at the University of Kaiserslautern,
-Germany and at the University of Strathclyde, Scotland.  Before using this kit,
-you should get a copy of the Uni-KL technical report and read about the procedures
-used to run the experiment.
+Should you do code reviews, should you test your code or should you do both?
+This repository has materials for replicating a defect-detection experiment
+to compare code-reading, functional testing and white-box testing techniques.
+The experiment was developed by Basili/Selby in 1985 and extended by
+Kamsties/Lott in 1994.  Both English- and German-language versions are
+included here.  These materials were used to replicate the experiment at the
+University of Kaiserslautern, Germany and at the University of Strathclyde,
+Scotland.  Before using this kit, I recommend you locate a copy of the Uni-KL
+technical report to read about the procedures used to run the experiment.
 
 ## Update 2021
 

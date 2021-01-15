@@ -1,0 +1,153 @@
+
+This is the supplemental sheet 
+for applying technique ``structural testing''
+to the program ``ntree.'' 
+
+\bigskip
+
+This exercise primarily tests several C functions.
+To save you time and effort in this exercise, a test scaffold was
+created. 
+The driver functions required for this scaffold are in the precompiled
+file ``driver.o'' and are bound in at link time.
+The drivers take care of function such as testing for and opening
+input files, allocating necessary memory, etc.  See also the notes
+about one visible driver function that appear below.
+
+\subsection*{Necessary inputs}
+
+\begin{itemize}
+
+\item Which documents belong to this exercise?
+
+\begin{enumerate}
+\item Document ES7, the specification of the component, which you will
+receive after you have created test cases and attempted to reach 100\%
+coverage.
+\item Document EQ7, the source code of the component
+\end{enumerate}
+
+\item How do I fetch the files which I need?
+
+Do the following:
+
+\begin{enumerate}
+
+\item First create a new directory for this exercise with the
+``mkdir'' command.
+\begin{verbatim}
+    mkdir st-ntree
+\end{verbatim}
+
+\item Then change to the new directory with the ``cd'' command.
+\begin{verbatim}
+    cd st-ntree
+\end{verbatim}
+
+\item Finally, enter the following command:
+\begin{path}
+\begin{verbatim}
+    tar xf ~prakt00/Exercise5/st-ntree.tar
+\end{verbatim}
+\end{path}
+
+\end{enumerate}
+
+\item What should I have?
+
+The following files must be available:
+\begin{verbatim}
+    Makefile     gct-map     ntree     run-suite    test-dir
+\end{verbatim}
+
+\end{itemize}
+
+
+\subsubsection*{Writing test cases}
+
+All of the program's functions are fundamentally tested via the
+invocation 
+\begin{verbatim}
+ntree <input file>
+\end{verbatim}
+A parameter file holds only the name of the input file.
+This is somewhat awkward, but necessary to allow applying 
+the test driver consistently.
+The format of the input file is as follows:
+\begin{verbatim}
+command1 parameter1 paramter2
+command2 paramterX
+...
+\end{verbatim}
+
+Which commands are allowed in the input and which functions are
+invoked by those commands can be seen in the function 
+{\tt fuehre\_kommandos\_aus} in the file {\tt ntree.c}.
+Because this function belongs to the test scaffold and will not
+be part of the eventual application, it is not especially robust.
+You can assume that the function, although sensitive, is free of
+faults. 
+One activity of the driver from {\tt driver.o} is to open the first
+file on the command line and to invoke the function {\tt
+fuehre\_kommandos\_aus} with a pointer to the opened file.
+Don't write any test cases to cover the test scaffold!
+
+\subsection*{Reminder}
+
+Make sure that your test cases generate output so that you can
+detect failures!
+
+\subsection*{Brief description of the library functions used}
+
+\begin{itemize}
+
+\item {\tt assert(expression)}
+
+Macro that expects the expression to be true at the time the
+program is executed and in that case does nothing.  Otherwise an error
+message with the expression is printed and the program is ended.
+
+\item {\tt char* malloc(unsigned size)}
+
+Returns a pointer to a block of memory that is at least as large as
+{\tt size} bytes.  In case of failure, NULL is returned.
+
+\item {\tt int free(ptr)}
+
+Gives a previously allocated block back to the system.  
+{\tt ptr} must have been allocated using {\tt malloc} or a similar
+function.  If successful, 1 is returned; otherwise 0 is returned.
+
+\item {\tt int strcmp(s1,s2)}
+
+Compares two strings.  Returns a value greater than, equal to, or less
+than 0 depending on whether {\tt st1} is lexicographically (i.e.,
+ASCII value) greater than, equal, or less than {\tt s2}.
+
+\item {\tt void bcopy(b1,b2,length)}
+
+Copies {\tt length} bytes from string {\tt b1} to string {\tt b2}.
+Overlapping strings are treated correctly.
+
+\item {\tt int sscanf(s,format,pointer)}
+
+Reads characters from string {\tt s}, converts them according to
+the specification string {\tt format}, and writes the result into
+the variables pointed to by the {\tt pointer}s.
+This is the reverse function of {\tt printf}; the format specification
+strings are identical.
+
+\item {\tt char *fgets(s,n,stream)}
+
+Reads characters from the stream {\tt stream} and writes them in the
+string {\tt s}, until either {\tt n-1} characters have been read or
+one of NEWLINE or EOF are seen.
+At EOF the value NULL is returned, otherwise {\tt s}.
+
+\item {\tt char *strdup(s1)}
+
+Duplicates the string {\tt s1}.  Allocates memory for this purpose
+using {\tt malloc()} and returns a pointer to the duplicate if
+successful, otherwise NULL.
+
+\end{itemize}

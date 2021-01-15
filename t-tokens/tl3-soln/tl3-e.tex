@@ -1,0 +1,135 @@
+%
+% sample solution for exercise tokens
+%
+
+The following test cases attain the maximum coverage possible for the
+program, given the faults described in the next section.
+
+\begin{enumerate}
+\item Erroneous flag
+
+\begin{description}
+\item[Command line:] -q
+\item[Input:] none.
+\item[Expected output:] Usage message for the program.
+\end{description}
+
+\item Empty file
+
+\begin{description}
+\item[Command line:] < /dev/null
+\item[Input:] none.
+\item[Expected output:] none.
+\end{description}
+
+\item Short file, few options
+
+\begin{description}
+\item[Command line:] -c /. < shortfile
+\item[Input:] A file named ``shortfile'' with the single word ``nonl''
+and no other characters before the end of file; i.e., no newline.
+\item[Expected output:]  The following single line:
+
+	\begin{quote}
+	1 nonl\\
+	\end{quote}
+\end{description}
+
+\item Acceptable input, many options
+
+\begin{description}
+\item[Command line:] -a -i -c / -m 1 < infile
+\item[Input:] A file named ``infile'' with these lines:
+
+	\begin{quote}
+	word1\\
+	word1\\
+	word1\\
+	word2\\
+	word2\\
+	$*$\\
+	b\\
+	a\\
+	\end{quote}
+
+\item[Expected output:] The following counts:
+
+	\begin{quote}
+	1 a\\
+	1 b\\
+	3 word1\\
+	2 word2\\
+	\end{quote}
+\end{description}
+\end{enumerate}
+End of test cases.
+\newpage
+\noindent
+After running the test cases shown above, the following coverage
+values are attained:
+{\small
+\begin{verbatim}
+% gsummary GCTLOG 
+BINARY BRANCH INSTRUMENTATION (38 conditions total)
+2 ( 5.26%) not satisfied.
+36 (94.74%) fully satisfied.
+
+SWITCH INSTRUMENTATION (5 conditions total)
+0 ( 0.00%) not satisfied.
+5 (100.00%) fully satisfied.
+
+LOOP INSTRUMENTATION (21 conditions total)
+8 (38.10%) not satisfied.
+13 (61.90%) fully satisfied.
+
+OPERATOR INSTRUMENTATION (15 conditions total)
+0 ( 0.00%) not satisfied.
+15 (100.00%) fully satisfied.
+
+SUMMARY OF ALL CONDITION TYPES (79 total)
+10 (12.66%) not satisfied.
+69 (87.34%) fully satisfied.
+\end{verbatim}
+}
+
+\noindent
+The values that are less than 100\% are explained by invoking the
+``greport'' command, which produces the following output:
+{\small
+\begin{verbatim}
+% greport GCTLOG 
+"tokens.c", line 38: if was taken TRUE 5, FALSE 0 times.
+"tokens.c", line 64: loop zero times: 0, one time: 3, many times: 8.
+"tokens.c", line 103: loop zero times: 0, one time: 1, many times: 1.
+"tokens.c", line 118: loop zero times: 0, one time: 0, many times: 3.
+"tokens.c", line 120: loop zero times: 0, one time: 0, many times: 3.
+"tokens.c", line 122: if was taken TRUE 3, FALSE 0 times.
+"tokens.c", line 123: loop zero times: 0, one time: 0, many times: 3.
+\end{verbatim}
+}
+
+\noindent
+These lines cannot be covered more thoroughly for the following reasons:
+
+\begin{description}
+\item[Line 38:] This ``if'' statement checks for a failure of calloc to
+allocate memory.  It is difficult to make calloc fail, especially for
+students who do not understand the ``limit'' commands supported by
+various shells.  With perseverance, this might be made to fail.
+
+\item[Line 64:] This is a ``forever'' loop (empty termination
+criteria) so it will always be done at least once.
+
+\item[Line 103:] This ``while'' loop is only begun if there is one or
+more characters for it to process, so it will always be done at least
+once.
+
+\item[Lines 118, 120, and 123:]  These ``for'' loops have hardcoded,
+fixed limits that are larger than 1, and therefore will always be
+executed many times.
+
+\item[Line 122:] This ``if'' statement is always true due to a bug in
+the program (the ``Alpha'' variable is never set).
+
+\end{description}
+

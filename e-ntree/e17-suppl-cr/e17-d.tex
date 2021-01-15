@@ -1,0 +1,46 @@
+
+Dies ist das Erg\"anzungsblatt bez\"uglich des Programms "`ntree"'
+f\"ur "code-reading"'.
+
+\subsection*{Kurze Beschreibung des verwendeten Bibliotheks-Funktionen}
+
+\begin{itemize}
+	\item {\tt assert(expression)}\\
+		Makro, der erwartet, da"s {\tt expression} zum Zeitpunkt der Ausf"uhrung
+		{\tt true} ist und in diesem Fall nichts tut. Ansonsten wird eine 
+		Fehlermeldung mit der {\tt expression} ausgegeben.
+	\item {\tt char* malloc(size)}\\
+		Liefert ein Pointer auf einen Speicherblock zur"uck, der mindestens 
+		{\tt size}
+		Bytes gro"s ist. Bei Mi"serfolg wird NULL zur"uckgegeben.
+	\item {\tt int free(ptr)}\\
+		Gibt einen zuvor alloziierten Block zur"uck. {\tt ptr} mu"s mit 
+		{\tt malloc} o."a. alloziiert worden sein. Bei Erfolg wird 1, sonst
+ 		0 zur"uckgegeben.
+	\item {\tt int strcmp(s1,s2)}\\
+		Vergleicht zwei Strings. Liefert einen Wert gr"o"ser als, gleich, oder
+		kleiner als 0 zur"uck, abh"angig davon, ob {\tt s1} lexikographisch
+		(d.h.~ASCII-Zeichenwert) gr"o"ser, gleich, oder 
+		kleiner als {\tt s2} ist.	
+	\item {\tt void bcopy(b1,b2,length)}\\
+		Kopiert {\tt length} Bytes von String {\tt b1} nach String {\tt b2}. 
+		"Uberlappende Strings werden korrekt behandelt.
+	\item {\tt int sscanf(s,format,pointer)}\\
+		Lie"st Zeichen von String {\tt s} und wandelt sie entsprechend dem
+		spezifizierten {\tt format} um und schreibt die Resultate in die Variablen
+		auf die die {\tt pointer} zeigen. Dies ist die Umkehrfunktion 
+		von {\tt printf}, die Formatspezifikationen sind identisch. 
+	\item {\tt char *fgets(s,n,stream)}\\
+		Lie"st Zeichen aus dem Stream {\tt stream} bis zum NEWLINE oder EOF und
+		schreibt sie in den String {\tt s}, bis {\tt n-1} Zeichen gelesen wurden.
+		Bei EOF wird NULL zur"uckgegeben, sonst {\tt s}.
+	\item {\tt char *strdup(s1)}\\
+		Dupliziert den String {\tt s1}. Alloziiert zu diesem Zweck Speicher
+		mit {\tt malloc()} und gibt bei Erfolg von {\tt malloc} den 
+		Pointer darauf zur"uck, sonst NULL.
+\end{itemize}
+
+\subsection*{Hinweis}
+
+Machen Sie keine Abstraktionen von den Testumgebungs-Funktionen.
+

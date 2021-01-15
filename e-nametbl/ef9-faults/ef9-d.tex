@@ -1,0 +1,79 @@
+
+\begin{enumerate}
+ 
+\item Fehler in Datei 'nametbl.h', Zeile 7: Die Konstanten 'FUNCTION' und
+'DATA' sind vertauscht.
+ 
+ \{Commission, Daten\}
+ 
+F"uhrt zu Fehlverhalten: Wird der Resourcetyp eines Symbols mit dem 
+Befehl 'trt' auf 'FUNCTION' (siehe auch Fehler 7) gesetzt, dann erh"alt das 
+Symbol tats"achlich den Typ 'DATA' und umgekehrt.
+
+
+\item Fehler in Funktion 'insert\_entry', Zeile 65: die Inkrementierung 
+der Variablen {\tt numitems} fehlt.
+
+\{Omission, Berechnung\}
+
+F\"uhrt zum Fehlverhalten: Die Anzahl der Eintraege bei der
+Ausgabe der Symboltabelle bleibt auf dem Wert '0'.
+%ver"andert sich durch Einf"ugen von Elementen nicht
+
+
+
+\item Fehler in Funktion 'setObjType', Zeile 98: die Variable "`new\_ot"' 
+wird nicht gespeichert.
+
+\{Omission, Daten\}
+
+F\"uhrt zum Fehlverhalten: Der Wert f\"ur den Objekttyp bleibt immer auf
+{\tt OT\_NO\_INF}
+
+
+\item Fehler in Funktion 'setResType', Zeile 112/115: die geschweifte Klammer 
+fehlen.
+
+\{Omission, Kontrolle\}
+
+F\"uhrt zum Fehlverhalten: es wird, wenn kein Knoten gefunden wurde, auf einen
+Null-Zeiger geschrieben (und es folgt ein Absturz).
+
+
+
+\item Fehler in Funktion 'ins', Zeile 128: das Wort "`Tabelle"' ist falsch 
+buchstabiert.
+
+\{Commission, Kosmetik\}
+
+F\"uhrt zum Fehlverhalten: Ein falsch buchstabiertes Wort kommt in der
+Ausgabe vor.
+
+
+\item Fehler in Funktion 'ins', Zeile 132: der letzte Parameter fehlt im 
+Funktionsaufruf.
+
+\{Omission, Schnittstelle\}
+
+F\"uhrt zu Fehlverhalten: Der Resourcetyp des Symbols erh"alt einen zuf"alligen
+Wert (z.Z.~FUNCTION).
+
+
+\item Fehler in Funktion 'trt', Zeile 177: das Wort "FUNCTION"' wurde 
+mit "`K"' statt "`C"' geschrieben. 
+
+\{Commission, Kontrolle\}
+
+F\"uhrt zum Fehlverhalten: Der Ressourcentyp "`FUNCTION"' wird nicht erkannt
+
+
+
+\item Fehler in Funktion 'sch', Zeile 205: fehlende Fehlermeldung.
+
+\{Omission, Kontrolle\}
+
+F\"uhrt zum Fehlverhalten: Es wird keine Meldung ausgegeben, falls 
+das gesuchte Symbol nicht gefunden wird.	
+
+\end{enumerate}
+

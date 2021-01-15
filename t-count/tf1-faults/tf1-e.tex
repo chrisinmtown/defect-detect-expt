@@ -1,0 +1,95 @@
+%
+% list of faults in code object count
+%
+
+The classification of each fault is given in braces.
+
+\begin{enumerate}
+
+\item Fault in line 10: 
+The variables are initialized with 1, should be with 0.
+
+\{Comission, Initialization\}
+
+Causes failure:
+The sums are incorrect (off by one).
+
+\item Fault in line 14: 
+The variable ``fp'' is not initialized in the case that the input 
+should be taken from ``stdin''.
+
+\{Omission, Initialization\} 
+
+Causes failure:
+The program cannot read from stdin.
+
+
+\item Fault in line 15: 
+The invocation of fprintf uses ``stdout'' instead of ``stderr''.
+
+\{Comission, Interface\} 
+
+Causes failure:
+Error messages appear on the standard output (stdout) instead of the
+standard-error output (stderr).
+
+
+\item Fault in line 16: 
+Component is terminated with ``exit (1)'', where ``continue'' should
+have been used.
+
+\{Comission, Control\}
+
+Causes failure:
+If a file is not found, the program stops there instead of continuing
+on to other files; also, no sum is printed.
+
+
+\item Fault in line 19: 
+The variable ``inword'' is initialized with 1 instead of 0.
+
+ \{Comission, Initialization\}
+
+Causes failure:
+Depending on whether the first symbol in a file is whitespace, the
+program reports that files with n words have either n or n - 1 words.
+
+
+\item Fault in line 34: *argv is used instead of argv[i].
+
+\{Comission, Data\}
+
+Causes failure:
+The program prints its own name instead of the file name when
+reporting the counts.
+
+
+\item Fault in line 41: Argc is compared with 1, but should be
+compared with 2.
+
+\{Comission, Computation\}
+
+Causes failure:
+The program prints out sums even when only a single file was
+processed.
+
+
+\item Fault in line 42: Instead of ``tlinect'' the variable ``linect'
+is used.
+
+\{Comission, Data\}
+
+Causes failure:
+The sums are not computed correctly.  Example:
+{\small
+\begin{verbatim}
+% ./count file2 file2 file2
+      1       2      14 ./count
+      1       2      14 ./count
+      1       2      14 ./count
+      1       7      43 total
+\end{verbatim}
+}
+\end{enumerate}
+
+

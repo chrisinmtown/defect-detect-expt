@@ -1,0 +1,24 @@
+\documentstyle[expconfig,listings]{article}
+\pagestyle{myheadings}
+\ifenglish
+\markright{Component ``tokens''}
+\fi
+\ifgerman
+\markright{Komponente "`tokens"'}
+\fi
+
+\parindent0pt
+\begin{document}
+\ifenglish
+\section*{Document TQ3: Source code for component ``tokens''}
+\fi
+\ifgerman
+\section*{Document TQ3: Quellkode der Komponente "`tokens"'}
+\fi
+
+{\bf tokens.c:}
+\smallskip
+\lstinputlisting{../tokens.c}
+
+\end{document}
+

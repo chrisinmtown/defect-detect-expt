@@ -1,0 +1,43 @@
+              Program 3
+
+A list is defined to be an ordered collection of integer elements
+which may have elements annexed and deleted at either end, but not in
+the middle. The operations  that  need  to  be  available  are
+ADDFIRST,  ADDLAST, DELETEFIRST, DELETELAST, FIRST, ISEMPTY,
+LISTLENGTH, REVERSE, and NEWLIST. Each operation is described in
+detail below. The lists are to contain up to a maximum of five (5)
+elements. If an element is added to the front of a "full" list (one
+containlng five elements already), the element at the back of the list
+is to be discarded. Elements to be added to the back of a full list
+are discarded. Requests to delete elements from empty llsts result in
+an empty list, and requests for the first element of an empty list
+results in zero (0) being returned. The detalled operation
+descriptions are as below:  
+
+ADDFIRST(LIST L, INTEGER I)
+    Returns the list L with I as its first element followed by all the
+    elements of L.  If L is "full" to begin with, L's last element is
+    lost. 
+ADDLAST(LIST L, INTEGER I)
+    Returns the list with all of the elements of L followed by I.  
+    If L is full to begin with, L is returned (l.e., I is ignored).
+DELETEFIRST(LIST L)
+    Returns the list containing all but the first element of L.  
+    If L is empty, then an empty list is returned.
+DELETELAST(LIST L)
+    Returns the list containing all but the last element of L.  
+    If L is empty,  then an empty list is returned.
+FIRST(LIST L)
+    Returns the first element in L.  
+    If L is empty, then it returns zero (0).
+ISEMPTY(LIST L)
+    Returns one (1) if L is empty, zero (0) otherwise.
+LISTLENGTH(LIST L)
+    Returns the number of elements in L.  
+    An empty list has zero (0) elements.
+NEWLIST(LIST L)
+    Returns an empty list.
+REVERSE(LIST L)
+    Returns a list contalnlng the elements of L in reverse order.
+
+(End of specification.) 

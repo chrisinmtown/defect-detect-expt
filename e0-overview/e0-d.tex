@@ -1,0 +1,593 @@
+\paragraph{Ziel:} Die Testtechniken "`code-reading"', 
+funktionales und strukturelles Testen bez"uglich Effektivit"at, Effizienz
+und erfa"sbaren Fehlerklassen experimentell zu vergleichen
+
+\vspace*{5mm}
+\centerline{\bf Diese Aufgabe wird in Einzelarbeit durchgef"uhrt.}
+
+\paragraph{"Uberblick:} Diese Aufgabe besteht aus zwei Teilen, einer
+	Einarbeitung in die Testtechniken und einem Experiment. Im 
+	Gegensatz zum Experiment aus der SE-I Vorlesung sollen Sie 
+	in diesem Experiment {\em alle drei Testtechniken\/}
+	auf drei Programmausschnitte aus dem MWZ anwenden. Das Experiment 
+	wird an drei Tagen in der n"achsten Woche durchgef"uhrt. Die Zeitplanung:
+\begin{itemize}
+	\item Einarbeitung in die Testtechniken: Montag, 30.5. -- Mittwoch 1.6.
+	\item Vorbesprechung zum Experiment: Mittwoch, 1.6., $17^{30}$ im Plenum
+	\item Experiment mit Programm 1: Dienstag, 7.6., $15^{30}$
+	\item Experiment mit Programm 2: Mittwoch, 8.6., $15^{30}$
+	\item Experiment mit Programm 3: Donnerstag, 9.6., $15^{30}$
+	\item Nachbesprechung: Mittwoch, 15.6., $17^{30}$ im Plenum 
+\end{itemize}
+Die Termine f"ur das Experiment sind Vorschl"age, "uber die in der 
+Vorbesprechung diskutiert werden kann.
+
+Es folgt die Aufgabenbeschreibung f"ur den ersten Teil der Aufgabe 
+(Einarbeitung), die f"ur den
+zweiten Teil (Experiment) erhalten Sie am Montag, den 6. Juni.
+\pagebreak
+
+\section{Teil 1: Einarbeitung}
+
+\paragraph{Ziel:} Durch die Einarbeitung sollen Sie Ihre Kenntnisse "uber 
+die Testtechniken aus der SE-I Vorlesung und dem Experiment in der 
+dazugeh"origen "Ubung vertiefen. 
+
+\paragraph{Der Teilnehmer erh"alt:}  
+\begin{itemize}
+	\item Fehlerklassifikationsschema (E1) im Anhang
+	\item Hinweise auf "`C"' Spezialit"aten (E2) im Anhang
+\end{itemize}
+
+\paragraph{Durchf"uhrung:} 
+Lesen Sie sich zun"achst die allgemeinen Hinweise (E1, E2) durch.
+Wenden Sie dann die einzelnen Testtechniken an, in welcher Reihenfolge
+und wann Sie das tun, bleibt Ihnen "uberlassen (im Rahmen des Zeitplans) ! 
+{\bf Bitte unterhalten Sie
+sich nicht mit Ihren Kommilitonen, die die Einarbeitung noch nicht gemacht 
+haben, "uber die Ergebnisse !} Die Einarbeitung wird nicht bewertet.
+\bigskip
+
+F"ur jede Testtechnik ist auf den folgenden Seiten --zur "Ubersicht--
+ein Proze"smodell angegeben, eine detailierte Anleitung gibt es 
+zus"atzlich im Anhang. Grunds"atzlich wird jede Testtechnik in vier
+Schritten ausgef"uhrt:
+\begin{enumerate}
+	\item Testdaten erzeugen, code reading: Kode lesen
+	\item Tests durchf"uhren (code reading: entf"allt)
+	\item Fehlverhalten erkennen (code reading: Inkonsistenzen zwischen 
+		Spezifikation und Abstraktion erkennen)
+	\item Fehler lokalisieren
+\end{enumerate}
+
+Die Durchf"uhrung der Einarbeitung entspricht im Wesentlichen 
+dem Experiment in der n"achsten Woche; wie auch dort sollen Sie hier alle 
+drei Testtechniken auf drei
+Programme anwenden (eine Testtechnik auf ein Programm). Unterschiede 
+bestehen im Umfang der Testprogramme (deutlich geringer) und
+in der freien Zeiteinteilung.
+
+\paragraph{Bewertung:} 
+	Teilnahme an Einarbeitung und Experiment (20 Punkte)
+
+\paragraph{Plenum:} Mittwoch, 15. Juni, 17.30
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Code reading}
+
+\paragraph{Der Teilnehmer erh"alt:}  
+\begin{itemize}
+	\item Anleitung "`Code reading"' (= {\bf E10}) im Anhang
+	\item Quellkode eines Programms (= {\bf E11}) s.o.
+	\item Fragebogen "`Code reading"' (= {\bf E12}) s.o.
+	\item Formblatt f"ur Inkonsistenzen (= {\bf E13}) s.o.
+	\item Formblatt f"ur Fehler (= {\bf E14}) s.o.
+	\item Spezifikation (= {\bf E15}) sp"ater (siehe Beschreibung unten)
+\end{itemize}
+
+\paragraph{Durchf"uhrung:} 
+\begin{enumerate}
+	\item Lesen
+	\begin{itemize}
+		\item Eingabe: Quellkode (E11), Fragebogen (E12)
+		\item Aktivit"at: Lesen des Kodes nach der Methode "`code-reading by 
+			stepwise abstraction"'
+		\item Ausgabe: Notizen mit den Abstraktionen
+	\end{itemize}
+	Geben Sie eine Kopie Ihrer Notizen beim Betreuer ab und nehmen Sie die 
+	Spezifikation (E15) entgegen
+	\item entf"allt
+	\item Entdecken von Inkonsistenzen zw. Spezifikation und abstrahierter 
+		Funktion
+	\begin{itemize}
+		\item Eingabe: Quellkode (E11), Spezifikation (E15), Fragebogen (E12),
+			Formblatt f"ur Inkonsistenzen (E13)
+		\item Aktivit"at: Vergleich der abstrahierten Funktion mit der
+			Spezifikation 
+		\item Ausgabe: Formblatt mit erkannten Inkonsistenzen (= {\bf A13})
+	\end{itemize}
+	\item Lokalisieren von Fehlern
+	\begin{itemize}
+		\item Eingabe: Quellkode (E11), Spezifikation (E15), Fragebogen (E12),
+			Formblatt f"ur Fehler (E14)
+		\item Aktivit"at: Isolieren von Fehlern
+		\item Ausgabe: Formblatt mit erkannten Fehlern (= {\bf A14}), 
+			vollst"andig ausgef"ullter Fragebogen (= {\bf A12})
+	\end{itemize}
+\end{enumerate}
+
+\paragraph{Der Teilnehmer gibt ab:}  
+\begin{itemize}
+	\item ausgef"ullten Fragebogen (A12)
+	\item ausgef"ullte Formbl"atter  (A13, A14)
+\end{itemize}
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Funktionales Testen}
+
+\paragraph{Der Teilnehmer erh"alt:}  
+\begin{itemize}
+	\item Anleitung "`Funktionales Testen"' (= {\bf E20}) im Anhang
+	\item Spezifikation von Komponente "`series"' (= {\bf E21}) s.o.
+	\item Fragebogen "`Funktionales Testen"' (= {\bf E22}) s.o.
+	\item Formblatt f"ur Fehlverhalten (= {\bf E23}) s.o.
+	\item Formblatt f"ur Fehler (= {\bf E24}) s.o.
+	\item Dateipaket "`Funktionales Testen"' (= {\bf E25}) unter dem 
+		Account "`prakt00"',
+		Verzeichnis "`Aufgabe5"', Datei "`funk-test-einarb.tar"'
+	\item Quellkode (= {\bf E26}) sp"ater (siehe Beschreibung unten)
+\end{itemize}
+
+\paragraph{Durchf"uhrung:} 
+\begin{enumerate}
+	\item Testdaten erzeugen
+	\begin{itemize}
+		\item Eingabe: Spezifikation (E21), Fragebogen (E22)
+		\item Aktivit"at: Testdaten "Aquivalenzklassen- und Grenzwert-basiert
+			ableiten
+		\item Ausgabe: Testdaten
+	\end{itemize}
+	\item Tests Durchf"uhren
+	\begin{itemize}
+		\item Eingabe: ausf"uhrbares Programm (E25), Testdaten, Fragebogen (E22)
+		\item Aktivit"at: Test durchf"uhren
+		\item Ausgabe: Testergebnisse
+	\end{itemize}
+	Loggen Sie sich aus, verlassen sie den Rechnerraum.
+	\item Entdecken von Fehlverhalten
+	\begin{itemize}
+		\item Eingabe: Spezifikation (E21), Testergebnisse, Fragebogen (E22), 
+			Formblatt f"ur Fehlverhalten (E23)
+		\item Aktivit"at: Fehlverhalten diagnostizieren
+		\item Ausgabe: Formblatt mit erkannten Fehlverhalten (= {\bf A23})
+	\end{itemize}
+	Geben Sie einen Ausdruck Ihrer Testergebnisse 
+	beim Betreuer ab und nehmen Sie den Quellkode (E26) entgegen
+	\item Lokalisierung von Fehlern
+	\begin{itemize}
+		\item Eingabe: Spezifikation (E21), Quellkode (E26), 
+			Fragebogen (E22), Formblatt f"ur Fehler (E24)
+		\item Aktivit"at: Lokalisieren von Fehlern
+		\item Ausgabe: Formblatt mit erkannten Fehlern (= {\bf A24}), 
+			vollst"andig ausgef"ullter Fragebogen (= {\bf A22})
+	\end{itemize}
+\end{enumerate}
+
+\paragraph{Der Teilnehmer gibt ab:}  
+\begin{itemize}
+	\item ausgef"ullten Fragebogen (A22)
+	\item ausgef"ulltes Formbl"atter Fehlverhalten/Fehler (A23, A24)
+\end{itemize}
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Strukturelles Testen}
+
+\paragraph{Der Teilnehmer erh"alt:}  
+\begin{itemize}
+	\item Anleitung "`Strukturelles Testen"' (= {\bf E30}) im Anhang
+	\item Quellkode (= {\bf E31}) s.o.
+	\item Fragebogen "`Strukturelles Testen"' (= {\bf E32}) s.o.
+	\item Formblatt f"ur Fehlverhalten (= {\bf E33}) s.o.
+	\item Formblatt f"ur Fehler (= {\bf E34}) s.o.
+	\item Dateipaket "`Strukturelles Testen"' (= {\bf E35}) unter dem 
+		Account "`prakt00"', Verzeichnis "`Aufgabe5"', Datei 
+		"`strukt-test-einarb.tar"'
+	\item Spezifikation (= {\bf E36}) sp"ater (siehe Beschreibung unten)
+\end{itemize}
+
+\paragraph{Durchf"uhrung:} 
+\begin{enumerate}
+	\item Testdaten erzeugen
+	\begin{itemize}
+		\item Eingabe: Quellkode (E31), Fragebogen (E32)
+		\item Aktivit"at: Testdaten erzeugen
+		\item Ausgabe: Testdaten
+	\end{itemize}
+	\item Tests durchf"uhren
+	\begin{itemize}
+		\item Eingabe: ausf"uhrbares Programm (E35), Testdaten, Fragebogen (E32)
+		\item Aktivit"at: Kontrollkanten"uberdeckung mit dem Coverage-Tool GCT 
+			bestimmen, Tests durchf"uhren
+		\item Ausgabe: Testergebnisse
+	\end{itemize}
+	Loggen Sie sich aus, verlassen sie den Rechnerraum.
+	Geben Sie einen Ausdruck Ihrer Testergebnisse beim Betreuer ab und nehmen 
+	Sie die Spezifikation (E36) entgegen
+	\item Entdecken von Fehlverhalten
+	\begin{itemize}
+		\item Eingabe: Spezifikation (E36), Quellkode (E31), 
+			Testergebnisse, Fragebogen (E32), Formblatt f"ur Fehlverhalten (E33)
+		\item Aktivit"at: Fehlverhalten diagnostizieren
+		\item Ausgabe: Formblatt mit erkannten Fehlverhalten (= {\bf A33})
+	\end{itemize}
+	\item Lokalisierung von Fehlern
+	\begin{itemize}
+		\item Eingabe: Spezifikation (E36), Quellkode (E31), 
+			Fragebogen (E32), Formblatt f"ur Fehler (E34)
+		\item Aktivit"at: Lokalisieren von Fehlern
+		\item Ausgabe: Formblatt mit erkannten Fehlern (= {\bf A34}), 
+			ausgef"ullter Fragebogen (= {\bf A32})
+	\end{itemize}
+\end{enumerate}
+
+\paragraph{Der Teilnehmer gibt ab:}  
+\begin{itemize}
+	\item ausgef"ullten Fragebogen (A32)
+	\item ausgef"ulltes Formbl"atter Fehlverhalten/Fehler (A33, A34)
+\end{itemize}
+
+
+\newpage
+\section*{Teil 2: Experiment}
+
+\paragraph{Durchf"uhrung:} 
+Das Experiment wird an drei Tagen durchgef"uhrt.
+Genauere Information zu den Terminen und zur Aufgabeverteilung
+befindet sich auf der n\"achsten Seite. 
+Ein Treffen zwecks Vorbesprechung und Austeilung des Materials findet zu den
+angegebenen Zeiten im Seminarraum 57/528 statt. Planen Sie einen Zeitbedarf
+von ca.~3 Stunden pro Tag ein. {\bf Bitte seien Sie p"unktlich !}
+
+\begin{quote}
+{\bf Wenn Sie zu den angegebenen Terminen absolut keine Zeit haben, dann
+melden Sie sich bitte umgehend bei Ihrem Betreuer.}
+\end{quote}
+
+\bigskip
+
+Eine Nachbesprechung findet Mittwoch, 15.6., $17^{30}$ im Plenum statt.
+
+\bigskip
+
+Die Durchf"uhrung des Experiments entspricht ansonsten der der Einarbeitung,
+Unterschiede bestehen nur im Material, da"s ausgeteilt wird.
+F"ur jede Testtechnik ist auf den folgenden Seiten --zur "Ubersicht und
+der Vollst"andigkeit halber-- nochmals das Proze"smodell angegeben.
+Grunds"atzlich wird jede Testtechnik in vier
+Schritten ausgef"uhrt:
+\begin{enumerate}
+	\item Testdaten erzeugen. Bei code reading: Kode lesen.
+	\item Tests durchf"uhren. Bei code reading: entf"allt.
+	\item Fehlverhalten erkennen. Bei code reading: Inkonsistenzen
+			zwischen Spezifikation und Abstraktion erkennen.
+	\item Fehler lokalisieren
+\end{enumerate}
+
+% \paragraph{Plenum:} Mittwoch, 15. Juni, 17.30
+
+%------------------------------------------------------------------------------
+\newpage
+%\section{Durchf\"uhrungsplan des Experiments}
+
+\subsection*{Termine und Aufgabenverteilung}
+
+\begin{center}
+\begin{tabular}{|r|c|l|l|}
+\hline
+\bf Termin    & \bf Gruppe  & \bf Aufgabe & Programm\\
+\hline
+Dienstag, 7. Juni         &  1          &  Strukturelles Testen  &  ntree\\
+$10^{00}$ oder $15^{00}$  &  2          &  Funktionales  Testen  & \\
+                          &  3          &  code reading          & \\
+\hline
+Mittwoch, 8. Juni         &  2          &  Strukturelles Testen  & cmdline \\
+$15^{00}$                 &  3          &  Funktionales  Testen  & \\
+                          &  1          &  code reading          & \\
+\hline
+Donnerstag, 9.Juni        &  3          &  Strukturelles Testen  & nametbl \\
+$14^{00}$                 &  1          &  Funktionales  Testen  & \\
+                          &  2          &  code reading          & \\
+\hline
+\end{tabular}
+\end{center}
+
+
+\subsection*{Gruppeneinteilung}
+
+\begin{center}
+
+\begin{tabular}{|l|c|}
+\hline
+\bf Kennung   &  \bf Gruppe \\
+\hline
+prakt01       &      1      \\
+prakt02       &      3      \\
+prakt03       &      2      \\
+prakt04       &      1      \\
+prakt06       &      3      \\
+\hline
+prakt07       &      2      \\
+prakt08       &      2      \\
+prakt09       &      1      \\
+prakt10       &      1      \\
+prakt11       &      3      \\
+\hline
+prakt12       &      3      \\
+prakt13       &      1      \\
+prakt15       &      3      \\
+prakt17       &      3      \\
+prakt18       &      2      \\
+\hline
+prakt19       &      1      \\
+prakt20       &      3      \\
+prakt21       &      2      \\
+prakt22       &      1      \\
+prakt23       &      2      \\
+\hline
+prakt24       &      1      \\
+prakt25       &      1      \\
+prakt26       &      2      \\
+prakt27       &      2      \\
+prakt28       &      1      \\
+\hline
+prakt29       &      2      \\
+prakt30       &      3      \\
+prakt31       &      3      \\
+\hline
+\end{tabular}
+
+\end{center}
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Code reading}
+
+\paragraph{Der Teilnehmer erh"alt:}  
+\begin{itemize}
+	\item Anleitung "`Code reading"' (= {\bf E10}) zu Beginn des Experiments
+	\item Quellkode der Komponente (= {\bf EQ$x$}) s.o.
+	\item Fragebogen "`Code reading"' (= {\bf E12}) s.o.
+	\item Formblatt f"ur Inkonsistenzen (= {\bf E13}) s.o.
+	\item Formblatt f"ur Fehler (= {\bf E14}) s.o.
+	\item Spezifikation der Komponente (= {\bf ES$x$}) im Verlauf des Experiments
+				(siehe Beschreibung unten) 
+\end{itemize}
+
+\paragraph{Durchf"uhrung:} 
+\begin{enumerate}
+	\item Lesen
+	\begin{itemize}
+		\item Eingabe: Quellkode (EQ$x$), Fragebogen (E12)
+		\item Aktivit"at: Lesen des Kodes nach der Methode "`code-reading by 
+			stepwise abstraction"'
+		\item Ausgabe: Notizen mit den Abstraktionen
+	\end{itemize}
+	Geben Sie eine Kopie Ihrer Notizen beim Betreuer ab und nehmen Sie die 
+	Spezifikation (ES$x$) entgegen
+	\item entf"allt
+	\item Entdecken von Inkonsistenzen zw. Spezifikation und abstrahierter 
+		Funktion
+	\begin{itemize}
+		\item Eingabe: Quellkode (EQ$x$), Spezifikation (ES$x$), Fragebogen (E12),
+			Formblatt f"ur Inkonsistenzen (E13)
+		\item Aktivit"at: Vergleich der abstrahierten Funktion mit der
+			Spezifikation 
+		\item Ausgabe: Formblatt mit erkannten Inkonsistenzen (= {\bf A13})
+	\end{itemize}
+	\item Lokalisieren von Fehlern
+	\begin{itemize}
+		\item Eingabe: Quellkode (EQ$x$), Spezifikation (ES$x$), Fragebogen (E12),
+			Formblatt f"ur Fehler (E14)
+		\item Aktivit"at: Isolieren von Fehlern
+		\item Ausgabe: Formblatt mit erk.~Fehlern (= {\bf A14}), 
+			vollst.~ausgef"ullter Fragebogen (= {\bf A12})
+	\end{itemize}
+\end{enumerate}
+
+\paragraph{Der Teilnehmer gibt ab:}  
+\begin{itemize}
+	\item ausgef"ullten Fragebogen ({\bf A12})
+	\item ausgef"ullte Formbl"atter  ({\bf A13, A14})
+\end{itemize}
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Funktionales Testen}
+
+\paragraph{Der Teilnehmer erh"alt:}  
+\begin{itemize}
+	\item Erg"anzungsblatt "`Funktionales Testen des Programms $x$"' zu Beginn 
+		des Experiments
+	\item Anleitung "`Funktionales Testen"' (= {\bf E20}) s.o.
+	\item Spezifikation der Komponente (= {\bf ES$x$});
+		siehe Erg\"anzungsblatt.
+	\item Fragebogen "`Funktionales Testen"' (= {\bf E22}) s.o.
+	\item Formblatt f"ur Fehlverhalten (= {\bf E23}) s.o.
+	\item Formblatt f"ur Fehler (= {\bf E24}) s.o.
+	\item Dateipaket "`Funktionales Testen"'; siehe Erg\"anzungsblatt.
+	\item Quellkode (= {\bf EQ$x$}) im Verlauf des Experiments
+		(siehe Beschreibung unten und auch Erg\"anzungsblatt).
+\end{itemize}
+
+\paragraph{Durchf"uhrung:} 
+\begin{enumerate}
+	\item Testdaten erzeugen
+	\begin{itemize}
+		\item Eingabe: Spezifikation (ES$x$), Fragebogen (E22)
+		\item Aktivit"at: Testdaten "Aquivalenzklassen- und Grenzwert-basiert
+			ableiten
+		\item Ausgabe: Testdaten
+	\end{itemize}
+	\item Tests Durchf"uhren
+	\begin{itemize}
+		\item Eingabe: ausf"uhrbares Programm, Testdaten, Fragebogen (E22)
+		\item Aktivit"at: Test durchf"uhren
+		\item Ausgabe: Testergebnisse
+	\end{itemize}
+	Loggen Sie sich aus, verlassen sie den Rechnerraum.
+	\item Entdecken von Fehlverhalten
+	\begin{itemize}
+		\item Eingabe: Testergeb., Spez.~(ES$x$), Fragebogen (E22), 
+			Formblatt f"ur Fehlverhalten (E23)
+		\item Aktivit"at: Fehlverhalten diagnostizieren
+		\item Ausgabe: Formblatt mit erkannten Fehlverhalten (= {\bf A23})
+	\end{itemize}
+	Geben Sie einen Ausdruck Ihrer Testergebnisse 
+	beim Betreuer ab und nehmen Sie den Quellkode (EQ$x$) entgegen
+	\item Lokalisierung von Fehlern
+	\begin{itemize}
+		\item Eingabe: Spez.~(ES$x$), Quellkode (EQ$x$), 
+			Fragebogen (E22), Formblatt f"ur Fehler~(E24)
+		\item Aktivit"at: Lokalisieren von Fehlern
+		\item Ausgabe: Formblatt mit erk.~Fehlern (= {\bf A24}), 
+			volls.~ausgef"ullter Fragebogen (= {\bf A22})
+	\end{itemize}
+\end{enumerate}
+
+\paragraph{Der Teilnehmer gibt ab:}  
+\begin{itemize}
+	\item ausgef"ullten Fragebogen ({\bf A22})
+	\item ausgef"ulltes Formbl"atter Fehlverhalten/Fehler ({\bf A23, A24})
+\end{itemize}
+
+%------------------------------------------------------------------------------
+\newpage
+\section*{Strukturelles Testen}
+
+\paragraph{Der Teilnehmer erh"alt:}  
+\begin{itemize}
+	\item Erg"anzungsblatt "`Strukturelles Testen des Programms $x$"' zu Beginn 
+		des Experiments
+	\item Anleitung "`Strukturelles Testen"' (= {\bf E30}) s.o.
+	\item Quellkode (= {\bf EQ$x$}); siehe Erg\"anzungsblatt.
+	\item Fragebogen "`Strukturelles Testen"' (= {\bf E32}) s.o.
+	\item Formblatt f"ur Fehlverhalten (= {\bf E33}) s.o.
+	\item Formblatt f"ur Fehler (= {\bf E34}) s.o.
+	\item Dateipaket "`Strukturelles Testen"'; siehe Erg\"anzungsblatt.
+	\item Spezifikation (= {\bf ES$x$}) im Verlauf des Experiments (siehe 
+		Beschreibung unten und auch Erg\"anzungsblatt)
+\end{itemize}
+
+\paragraph{Durchf"uhrung:} 
+\begin{enumerate}
+	\item Testdaten erzeugen
+	\begin{itemize}
+		\item Eingabe: Quellkode (EQ$x$), Fragebogen (E32)
+		\item Aktivit"at: Testdaten erzeugen
+		\item Ausgabe: Testdaten
+	\end{itemize}
+	\item Tests durchf"uhren
+	\begin{itemize}
+		\item Eingabe: ausf"uhrbares Programm, Testdaten, Fragebogen (E32)
+		\item Aktivit"at: Kontrollkanten"uberdeckung mit dem Coverage-Tool GCT 
+			bestimmen, Tests durchf"uhren
+		\item Ausgabe: Testergebnisse
+	\end{itemize}
+	Loggen Sie sich aus, verlassen sie den Rechnerraum.
+	Geben Sie einen Ausdruck Ihrer Testergebnisse beim Betreuer ab und nehmen 
+	Sie die Spezifikation (E36) entgegen
+	\item Entdecken von Fehlverhalten
+	\begin{itemize}
+		\item Eingabe: Testergeb., Spez.~(ES$x$), Quellkode (EQ$x$), 
+			Fragebogen (E32), Formblatt f"ur Fehlverhalten (E33)
+		\item Aktivit"at: Fehlverhalten diagnostizieren
+		\item Ausgabe: Formblatt mit erkannten Fehlverhalten (= {\bf A33})
+	\end{itemize}
+	\item Lokalisierung von Fehlern
+	\begin{itemize}
+		\item Eingabe: Spez.~(ES$x$), Quellkode (EQ$x$), 
+			Fragebogen (E32), Formblatt f"ur Fehler~(E34)
+		\item Aktivit"at: Lokalisieren von Fehlern
+		\item Ausgabe: Formblatt mit erk.~Fehlern (= {\bf A34}), 
+			volls.~ausgef"ullter Fragebogen (= {\bf A32})
+	\end{itemize}
+\end{enumerate}
+
+\paragraph{Der Teilnehmer gibt ab:}  
+\begin{itemize}
+	\item ausgef"ullten Fragebogen ({\bf A32})
+	\item ausgef"ulltes Formbl"atter Fehlverhalten/Fehler ({\bf A33, A34})
+\end{itemize}
+
+%------------------------------------------------------------------------------
+
+\newpage
+
+\section*{Klassen von Fehlern}
+
+Unterscheidung ob etwas vergessen wurde oder Geschriebenes falsch ist.
+\begin{itemize}
+
+\item Omission (O)
+
+Es wurde etwas vergessen (z.B. eine Anweisung, die
+Initialissierung einer Variablen, ein Parameter beim Aufruf einer
+Routine, ...).
+
+\item Comission (C)
+
+Das Programmst\"uck ist falsch eingetippt (z.B. `+'
+statt `-', falscher Initialisierungswert, Bedingung deckt die falschen
+F\"alle ab, ...)
+
+\end{itemize}
+
+Weiterhin kann man Fehler dahingehend klassifizieren, welche
+semantischen Teile einer Komponente betroffen sind.
+
+\begin{itemize}
+
+\item Initialisierung (I)
+
+Der Wert eines Bezeichners ist beim ersten
+Zugriff anders als erwartet (z.B.  Beginn eines Arrays bei 1 statt bei
+0).
+
+\item Berechnung (B)
+
+Der Wert eines Ausdrucks wird falsch berechnet
+(z.B. `+' statt `-' verwendet, Konstantenwert ist falsch, ...).
+
+\item Kontrolle (K)
+
+Der Kontrollpfad wird nicht wie erwartet begangen
+(z.B. Bedingung in IF- Anweisung falsch, Schleifen-Invariante negiert,
+...)
+
+\item Schnittstelle (S)
+
+Die Schnittstelle eines Elementes oder Moduls wurde
+falsch verstanden (z.B. es wird erwartet, da{\ss} alle Stellen eines
+array of char nach abschliessenden `$\backslash$0' mit Leerzeichen aufgef\"ullt
+sind; Verhalten eines ADTs ist falsch verstanden worden; ...)
+
+\item Daten (D)
+
+Der Gebrauch von Daten ist falsch (z.B. falsche Berechnung
+des Zugriffs auf ein Array-Element, in verketteter Liste wird Element
+\"ubersprungen, ...)
+
+\item Kosmetik (C, f"ur "`cosmetic"')
+
+Pr\"asentation der Komponente gegen\"uber dem Benutzer
+ist nicht korrekt (z.B.  falsch geschriebenes Wort in Fehlermeldung,
+\"Uberschreiben von alten Bildschirminhalten in Window-Systemen, ...).
+
+\end{itemize}
+
+Die Einordnung in die Klassen ist jedoch meistens nicht eindeutig
+durchf\"uhrbar. Sie unterliegt stark der Subjektivit\"at des
+Testers.  

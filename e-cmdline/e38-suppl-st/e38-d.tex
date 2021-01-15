@@ -1,0 +1,113 @@
+
+Dies ist das Erg\"anzungsblatt bez\"uglich des Programms "`cmdline"'
+f\"ur strukturelles Testen.
+
+\bigskip
+
+\subsection*{Notwendige Eingaben}
+
+\begin{itemize}
+
+\item Welche Dokumente geh"oren zu dieser Aufgabe?
+
+\begin{enumerate}
+\item Dokument ES8, die Spezifikation der Komponente (erhalten Sie, nachdem
+	Sie die Testf"alle erstellt haben)
+\item Dokument EQ8, der Quellcode der Komponente
+\end{enumerate}
+
+\item Wie hole ich mir das Dateipaket, das ich brauche?
+
+Gehen Sie wie folgt vor:
+
+\begin{enumerate}
+
+\item Zuerst legen Sie ein neues Verzeichnis daf\"ur an mittels des 
+"`mkdir"'-Kommandos.
+\begin{verbatim}
+    mkdir st-cmdline
+\end{verbatim}
+
+\item Dann wechseln Sie in das neue Verzeichnis mittels des 
+"`cd"'-Kommandos.
+\begin{verbatim}
+    cd st-cmdline
+\end{verbatim}
+
+\item Zuletzt geben Sie folgendes Kommando ein:
+\begin{verbatim}
+    tar xf ~uebung00/Experiment/st-cmdline.tar
+\end{verbatim}
+
+\end{enumerate}
+
+\item Was mu"s vorhanden sein ?
+
+Die folgende Dateien m\"ussen vorhanden sein:
+\begin{verbatim}
+    Makefile    cmdline     gct-map    run-suite    test-dir
+\end{verbatim}
+
+% \item Wie wird die Testumgebung initialisiert ?
+% \begin{verbatim}
+%     % make gct
+% \end{verbatim}
+% Es erscheint:
+% \begin{verbatim}
+%     gct-init
+%     make cmdline CC=gct
+%     gct -g  -target sun4 -c  cmdline.c
+%     gct -o cmdline cmdline.o str-driver.o
+% \end{verbatim}
+
+\end{itemize}
+
+
+\subsubsection*{Schreiben von Testf"allen}
+
+Getestet werden alle Funktionen des Programms grunds"atzlich durch den
+Aufruf 
+\begin{verbatim}
+cmdline [ -Argumente ... ] 
+\end{verbatim}
+Da "`cmdline"' keine Eingabedateien ben"otigt, sind nur Parameterdateien
+mit Aufruf-Argumenten anzulegen.
+
+Welche Argumente die Kommandozeile erlaubt und welche 
+Funktionen dadurch aufgerufen werden, entnehmen Sie der Funktion 
+{\tt process\_switches} in der Datei {\tt cmdline.c}.
+Die Testumgebung aus {\tt driver.o} ist transparent, 
+die Funktion {\tt process\_switches} wird mit dem gleichen Argumentvektor 
+({\tt argc, argv[]}) aufgerufen, mit dem auch "`cmdline"' aufgerufen wurde. 
+
+%Der Treiber erwartet, da{\ss} der von der Funktion zur\"uckgelieferte
+%Wert die Anzahl der Switches entspricht, die am Anfang der Zeile 
+%stehen und von der Funktion erkannt wurden.   Die Treiberfunktion
+%druckt diesen Wert aus und versucht sie zu verwenden um die weitere
+%Kommandozeilenargumente auszudrucken. 
+
+\subsection*{Kurze Beschreibung der verwendeten Bibliotheks-Funktionen}
+
+\begin{itemize}
+   \item {\tt int strlen(char *s)}\\
+      Liefert die L"ange des Strings {\tt s}
+      zur"uck (Null-Zeichen am Ende wird nicht mitgez"ahlt).
+   \item {\tt int strcmp(char *s1, char *s2)}\\
+      Vergleicht zwei Strings. Liefert einen Wert gr"o"ser als, gleich, oder
+      kleiner als 0 zur"uck, abh"angig davon, ob {\tt s1} lexikographisch
+      (d.h.~ASCII-Zeichenwert) gr"o"ser, gleich, oder
+      kleiner als {\tt s2} ist.
+   \item {\tt int strncmp(char *s1, char *s2, int n)}\\
+      Wie {\tt strcmp}, vergleicht maximal {\tt n} Zeichen.
+   \item {\tt int fprintf(stderr,"Text"...)}\\
+      Gibt den Text auf der Standardfehlerausgabe aus.
+   \item {\tt int isdigit(char c)}\\
+      Liefert {\em true\/}, wenn das Zeichen {\tt c} eine Ziffer ist,
+      ansonsten {\em false\/}.
+   \item {\tt int atoi(char *str)}\\
+      Wandelt den String {\tt str} in einen Integer um. F"uhrende
+      "`white-spaces"' werden ignoriert, das scannen das Strings wird mit dem
+      ersten Zeichen, das keine Ziffer ist, abgebrochen. Konnte keine Ziffer
+      gelesen werden, wird 0 zur"uckgegeben.
+\end{itemize}
+

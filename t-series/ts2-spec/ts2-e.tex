@@ -1,0 +1,47 @@
+
+\subsection*{Name}
+series -- generate an additive series of numbers
+
+\subsection*{Usage}
+
+{\bf series} start end [stepsize]
+
+\subsection*{Description}
+
+{\bf series} prints the real numbers from
+{\bf start} to {\bf end}, one per line.
+{\bf series} begins with {\bf start} 
+to which {\bf stepsize} is repeatedly added or subtracted,
+as appropriate, to approach, possibly meet, but not pass
+{\bf end}.
+
+If all arguments are integers, only integers are 
+produced in the output.
+The {\bf stepsize} must be nonzero; if it is not specified,
+it is assumed to be of unit size (1).
+In all other cases,
+{\bf series} prints an appropriate error message.
+
+\subsection*{Example}
+To count from 1 to 100:
+\begin{verbatim}
+	series 1 100 
+\end{verbatim}
+To do the same, but backwards:
+\begin{verbatim}
+	series 100 1
+\end{verbatim}
+
+\subsection*{Limitations}
+
+The reported number of significant digits is limited.
+If the ratio of the series range to the
+{\bf stepsize} is too large, several numbers in a row will be equal. 
+
+The maximum length of a series is limited to the size of the
+maximum long integer that can be represented on the machine in use.
+Exceeding this value has undefined results.
+
+\subsection*{Author}
+
+Gary Perlman

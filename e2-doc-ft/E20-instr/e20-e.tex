@@ -1,0 +1,155 @@
+
+Please follow the directions on the supplemental sheet entitled 
+``Functional testing with program $x$,'' which is included in this
+packet of materials. 
+
+\begin{enumerate}
+
+\item Before beginning, read over the data-collection form 
+``E22: Functional Testing.'' 
+Enter your identifier and fill out the section entitled ``Before beginning.''
+
+\end{enumerate}
+
+\subsection*{Produce test data}
+
+\begin{enumerate}
+\addtocounter{enumi}{1}
+
+\item Enter the time when you began the experiment under question~4.
+
+\item Read through the specification carefully.
+Use it to derive the equivalence classes.
+Enter the number of equivalence classes under question~5 in the
+data-collection form, and please answer question~6 at the same time.
+
+\item Generate test cases by choosing boundary values from the
+equivalence classes.
+While doing so, ignore any system (not program) dependencies such as
+the upper limit for the number of command-line etc.~(see also the
+supplemental sheet). 
+When you are finished, enter the number of test cases under question~7
+and the time you required under question~8 of the data-collection form.
+
+\item Log yourself in on a computer/Xstation.  Enter the computer name
+and time under question~9.
+Fetch the necessary files (see the supplemental sheet).
+Convince yourself that all necessary files and directories are there!
+
+\item Type in your test cases in files under the directory ``test-dir''.
+In order to make your task easier, the component has been equipped
+with a command-line interface.
+This interface is used by an automatic tester.  The tester reads 
+parameter files and invokes the component with the parameters
+specified in the files.
+The results are written into a file.
+A complete test of the component is accomplished in this way.
+
+You must create the parameter and (when necessary) input files.
+A test case $=$ a parameter file.
+The expressions in a parameter file specify one invocation of the
+program for a run of the automatic tester.
+Parameter files are named with ``.test'' as the file suffix.
+Example: If the component ``comp'' should be invoked as {\tt comp -i
+in\_file1}, then the expression {\tt -i in\_file1} should be entered
+into the parameter file.
+
+Input files are only created for components which read from files.
+Input files should be named sensibly, for example ``empty,'' but the
+name may not use the suffix ``.test'' at all.
+
+Convince yourself that the files hold what you really want them to
+hold!
+
+\end{enumerate}
+
+\subsection*{Run tests}
+
+\begin{enumerate}
+\addtocounter{enumi}{6}
+
+\item Apply the test cases to the component by typing in the command 
+``run-suite'' and watching. 
+If you made some typing mistakes which caused some test cases not to
+test quite what you wanted to test, correct the mistakes, type ``make
+clean'', and run the command ``run-suite'' again.
+But please do not generate additional test data!
+
+\item If you took any breaks while typing in or executing your test
+cases, please enter just the time you spent actively typing or
+executing test cases under question~10 (i.e., the time without
+pauses).
+
+\item The results are in individual files under the directory
+``test-dir'' and are also summarized in a file ``test-results.summary''. 
+Print out the summary on the line printer {\em twice}.
+
+\item Log out and fetch your output from the printer.
+
+\end{enumerate}
+
+\subsection*{Search for failures}
+
+\begin{enumerate}
+\addtocounter{enumi}{10}
+
+\item Look over the results carefully.  Enter your starting time under
+question~11.
+Find possible failures by comparing the expected results according to
+the specification with the output of your test cases.
+Mark the detected failures in both copies of the output with circles,
+etc. 
+Enter the detected failures in the worksheet supplied for that purpose,
+and don't forget to enter your identifier on that sheet as well.
+Please number the failures which you found from 1 to $n$ in the
+column labeled ``Fail.~Nr.'' (failure number) in the worksheet for
+failures and similarly number the failures which you marked in the 
+output.
+
+\item When you believe that you have detected all failures, please
+enter the time you required under question~12.
+
+\item Note on the print-out of your results your identifier, which
+test method you worked with, and in which directory your test cases
+can be found.  Give this print-out to the experiment leader; in
+return, you will receive the source code.  Please do not delete your
+test cases!
+
+\end{enumerate}
+
+\subsection*{Isolate faults}
+
+\begin{enumerate}
+\addtocounter{enumi}{13}
+
+\item Please enter the current time under question~13.
+Try to isolate the faults responsible for the failures which you
+detected.
+Enter the isolated faults in the worksheet provided for that purpose,
+and again don't forget to enter your identifier on that sheet.
+
+Record the faults which you isolated by using the line number.
+Classify the faults according to the different types and classes of
+faults [\{Omission, Comission\}, \{Initialization, Control,
+Interface, Data, Computation, Cosmetic\}]. 
+Then characterize the fault briefly; e.g., ``initial value was 1 instead
+of 0.''
+Also give the number(s) of the failure(s) which resulted from this fault.
+
+If you by chance recognize any faults that did not manifest themselves
+in failures in your test results, you may list them also.  But please
+mark clearly on the worksheet that these faults did not cause any
+failures in your test results. 
+These faults receive just a dash in the column ``Fail. Nr.''
+
+\item When you are done isolating faults, enter the time you
+required under question~14.  Please enter the current time under
+question~15 also. 
+
+\item Enter your personal estimate under question~16, and fill out 
+question~17.
+
+\item Give the data-collection form and all other worksheets to the
+experiment leader, and you're all done.
+
+\end{enumerate}

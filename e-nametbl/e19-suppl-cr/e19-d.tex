@@ -1,0 +1,98 @@
+
+
+Dies ist das Erg\"anzungsblatt bez\"uglich des Programms "`nametbl"'
+f\"ur "`code-reading"'.
+
+\subsection*{Kurze Beschreibung der verwendeten Bibliotheks-Funktionen}
+
+\begin{itemize}
+	\item {\tt assert(expression)}\\
+		Makro, der erwartet, da"s {\tt expression} zum Zeitpunkt der Ausf"uhrung
+		wahr ist und in diesem Fall nichts tut. Ansonsten wird eine 
+		Fehlermeldung mit der {\tt expression} ausgegeben und das Programm wird
+		beendet.
+	\item {\tt char *malloc(unsigned size)}\\
+		Liefert ein Pointer auf einen Speicherblock zur"uck, der mindestens 
+		{\tt size}
+		Bytes gro"s ist. Bei Mi"serfolg wird NULL zur"uckgegeben.
+	\item {\tt int free(char *ptr)}\\
+		Gibt einen zuvor allokierten Block an das System zur"uck. {\tt ptr} 
+		mu"s mit 
+		{\tt malloc} o."a. allokiert worden sein. Bei Erfolg wird 1, sonst
+ 		0 zur"uckgegeben.
+	\item {\tt int strcmp(char *s1, char *s2)}\\
+		Vergleicht zwei Strings. Liefert einen Wert gr"o"ser als, gleich, oder
+		kleiner als 0 zur"uck, abh"angig davon, ob {\tt s1} lexikographisch
+		(d.h.~ASCII-Zeichenwert) gr"o"ser, gleich, oder 
+		kleiner als {\tt s2} ist.	
+	\item {\tt char *strdup(char *s1)}\\
+		Dupliziert den String {\tt s1}. Alloziiert zu diesem Zweck Speicher
+		mit {\tt malloc()} und gibt bei Erfolg von {\tt malloc} den 
+		Pointer darauf zur"uck, sonst NULL.
+	\item {\tt char *tsearch(char *key, char **rootp, int (*compar)())}
+	\item {\tt char *tfind(char *key, char **rootp, int (*compar)())}
+	\item {\tt void twalk(char *root, void (*action)())}\\
+		Diese Funktionen implementieren einen bin"aren Suchbaum. Alle n"otigen
+		Vergleiche werden mit der Funktion {\tt compar} durchgef"uhrt, die
+		vom Benutzer der Baumfunktionen zur Verf"ugung gestellt werden mu"s. Die
+		Funktion {\tt compar} wird den Baumfunktionen mit Hilfe eines
+		Funktionspointers bekannt gemacht. {\tt compar} wird mit 
+		zwei Argumenten
+		aufgerufen, die auf die zu vergleichenden Elemente zeigen. Der 
+		R"uckgebewert mu"s kleiner, gleich oder gr"o"ser 0 sein, abh"angig
+		davon, ob das erste Element kleiner, gleich oder gr"o"ser dem zweiten
+		Element ist (analog zu {\tt strcmp}).
+
+		{\tt tsearch} kann einen Baum aufbauen und auf ihn zugreifen. Wenn
+		ein Element gefunden wird, da"s {\em gleich\/} dem ist, auf das
+		{\tt key} zeigt, wird ein Pointer zur"uckegegeben. Dieser Pointer
+		zeigt auf einen Pointer der auf das gefundene 
+		Baumelement zeigt. Ansonsten wird das Element, auf das {\tt key}
+		zeigt, in den Baum eingef"ugt und ein Pointer-auf-einen-Pointer auf
+		das neue Element zur"uckgegeben. Illustration:
+		\begin{verbatim}
+   Rueckgabe-   --            ------------- 
+    ---------->|  |--------->| Baumelement |
+    pointer     --  Pointer   ------------- 
+                                  /    \
+		\end{verbatim}
+		Es werden nur Pointer kopiert, d.h.\ der Benutzer mu"s
+		f"ur die Baumelemente selbst Speicher reservieren (z.B.~mit {\tt malloc}).
+		{\tt rootp} zeigt auf eine Variable und diese Variable zeigt auf die
+		Wurzel des Baums. Um den ersten Knoten im Baum (Wurzel) zu erzeugen,
+		mu"s in der Variablen NULL stehen, danach enth"alt die Variable 
+		den Zeiger auf die Wurzel des Baums.
+		
+		{\tt tfind} entspricht {\tt tsearch}, nur das bei Scheitern der
+		Suche NULL zur"uckgegeben und kein neuer Knoten angelegt wird.
+
+		{\tt twalk} traversiert einen Baum oder auch Teilbaum, denn als {\tt root}
+		kann auch ein beliebiger Knoten angegeben werden. Beachten Sie, da"s nur
+		ein Pointer auf {\tt root} angegeben wird, kein 
+		Pointer-auf-einen-Pointer,	wie bei {\tt tsearch} und {\tt tfind}.
+		{\tt action} ist die Funktion, die mit jedem Knoten aufgerufen wird.
+		Sie mu"s auch von Benutzer zur Verf"ugung gestellt werden. Sie erh"alt
+		drei Argumente: einen Pointer auf das Baumelement, eine 
+		Information, wann das Baumelement besucht wurde und die Tiefe des 
+		Baumelements (Wurzel = 0). Die Besuchsinformation ist ein
+		Enumerationstyp: {\tt typedef enum \{preorder, postorder, 
+		endorder, leaf \} VISIT;} {\tt preoder}, {\tt postoder} und 
+		{\tt enoder} stehen 
+		f"ur den ersten, zweiten und dritten Besuch w"ahrend einer
+		"`depth-first, left-to-right"' Traversion des Baumes, {\tt leaf} f"ur
+		das Blatt eines Baumes.
+
+	\item {\tt int sscanf(s, format, pointer)}\\
+		Lie"st Zeichen von String {\tt s} und wandelt sie entsprechend dem
+		spezifizierten {\tt format} um und schreibt die Resultate in die Variablen
+		auf die die {\tt pointer} zeigen. Dies ist die Umkehrfunktion 
+		von {\tt printf}, die Formatspezifikationen sind identisch. 
+	\item {\tt char *fgets(s, n, stream)}\\
+		Lie"st Zeichen aus dem Stream {\tt stream} bis zum NEWLINE oder EOF und
+		schreibt sie in den String {\tt s}, bis {\tt n-1} Zeichen gelesen wurden.
+		Bei EOF wird NULL zur"uckgegeben, sonst {\tt s}.
+\end{itemize}
+
+\subsection*{Hinweis}
+
+Machen Sie keine Abstraktionen von den Testumgebungs-Funktionen.

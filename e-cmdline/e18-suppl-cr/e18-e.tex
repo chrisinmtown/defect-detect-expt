@@ -1,0 +1,43 @@
+
+This is the supplemental sheet 
+for applying technique ``code reading''
+to the program ``cmdline.''
+
+\subsection*{Brief description of the library functions used}
+
+\begin{itemize}
+
+\item {\tt int strlen(char *s)}
+
+Returns the length of the string {\tt s} (the null character on the end
+is not counted).
+
+\item {\tt int strcmp(char *s1, char *s2)}
+
+Compares two strings.  Returns a value greater than, equal to, or less
+than 0 depending on whether {\tt st1} is lexicographically (i.e.,
+ASCII value) greater than, equal, or less than {\tt s2}.
+
+\item {\tt int strncmp(char *s1, char *s2, int n)}
+
+Like {\tt strcmp}, but compares maximum {\tt n} characters.
+
+\item {\tt int fprintf(stderr, "Text"...)}
+
+Prints the text on the standard-error output stream.
+
+\item {\tt int isdigit(char c)}
+Returns {\em true} if the character is a digit, otherwise {\em false}.
+
+\item {\tt int atoi(char *str)}
+
+Converts the string {\tt str} to an integer.
+Leading white space is ignored, and scanning of the string ends
+with the first non-numeric character.
+If no numeric characters could be read, 0 is returned.
+
+\end{itemize}
+
+\subsection*{Reminder}
+
+Don't produce any abstractions for the test-scaffold functions.

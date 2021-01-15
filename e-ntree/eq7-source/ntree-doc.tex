@@ -1,0 +1,28 @@
+\documentstyle[expconfig,listings]{article}
+\parindent0pt
+\pagestyle{myheadings}
+\ifenglish
+\markright{Component ``ntree''}
+\fi
+\ifgerman
+\markright{Komponente "`ntree"'}
+\fi
+\begin{document}
+\ifenglish
+\section*{Document EQ7: Source code for component ``ntree''}
+\fi
+\ifgerman
+\section*{Document EQ7: Quellkode der Komponente "`ntree"'}
+\fi
+
+\subsection*{File ``ntree.h''}
+\smallskip
+\lstinputlisting{../ntree.h}
+\newpage
+
+\subsection*{File ``ntree.c''}
+\smallskip
+\lstinputlisting{../ntree.c}
+
+\end{document}
+

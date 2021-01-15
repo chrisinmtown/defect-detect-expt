@@ -1,0 +1,84 @@
+
+Dies ist das Erg\"anzungsblatt bez\"uglich des Programms "`cmdline"'
+f\"ur funktionales Testen.
+
+\subsection*{Notwendige Eingaben}
+
+\begin{itemize}
+
+\item Welche Dokumente geh"oren zu dieser Aufgabe?
+
+\begin{enumerate}
+\item Dokument ES8, die Spezifikation der Komponente
+\item Dokument EQ8, der Quellcode der Komponente (erhalten Sie, nachdem Sie
+	Testf"alle erstellt und Fehlverhalten diagnostiziert haben)
+\end{enumerate}
+
+\item Wie hole ich mir das Dateipaket, das ich brauche?
+
+Gehen sie wie folgt vor:
+
+\begin{enumerate}
+
+\item Zuerst legen Sie ein neues Verzeichnis daf\"ur an mittels des 
+"`mkdir"'-Kommandos.
+\begin{verbatim}
+    mkdir ft-cmdline
+\end{verbatim}
+
+\item Dann wechseln Sie in das neue Verzeichnis mittels des 
+"`cd"'-Kommandos.
+\begin{verbatim}
+    cd ft-cmdline
+\end{verbatim}
+
+\item Zuletzt geben Sie folgendes Kommando ein:
+\begin{verbatim}
+    tar xf ~uebung00/Experiment/ft-cmdline.tar
+\end{verbatim}
+
+\end{enumerate}
+
+\item Was mu"s vorhanden sein ?
+
+Die folgenden Dateien m\"ussen vorhanden sein:
+\begin{verbatim}
+    Makefile        cmdline         run-suite       test-dir
+\end{verbatim}
+
+\end{itemize}
+
+\subsection*{Bildung von "Aquivalenzklassen und Testf"allen}
+
+Die Komponente "`cmdline"' kann fast direkt getestet werden. Es sind nur
+f"ur die einzelnen Aufrufe von "`cmdline"' die Argumente in 
+Parameterdateien abzulegen. Es werden keine (MIL/MDL-) Eingabedateien
+ben"otigt.
+
+\newpage
+\section*{E28, Blatt 2 -- Wird mit dem Quellkode ausgegeben !}
+
+\subsection*{Kurze Beschreibung der verwendeten Bibliotheks-Funktionen}
+
+\begin{itemize}
+   \item {\tt int strlen(char *s)}\\
+      Liefert die L"ange des Strings {\tt s}
+      zur"uck (Null-Zeichen am Ende wird nicht mitgez"ahlt).
+   \item {\tt int strcmp(char *s1, char *s2)}\\
+      Vergleicht zwei Strings. Liefert einen Wert gr"o"ser als, gleich, oder
+      kleiner als 0 zur"uck, abh"angig davon, ob {\tt s1} lexikographisch
+      (d.h.~ASCII-Zeichenwert) gr"o"ser, gleich, oder
+      kleiner als {\tt s2} ist.
+   \item {\tt int strncmp(char *s1, char *s2, int n)}\\
+      Wie {\tt strcmp}, vergleicht maximal {\tt n} Zeichen.
+   \item {\tt int fprintf(stderr,"Text"...)}\\
+      Gibt den Text auf der Standardfehlerausgabe aus.
+   \item {\tt int isdigit(char c)}\\
+      Liefert {\em true\/}, wenn das Zeichen {\tt c} eine Ziffer ist,
+      ansonsten {\em false\/}.
+   \item {\tt int atoi(char *str)}\\
+      Wandelt den String {\tt str} in einen Integer um. F"uhrende
+      "`white-spaces"' werden ignoriert, das scannen das Strings wird mit dem
+      ersten Zeichen, das keine Ziffer ist, abgebrochen. Konnte keine Ziffer
+      gelesen werden, wird 0 zur"uckgegeben.
+\end{itemize}

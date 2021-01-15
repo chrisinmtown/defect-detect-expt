@@ -1,0 +1,18 @@
+%
+% configuration parameters for LaTeX
+%
+\typeout{Configuration for Kamsties/Lott experiment documents, 14 Oct 96}
+%
+% set language to use
+\input{language.sty}
+% set paper type to use
+\input{paper.sty}
+% use the postscript font Times-Roman; might not be available, can be removed
+% \input{times.sty}
+%
+% commonly used macros
+%
+\newenvironment{path}%
+{\marginpar{\raisebox{-0.5ex}%
+ {$\stackrel{\rule{0.7cm}{1mm}}{\scriptstyle path}$}}}%
+{\marginpar{\rule[-0.2ex]{0.7cm}{1mm}}}

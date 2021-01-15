@@ -1,0 +1,118 @@
+%
+% sample solution for training exercise ``count''
+%
+
+The following lists line numbers and abstractions (specifications) of
+the source code from those lines.
+
+\begin{tabbing}
+mmmmmmmm   \= mmm \= \kill
+{\bf Line(s)} \> {\bf Abstraction}							\\
+\rule{\textwidth}{.5pt}\\ 
+21--29	\> Sequence									\\
+											\\
+	\>The meaning of the components:						\\
+											\\
+21	\> charct := charct + 1								\\
+22--23  \> c = {\em newline} $\rightarrow$ linect := linect + 1 $\mid$ ()  		\\
+24--29	\> c = {\em whitespace} $\rightarrow$ inword:= 0 $\mid$ 				\\
+	\> \>	(inword = 0 $\rightarrow$ inword, wordct := 1, wordct + 1 $\mid$ () ).	\\
+											\\
+	\> Because there are 4 paths through this sequence, the following results:	\\
+											\\
+	\> c = {\em newline} $\rightarrow$ charct, linect := charct + 1, linect + 1 $\mid$	\\
+	\> c $\not=$ {\em newline} $\wedge$ c = whitespace $\rightarrow$ charct, inword := charct + 1, 0 $\mid$\\
+	\> c $\not=$ {\em newline} $\wedge$ c $\not=$ whitespace $\wedge$ inword = 0 		\\
+	\> \>	$\rightarrow$ charct, wordct, inword := charct + 1, wordct + 1, 1 $\mid$\\
+	\> c $\not=$ {\em newline} $\wedge$ c $\not=$ whitespace $\wedge$ inword $\not=$ 0 $\rightarrow$ charct := charct + 1.\\
+\\
+14--39	\> Sequence\\
+\\
+	Once again, first the meaning of the components:\\
+\\
+14--17	\>argc > 1 $\rightarrow$ (file-open(argv[i]) = {\em failure} $\rightarrow$ {\em err-msg and halt} $\mid$ fp := {\em stream}) $\mid$ ().\\
+\\
+18--30	\> To determine the meaning of this portion sensibly, the lines 18--19 are \\
+	\> included and the tasks of the variables are investigated:\\
+	\> 1. Variable ``charct'' is incremented in all 4 cases; i.e., counts every character\\
+	\> 2. Variable ``linect'' is only incremented if a {\em newline} is read; i.e., counts lines\\
+	\> 3. Variable ``inword'' is a switch that takes on values 0 and 1.\\
+	\> If whitespace is seen, the switch is set to 0. If other characters are seen,\\
+	\> it is switched to 1 and at the same time ``wordct'' is incremented; i.e., counts words.\\
+\\
+	\> c $\not=$ EOF $\rightarrow$ 	charct, wordct, linect :=	\\
+	\> \> character-count(stdin), word-count(stdin), line-count(stdin).\\
+\\
+	\> Note: because ``inword'' is initialized to 1, the first word is not counted\\
+	\> if it comes at the beginning of a stream not preceded by whitespace.\\
+\\
+31	\> stdout := ``linect, wordct, charct''\\
+32--35	\> argc > 1 $\rightarrow$ stdout := *argv {\em (i.e., program name) and newline} $\mid$ stdout := {\em newline}\\
+36	\> {\em close stream}\\
+37--39	\> tlinect, twordct, tcharct := tlinect + linect, twordct + wordct, tcharct + charct\\
+\\
+\\
+\\
+\\
+	\> Because there are 3 paths through this sequence, the following results:\\
+\\
+	\> argc > 1 $\wedge$ open-file(argv[i]) = failure $\rightarrow$ stdout: = err msg {\em and halt} $\mid$\\
+	\> argc > 1 $\vee$   open-file(argv[i]) = success $\rightarrow$\\
+	\> \>	tcharct, tlinect, twordct, stdout := tcharct + character-count({\em stream}),\\
+	\> \>	twortct + word-count({\em stream}), tlinect + line-count({\em stream}),\\
+	\> \>   ``line count({\em stream}), word-count({\em stream}), character-count({\em stream}), pgm-name''\\
+	\> argc $\leq$ 1 $\rightarrow$\\
+	\> \>	tcharct, tlinect, twordct, stdout := tcharct + character-count(<nil>),\\
+	\> \>	twortct + word-count(<nil>), tlinect + character-count(<nil>), \\
+	\> \>	``line count(<nil>), word-count(<nil>), character-count(<nil>)''\\
+\\
+	\> Note: If argc is $\leq$ 1, tp is not initialized; i.e., the program\\
+	\> reads from an undefined stream (label <nil> above).\\
+\\
+3--44	\> Sequence\\
+\\
+	Once again, first the meaning of the components:\\
+\\
+10	\> tlinect, twordct, tcharct := 1, 1, 1\\
+12--40	\> for all indexes of command-line arguments from 1{\ldots}argc - 1 do [14--39]\\
+41--42	\> argc > 1 $\rightarrow$ stdout := ``linect, twordct, tcharct'' $\mid$ ()\\
+43	\> halt\\
+\rule{\textwidth}{.5pt}
+\end{tabbing}
+
+\noindent
+The behavior of the entire program is captured as follows:
+
+\begin{itemize}
+
+\item All command-line arguments are treated as file names.
+Thee cases are distinguished:
+
+\begin{enumerate}
+\item Arguments are available, but no files exist with names 
+corresponding to the arguments.
+In this case, the program halts with an error message.
+
+\item Arguments are available, and they correspond to existing files.
+For each file, the number of lines, words, and characters
+is counted and the sum along with the program name are printed
+(the file name was expected).
+
+\item  No arguments are available.  In this case, the program
+attempts to read from an uninitialized stream and proceeds as in (2),
+although no program name is printed (a reasonable initialization
+of the stream would have been stdin).
+
+\end{enumerate}
+
+\item The count of words is determined depending on the first character 
+in the stream.
+If the first character is not a white space, then the first word is
+not counted.
+
+\item If the total count of arguments is at least 1, the total sum of 
+all characters and words in all files and the count of lines in the last
+file is printed.
+
+
+\end{itemize}

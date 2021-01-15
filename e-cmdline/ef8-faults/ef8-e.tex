@@ -1,0 +1,176 @@
+%
+% faults in cmdline
+%
+
+The classification of each fault is given in braces.
+
+\begin{enumerate}
+
+% 1 
+\item Fault in line 23, the initialization is unnecessarily done with
+``-1'' (the -1 is superfluous).
+
+\{Commission, Initialization\}
+
+Causes failure: The last entry in the table is never found; i.e., the
+option ``-ueber'' is never recognized.
+
+% 2 
+\item Fault in function ``usage'', line 28: In the word ``Suchoption''
+the first ``o'' is missing.
+
+\{commission, cosmetic\}
+
+Causes failure: A misspelled word appears in the output.
+
+% 3 
+\item Fault in function ``is\_str\_keyword'', line 41: The if condition
+does not compare the length of the string with the minimum required
+length ({\tt min\_verg\_len}).
+
+\{Commission, Interface\}
+
+Causes failure: Abbreviated switches are generally interpreted to be
+unique and associated with the first matching switch.
+For example, ``-m'' is recognized as ``-mass'' although the unique
+beginning was not seen.
+
+% 4 
+\item Fault in function ``print\_aufgabe'', line 68:  Expression
+{\tt aufg->such == NULL} is superfluous
+
+\{Commission, Control\}
+	
+Causes failure: A missing measurement option is not recognized as an
+error if a search option is used.
+
+% 5 
+\item Fault in function ``process\_switches'', line 124: 
+The variable ``i'' is incremented after the comparison instead of
+before.
+
+\{Commission, Data\}
+
+Causes failure: If the switch ``-mass'' is used without a corresponding
+legal measurement argument, no error message is printed provided that
+a file name (really any text) follows.  However, if no argument
+follows the switch, the program crashes. 
+
+% 6 
+\item Fault in function ``process\_switches'', line 137, LKOM is
+assigned instead of LKHM.
+
+\{Commission, Initialization\}
+
+Causes failure: The switch LKHM is not processed correctly; instead,
+the user always receives a report for LKOM.
+
+% 7 
+\item Fault in function ``process\_switches'', line 191: the
+``break''-Statement is missing.
+
+\{Omission, Control\}
+
+Causes failure: If the ``-min'' option is given, an error message
+complaining about too many search options appears because the code for
+``--unter'' is also executed.
+
+% 8 
+\item Fault in function ``process\_switches'', line 205: the function 
+``atoi()'' is used instead of ``atof()''.
+
+\{Commission, Interface\}
+
+Causes failure: Only the integer part of a real number is used.
+
+
+% 9 
+\item Fault in function ``process\_switches'', line 238/240: rc doesn't
+receive the expected value from {\tt print\_dateien}.
+
+\{Omission, Interface\}
+
+Causes failure: If all switches were recognized correctly, missing
+data files are not detected.  The command name and supplied switches
+are listed as files to be read.
+
+\end{enumerate}
+
+Comments:
+
+\begin{enumerate}
+\item Line 28: The text does not mention the help options.
+This is not treated as a fault.
+
+\item Line 200/218: Only the first symbol of the arguments for the
+switches ``-unter'' and ``-ueber'' is checked to see if it is a digit,
+meaning that ``4c'' is accepted as a number.  This is not treated as a
+fault. 
+
+\end{enumerate}
+
+
+The next page lists the necessary equivalence classes and test cases
+to reveal the faults described above.
+
+\newpage
+
+\textbf{Equivalence Classes:}
+\smallskip
+
+\begin{tabular}{l|l}
+Valid classes	         		& Invalid classes \\ \hline
+$V_1$ := \{exactly 1 measure\} 		& $I_1$ := \{no measure\} , $I_2$ := \{more than 1 measure\} \\
+$V_2$ := \{max. 1 option\}              & $I_3$ := \{more than one option\} \\
+$V_3$ := \{min. 1 file\}              	& $I_4$ := \{no file\} \\
+$V_4$ := \{uniquely abbreviated option\}& $I_5$ := \{not uniquely abbrev. option\} \\
+$V_5$ := \{above/below value real\}     & $I_6$ := \{no above/below value\} \\
+$V_6$ := \{order measure-option\}	&                                   \\
+$V_7$ := \{order option-measure\}	&                                   \\
+$V_{81}$:= \{option -max\}              &                                   \\
+$V_{82}$:= \{option -min\}              &                                   \\
+$V_{83}$:= \{option -durch\}            &                                   \\
+$V_{84}$:= \{option -unter\}            &                                   \\
+$V_{85}$:= \{option -ueber\}            &                                   \\
+$V_{86}$:= \{option -alle\}             &                                   \\
+$V_{87}$:= \{option -hilfe -?\}         &                                   \\
+$V_{91}$:= \{measure -LKOM\}		& $I_7$ :=\{no known measure\}   \\
+$V_{92}$:= \{measure -GKOM\}            &                                   \\
+$V_{93}$:= \{measure -GKHM\}            &                                   \\
+$V_{94}$:= \{measure -LKHM\}            &                                   \\
+$V_{95}$:= \{measure -GIHE\}            &                                   \\
+$V_{96}$:= \{measure -LIHE\}            &                                   \\
+\end{tabular}
+
+\medskip
+\textbf{Test cases:}
+\smallskip
+
+\begin{tabular}{l|l|l|l}
+Nr. & Covered classes	  	& Invocation of program 		   & Fault nr. \\ \hline
+1   & $I_1$         		& cmdline -max Datei1                       & 4   \\
+2   & $I_2$                     & cmdline -mass LKOM -mass GKOM -max Datei1 & --- \\
+3   & $I_3$                     & cmdline -mass LKOM -alle -min Datei       & 7   \\
+4   & $I_4$                     & cmdline -mass LKOM -durch                 & 10   \\
+5   & $I_5$                     & cmdline -mass LKOM -m Datei1              & 3   \\
+6   & $I_6$                     & cmdline -mass GIHE -unter Datei1          & --- \\
+7   & $I_7$                     & cmdline -mass T Datei1                    & --- \\
+8   & $V_1,V_2,V_3,V_{92},V_{82},V_6$& cmdline -mass GKOM -min  Datei1     & 7   \\
+9   & $V_4, V_6, V_7 V_{91}, V_{83}$& cmdline -du -mass LKO Datei1          & --- \\
+10  & $V_{93}, V_{85}, V_5$     & cmdline -mass GKHM -ueber 4.2 Datei1    & 1   \\
+11  & $V_{94}, V_{81}, V_2$     & cmdline -mass LKHM -max Datei1 Datei2   & 6   \\
+12  & $V_{95}, V_{84}, V_6$     & cmdline -mass GIHE -unter 3.14 Datei1   & 8   \\
+13  & $V_{95}, V_{84}, V_6$     & cmdline -mass GIHE -unter -2 Datei1     & 9   \\
+14  & $V_{96}, V_{86}$          & cmdline -mass LIHE -alle Datei1         & --- \\
+15  & $V_{87}$                  & cmdline -hilfe                          & 2   \\
+16  & $I_1, I_4$                & cmdline -mass                           & 5   \\
+\end{tabular}
+
+\medskip
+Comment 1:  Valid equivalence classes are only named the first time they are covered.
+
+\smallskip
+Comment 2:  Test case 16 is attaind by covering two invalid equivalence classes 
+at once.  This contradicts the approach discussed for using equivalence
+classes but is the only possibility for revealing this failure.  This is
+a good example that no method is perfect.

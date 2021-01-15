@@ -1,0 +1,120 @@
+Please follow the directions on the supplemental sheet entitled ``Code
+reading with program $x$,'' which is included in this packet of materials.
+
+\begin{enumerate}
+
+\item Before beginning, read over the data-collection form ``E12: Code Reading.'' 
+Enter your identifier and fill out the section entitled ``Before beginning.''
+
+\end{enumerate}
+
+\subsection*{Read the code}
+
+\begin{enumerate}
+\addtocounter{enumi}{1}
+
+\item Enter the time when you began the experiment under question~4.
+
+\item Briefly read through the code to gain an overview of this component.  
+If you happen to notice faults during this or one of the following
+three steps, mark  them.  However, please do not invest any time in a
+precise analysis; i.e., don't isolate the faults.  Isolation of faults
+begins in step 11. 
+
+\item Determine the dependencies between the individual functions in
+the source code, for example with a call tree.
+Normally the functions are already ordered in the code such that the
+``low-level'' functions (leaves) are at the beginning and the
+``high-level'' functions (root) at the end.
+Begin applying the code-reading technique with the leaf functions and
+work towards the root.
+
+\item Develop an understanding for the structure of each individual
+function by identifying the elementary structures (sequences,
+conditional assignments, loops) and by marking them, for example by
+drawing a box around them. 
+Combine the elementary structures together to form larger structures
+(with corresponding boxes) until you have framed in the entire
+function. 
+
+\item Try to determine the meaning of each structure (box) by starting
+with the innermost box and note the result on the worksheet given to
+you for that purpose.
+Use line numbers (lines x--y) when doing so.
+Avoid using implicit knowledge that does not lie inside this box, for
+example initial values, inputs, or parameter values.
+Describe the parts as functionally as possible.
+While doing so, use generally accepted principles of the application
+domain to keep the description brief and understandable.  For example,
+in the case of searching a tree, state ``breadth-first search'' instead
+of a lengthy description of breadth-first search.
+
+\item Enter the time you required to compose the abstractions 
+in the data-collection form under question~5.
+Also please enter the maximum number of abstraction levels and the
+style of description you used under questions~6 and~7, respectively.
+
+\item Make a copy of your notes (you will still need the original) and
+write your identifier on the copy.  Give the copy to the exercise
+leader.  You will then receive the specification of the component.
+
+\end{enumerate}
+
+\subsection*{Search for inconsistencies}
+
+\begin{enumerate}
+\addtocounter{enumi}{8}
+
+\item Aswer question~8 on the data-collection form.
+Read through the specification carefully.  The specification describes
+the component as a whole, not the individual functions.  You must
+derive the specification for the individual functions from the 
+component's specification. 
+(This is necessary so that the same specification can be used in all
+exercises for reasons of comparability.)
+Detect possible inconsistences by comparing the specification with your
+description of the component.
+Enter the inconsistencies which you detect in the worksheet, and don't
+forget to enter your identifier there as well.   
+
+\item When you believe that you have detected all of the
+inconsistencies, enter the time you required for your search under
+question~9 of the data-collection form.
+Please number the inconsistencies which you found from 1 to $n$ in the
+column labeled ``I. Nr.'' (inconsistency number) in the worksheet for
+inconsistencies. 
+
+\end{enumerate}
+
+\subsection*{Isolate faults}
+
+\begin{enumerate}
+\addtocounter{enumi}{10}
+
+\item Try to isolate the faults responsible for the inconsistencies
+which you detected.
+But please answer question~10 on the data-collection form first.
+Enter the isolated faults in the worksheet provided for that purpose,
+and again don't forget to enter your identifier on that sheet.
+
+Record the faults which you isolated by using the line number.
+Classify the faults according to the different types and classes of
+faults [\{Omission, Comission\}, \{Initialization, Control,
+Interface, Data, Computation, Cosmetic\}]. 
+Then characterize the fault briefly; e.g., ``initial value was 1 instead
+of 0.''
+Also give the number(s) of the inconsistency or inconsistencies which
+result(s) from this fault.
+
+Also enter in the same way the faults which you found by chance.
+These faults receive just a dash in the column ``I. Nr.''
+
+\item Enter the time you required for isolating faults in the
+data-collection form under question~11.
+
+\item Please fill out the rest of the form (questions~12--14).
+
+\item Give the data-collection form and all other worksheets to the
+experiment leader, and you're all done.
+
+\end{enumerate}

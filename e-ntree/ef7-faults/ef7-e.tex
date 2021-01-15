@@ -1,0 +1,186 @@
+
+%
+% faults in program ntree
+%
+
+The classification of each fault is given in braces.
+
+\begin{enumerate}
+
+% 1  (was 1)
+\item Fault in function ``init\_tree\_node'', line 20: 
+Parameter ``parent'' is not stored in the structure.
+
+\{Omission, Data\}
+
+This function is used by the command ``sibs'' and causes 
+the following failure.  If both nodes used in the ``sibs'' command
+exist, then they are recognized as siblings, because the value 
+of the parent field is apparently initialized to 0 at run-time.
+
+% 2  (was 2)
+\item Fault in function ``find\_node'', line 62:
+The variable i starts at 1 instead of 0 in the for-loop.
+
+\{Comission, Control\}
+
+Causes failure: Nodes in the subtree of the father node's first
+(aka leftmost) child are not found during the search.  I.e., 
+the leftmost subtree of the root is not searched, and so forth.
+Causes problems for commands ``child,'' ``search,'' and ``sibs'' 
+as follows: 
+
+\begin{itemize}
+
+\item child: if the father node meets the criteria stated above,
+then no new node is inserted into the tree. 
+An unexpected error message is printed that the father node could not
+be found (a failure of the search function); the message is unexpected
+because an existing node should have been found.
+
+\item search: if the node meets the criteria stated above, it is not
+found and no message is printed (not even an error message).
+
+\item sibs: if the nodes are siblings and the first meets the criteria
+stated above, then no message is printed (not even an error message).
+
+a message is printed stating that they are not
+siblings. 
+
+\end{itemize}
+
+
+%    (was 3)
+% \item Fault in function ``t\_add\_child'', line 86: 
+% The error message about not finding the father node is missing. 
+% 
+% \{Omission, Control\} 
+% 
+% Causes failure: No error message is printed if the father node cannot
+% be found while trying to insert a child.
+% 
+
+% 3  (was 4)
+\item Fault in function ``t\_add\_child'', line 91:
+No memory is allocated for the father node that is to be extended.
+
+\{Omission, Data\}
+
+Causes failure:  Segmentation fault (core dumped)
+if a father node receives more than 4 children (but not in all cases;
+pointer problems are just like that).
+
+%    (was 5)
+% \item Fault in function ``t\_add\_child'', line 81 / 99: 
+% the variable rc is not initialized in order to state that the function
+% ran successfully.
+% 
+% \{Omission, Initialization\}
+% 
+% Causes no failure. The return values are not checked.
+% 
+
+% 4  (was 6)
+\item Fault in function ``t\_search'', line 119:
+The word ``Inhalt'' was incorrectly typed as ``Ihalt''.
+
+\{Comission, Cosmetic\}
+
+Causes failure: Misspelled word in the output.
+
+% 5  (was 7)
+\item Fault in function ``t\_search'', line 122:
+Code for checking the return values is incomplete.
+
+\{Omission, Control\}
+
+Causes failure: No error message is printed if the node cannot be
+found (command ``search''; see also fault 2).
+
+%    (was 8)
+% \item Fault in function ``t\_are\_siblings'', line 138:
+% The variable ``key1'' is used instead of ``key2''.
+% 
+% \{Comission, Computation\}
+% 
+% Causes failure: If the first node is found, the second is ignored and
+% the two are reported to be siblings.
+
+% 6  (was 9)
+\item Fault in function ``t\_are\_siblings'', line 140:
+The error message about not finding the nodes is missing.
+
+\{Omission, Control\}
+
+Causes failure: No error message is printed if the left node (first
+argument of command ``sibs'') is not found while checking for
+siblings.  An error message was expected.
+
+%    (was 10)
+% \item Fault in function ``t\_are\_siblings'', line 143:
+% The error message about not finding the nodes is missing.
+% 
+% \{Omission, Control\}
+% 
+% Causes no failure.  Because the program never searches for the second
+% node (see fault 8), the case in which the node is not found never can
+% occur. 
+% If not for fault 8, the failure would be that no error message is
+% printed if the right node (second argument of command ``sibs'') is not
+% found while checking for siblings.
+
+%    (was 11)
+% \item Fault in function ``print\_tree\_nodes'', line 154:
+% The variable ``rc'' is not initialized.
+% 
+% \{Omission, Initialization\}
+% 
+% Alternative: Line 153, 161, 162: The variable rc is superfluous and
+% the code can be deleted.
+% 
+% \{Comission, Control\}
+% 
+% Causes failure: The tree is not printed in its entirety; only nodes up
+% to the first leaf are printed.  Because fault 2 causes the leftmost
+% child of the root to remain a leaf node, a maximum of two entries are
+% printed. 
+
+% 7  (was 12)
+\item Fault in function ``print\_tree\_nodes'', line 165:
+The printf invocation only prints two (2) blanks.
+
+\{Comission, Cosmetic\}
+
+Causes failure:  Each level in the tree is only indented 2 instead 
+of 4 additional spaces. 
+
+% 8  (was 13)
+\item Fault in function ``t\_print'', line 181:
+The function is called with 1 instead of 0.
+
+\{Comission, Interface\}
+
+Causes failure:  The root is marked as level 2 in the output instead
+of level 0.
+
+\end{enumerate}
+
+And a few comments:
+
+\begin{enumerate}
+
+\item Comment about function ``t\_are\_siblings'', Line 139:  The two
+nodes are not compared with each other to test whether one and the
+same node was passed to the function twice.  This is not a fault
+because the specification has nothing to say about this issue.
+
+\item Comment about function ``fuehre\_kommandos\_aus'', line 201/213: 
+The length is only checked for the command line, not for the
+individual commands.  This deviates slightly from the specification.
+
+\item Comment about function ``fuehre\_kommandos\_aus'', line 213:
+The commands are not checked to see if ``root'' is the first one.
+This might be seen as a fault, but it was clearly stated that the test
+scaffold was not especially robust and should not be tested.
+
+\end{enumerate}

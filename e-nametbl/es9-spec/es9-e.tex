@@ -1,0 +1,130 @@
+%
+% specification for cmdline
+%
+
+\subsection*{Name}
+nametbl -- Functions for a symbol table
+
+\subsection*{Usage}
+{\bf nametbl} input-file
+
+\subsection*{Description}
+{\bf nametbl}
+reads commands from a file and processes them in order to
+test a few functions. 
+Considered together, the functions implement a symbol table for a
+certain computer language.
+The only scope for all symbols is ``global.''
+No check of type semantics is done.
+
+The symbol table stores the following information for each symbol:
+
+\noindent
+Symbol name.
+
+\noindent
+Object type of the symbol: {\tt \{OT\_NO\_INF, SYSTEM, RESOURCE\}}.
+
+\noindent
+Resource type of the symbol: {\tt \{RT\_NO\_INF, RT\_SYSTEM, FUNCTION, DATA\}}.
+
+\subsection*{Options}
+None.
+
+\subsection*{Input Data}
+
+Only the following commands are allowed in the input files.
+Each command must start on a new line.
+Lower and upper case is relevant in the symbols and in the object and
+resource identifiers.
+The separator between commands and arguments is a space; this means that
+spaces may not appear within a symbol.
+
+\begin{itemize}
+
+\item {\tt ins <Symbol>}
+
+Inserts the symbol in the table.
+The object type of the symbol receives the value ``OT\_NO\_INF''
+and the resource type receives the value ``RT\_NO\_INF.''
+If the symbol already exists, an error message is printed.
+
+\item {\tt tot <Symbol> <ObjTyp>}
+
+Enters the object type <ObjTyp> for the symbol <Symbol>,
+where <ObjType> must be either ``SYSTEM'' or ``RESOURCE'';
+the value ``OT\_NO\_INF'' is not allowed.
+The symbol must be entered in the table, otherwise a corresponding
+error message is printed. 
+The previous value for the object type is overwritten and lost.
+
+\item {\tt trt <Symbol> <ResTyp>}
+
+Enters the resource type <ResTyp> for the symbol <Symbol>,
+where <ObjType> must be either 
+``RT\_SYSTEM'', ``FUNCTION'', oder ``DATA'';
+the value ``RT\_NO\_INF'' is not allowed.
+(The value ``RT\_SYSTEM'' is used in the case where the object type
+of the symbol has the value ``SYSTEM''  and information concerning the
+resource type is therefore not required.)
+The symbol must be entered in the table, otherwise a corresponding
+error message is printed. 
+The previous value for the resource type is overwritten and lost.
+
+
+\item {\tt sch <Symbol>}
+
+Searches for the symbol <Symbol> and prints out the corresponding
+information. 
+If the symbol is not found in the table, a corresponding error message
+is printed. 
+
+\item {\tt prt}
+
+Prints out the count of entries in the symbol table and the complete
+contents.
+
+\end{itemize}
+
+
+\subsection*{Example}
+{\small
+\begin{verbatim}
+% cat eingabe
+ins qwe
+ins rty
+tot qwe SYSTEM
+prt
+% nametbl eingabe
+Eingabedatei `eingabe' wird bearbeitet.
+
+Die Zeile `ins qwe' wird ausgewertet:
+
+Die Zeile `ins rty' wird ausgewertet:
+
+Die Zeile `tot qwe SYSTEM' wird ausgewertet:
+
+Die Zeile `prt' wird ausgewertet:
+Die Tabelle hat die folgenden 2 Eintraege:
+Name    : qwe
+oType   : SYSTEM
+rType   : RT_NO_INF
+-----
+Name    : rty
+oType   : OT_NO_INF
+rType   : RT_NO_INF
+-----
+Ende der Eingabedatei `eingabe'.
+\end{verbatim}
+}
+
+\subsection*{Authors}
+Goldmann, Klemke, Knecht, Lott.
+
+\subsection*{Bugs}
+The functionality for reading files is only for test purposes and is
+therefore not especially fault-tolerant.  For example, one can assume
+that incorrectly spelled commands, commands with missing arguments, or
+commands with too many arguments will not be handled especially
+carefully. 
+

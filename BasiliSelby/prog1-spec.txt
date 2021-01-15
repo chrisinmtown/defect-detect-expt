@@ -1,0 +1,30 @@
+                               Program 1
+
+Given an lnput text of up to 80 characters consisting of words
+separated by blanks or new-line characters, the program formats it
+into a line-by-line form such that 1) each output Iine has a maximum
+of 30 characters, 2) a word in the input text is placed on a single
+output line, and 3) each output line is filled with as many words as
+possible. 
+
+The input text is a stream of characters, where the characters are
+categorized as either break or nonbreak characters.  A break character
+is a blank, a new-line  character (&), or an end-of text character
+(/).  New-line  characters have no special significance; they are
+treated as blanks by the program.  The characters & and / should not
+appear in the output. 
+
+A word is defined as a nonempty sequence of nonbreak characters.  A
+break is a sequence of one or more break characters and is reduced to
+a single blank character or start of a new line in the output. 
+
+When the program is invoked, the user types the input line, followed
+by a / (end-of text) and a carriage return.  The program then echos
+the text input and formats it on the terminal. 
+
+If the input text contains a word that is too long to fit on a single
+output line, an error message is typed and the program terminates.  If
+the end-of text character ls misslng, an error message is issued and
+the program awaits the input of properly terminated line of text. 
+
+(End of specification.)

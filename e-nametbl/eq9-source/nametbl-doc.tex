@@ -1,0 +1,28 @@
+\documentstyle[expconfig,listings]{article}
+\parindent0pt
+\pagestyle{myheadings}
+\ifenglish
+\markright{Component ``nametbl''}
+\fi
+\ifgerman
+\markright{Komponente "`nametbl"'}
+\fi
+\begin{document}
+\ifenglish
+\section*{Document EQ9: Source code for component ``nametbl''}
+\fi
+\ifgerman
+\section*{Document EQ9: Quellkode der Komponente "`nametbl"'}
+\fi
+
+\subsection*{File ``nametbl.h''}
+\smallskip
+\lstinputlisting{../nametbl.h}
+\newpage
+
+\subsection*{File ``nametbl.c''}
+\smallskip
+\lstinputlisting{../nametbl.c}
+
+\end{document}
+

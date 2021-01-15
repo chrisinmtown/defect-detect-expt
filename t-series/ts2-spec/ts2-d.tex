@@ -1,0 +1,54 @@
+
+\subsection*{Name}
+series -- eine additive Folge von Zahlen generieren
+
+\subsection*{Verwendung}
+
+{\bf series} Startzahl Stopzahl [ Schrittgr"o"se ]
+
+\subsection*{Beschreibung}
+
+{\bf series} druckt eine auf- bzw.\ absteigende Folge von
+Real-Zahlen ausgehend von {\bf Startzahl} bis zur {\bf Stopzahl}
+aus.
+Jede Zahl erscheint jeweils in einer Zeile.
+Der Wert $\mid$~{\bf Schrittgr"o"se}~$\mid$ spezifiziert den Abstand
+zwischen aufeinanderfolgenden Zahlen.
+Die Folge ist von maximaler L\"ange und bricht jeweils vor dem
+"Uberschreiten der {\bf Stopzahl} ab.
+Das bedeutet, abh"angig von der {\bf Schrittgr"o"se} kann die
+{\bf Stopzahl} exakt erreicht werden.
+
+Falls alle Argumente Integers sind, dann werden nur Integers in 
+der Ausgabe produziert. 
+Die {\bf Schrittgr"o"se} mu"s ungleich null sein;
+falls sie nicht spezifiziert wird, wird eine Schrittgr"o"se
+von 1 angenommen.
+In allen anderen F"allen druckt {\bf series} eine entsprechende
+Fehlermeldung aus.
+
+\subsection*{Beispiel}
+Um von 1 nach 100 zu z"ahlen:
+\begin{verbatim}
+	series 1 100 
+\end{verbatim}
+Das gleiche, aber umgekehrt:
+\begin{verbatim}
+	series 100 1
+\end{verbatim}
+
+\subsection*{Einschr"ankungen}
+
+Die ausgegebene Anzahl signifikanter Ziffern ist eingeschr"ankt.
+Falls das Verh"altnis vom $\mid$`{\bf Stopzahl -- Startzahl}~$\mid$
+gegen"uber der {\bf Schrittgr"o"se} zu gro"s wird, dann werden
+einige aufeinanderfolgende Zahlen identisch sein.
+
+Die maximale L"ange einer Folge ist die maximale Gr"o"se eines 
+``long integer'' auf dem verwendeten Rechner eingeschr"ankt.
+Sollte dieser Wert "uberschritten werden, dann sind die Resultate
+undefiniert. 
+
+\subsection*{Autor}
+
+Gary Perlman

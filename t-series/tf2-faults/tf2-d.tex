@@ -1,0 +1,47 @@
+
+
+In Klammern ist die Kategorisierung des Fehlers angegeben.
+
+\begin{enumerate}
+
+\item Fehler in Zeile 53: Die Variable ``endingstr'' wird statt ``startstr'' im
+printf() verwendet. 
+
+\{Comission, Daten\}
+
+F\"uhrt zum Fehlverhalten:
+Ein nicht numerisches erstes Argument wird erkannt aber in
+der Fehlermeldung kommt das zweite Argument vor.
+
+
+\item Fehler in Zeile 56: Die Variable ``startstr'' wird statt ``endingstr'' in
+der if-Klausel verwendet. 
+
+\{Comission, Daten\}
+
+F\"uhrt zum Fehlverhalten:
+Das Program erkennt keinen Fehler, wenn das zweite Argument
+nicht numerisch ist.
+
+
+\item Fehler in Zeile 87: Wert des Variables ``nitems'' sollte auf 1 statt 2
+gesetzt werden. 
+
+\{Comission, Initialisierung\}
+
+F\"uhrt zum Fehlverhalten:
+Falls der Abstand zwischen den ersten und zweiten Parametern
+null ist, werden zwei  Zeilen in der Ausgabe erzeugt (nur der
+Start-Wert ist erwartet). 
+
+
+\item Fehler in Zeile 81--82: Die Behandlung des Falles end < start wurde
+vergessen 
+
+\{Omission, Berechnung\}
+
+F\"uhrt zum Fehlverhalten:
+Keine Ausgabe wird in dem Fall produziert, worin der Startwert
+gr\"o{\ss}er als der Endwert ist.
+
+\end{enumerate}

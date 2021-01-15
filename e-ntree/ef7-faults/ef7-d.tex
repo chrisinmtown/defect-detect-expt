@@ -1,0 +1,175 @@
+
+\begin{enumerate}
+
+\item Fehler in Funktion ``init\_tree\_node'', Zeile 20: 
+Parameter "`parent"' wird nicht in der Struktur gespeichert.
+
+\{Omission, Daten\}
+
+F\"uhrt zu Fehlverhalten: Diese Funktion wird vom Kommando sibs (Funktion
+"`t\_are\_siblings"') benutzt und wirkt sich wie folgt aus: Sind beide Knoten
+vorhanden, dann werden sie generell als Geschwister identifziert. (Da "`parent"'
+vom Compiler gcc mit 0 initialisiert wird.)
+
+
+\item Fehler in Funktion ``find\_node'', Zeile 61:
+die Variable i f\"angt bei 1 statt 0 in der for-Schleife an.
+
+\{Comission, Kontrolle\}
+
+F\"uhrt zu Fehlverhalten: Ist der gesuchte Knoten das 
+erste Kind eines (Vater-)Knotens, so wird er bei der
+Suche nicht betrachtet. Diese Funktion wird von den Kommandos ``child'', 
+`search'' und ``sibs'' benutzt und wirkt sich folgenderma"sen aus:
+\begin{itemize}
+	\item child: Erf"ullt der Vater oben genannte Eigenschaft,
+		dann wird kein neuer Knoten eingef"ugt. Es erscheint eine Fehlermeldung,
+		da"s der Vaterknoten nicht gefunden wurde, lt. Spezifikation h"atte
+		keine Meldung erscheinen d"urfen. (Der Fehler hat zur Folge, 
+		da"s alle ersten Kinder Bl"atter bleiben.)
+	\item search: Hat der gesuchte Knoten oben genannte Eigenschaft, dann wird
+		er nicht gefunden. Es wird keine Meldung ausgegeben, lt. Spezifikation 
+		w"are die Meldung "Der Inhalt ist..." zu erwarten
+		gewesen.
+	\item sibs: Sind beide Knoten Geschwister und der erste 
+		erf"ullt oben genannte Eigenschaft, dann erfolgt keine
+		Meldung. Lt.~Spezifikation w"are die Meldung "Knoten sind / sind nicht
+		Geschwister" zu erwarten gewesen.
+\end{itemize}
+
+%
+% \item Fehler in Funktion ``t\_add\_child'', Zeile 86: 
+% die Fehlermeldung, da"s der Vater-Knoten nicht gefunden wurde, fehlt.
+%
+% \{Omission, Kontrolle\} 
+%
+% F\"uhrt zum Fehlverhalten: Es wird keine Fehlermeldung ausgegeben,
+% falls beim Einf\"ugen eines Kindes der entsprechende Vater-Knoten
+% nicht gefunden wird.  
+%
+
+\item Fehler in Funktion ``t\_add\_child'', Zeile 90:
+kein Speicher wird f\"ur den zu erweiternden Vater allokiert.
+
+\{Omission, Daten\}
+
+F\"uhrt zum Fehlverhalten:  Segmentation fault (core dumped)
+falls ein Vater mehr als 4 Kinder bekommt (aber nicht in allen
+F\"allen, Zeigerprobleme sind halt so).
+
+
+% \item Fehler in Funktion ``t\_add\_child'', Zeile 81 / 99: 
+% die Variable rc wird nicht initialisiert, um zu zeigen, da{\ss} die
+% Funktion erfolgreich abgelaufen ist. 
+% 
+% \{Omission, Initialisierung\}
+% 
+% {\em F\"uhrt zu keinem Fehlverhalten\/}: Die R\"uckgabewerte werden
+% nicht \"uberpr\"uft.
+% 
+
+\item Fehler in Funktion ``t\_search'', Zeile 118:
+das Wort "`Inhalt"' wurde als ``Ihalt'' getippt.
+
+\{Comission, Kosmetisch\}
+
+F\"uhrt zum Fehlverhalten: Falsch buchstabiertes Wort in der Ausgabe. 
+
+
+\item Fehler in Funktion ``t\_search'', Zeile 121:
+Kode zum \"Uberpr\"ufung des R\"uckgabewerts ist unvollst\"andig.
+
+\{Omission, Kontrolle\}
+
+F\"uhrt zum Fehlverhalten: Es wird keine Fehlermeldung 
+ausgegeben, falls der Knoten beim Suchen (``search'') nicht gefunden
+wird, d.h. nicht existiert (siehe auch Fehler 2).
+
+% \item Fehler in Funktion ``t\_are\_siblings'', Zeile 138:
+% die Variable "`key1"' wird statt "`key2"' verwendet. 
+% 
+% \{Comission, Berechnung\}
+% 
+% F\"uhrt zum Fehlverhalten: Falls der erste Knoten gefunden wird, werden
+% die Knoten als Geschwister erkannt (der zweite Knoten wird nicht "uberpr"uft).
+
+
+\item Fehler in Funktion ``t\_are\_siblings'', Zeile 140:
+die Fehlermeldung, da"s der Knoten nicht gefunden wurde, fehlt.
+
+\{Omission, Kontrolle\}
+
+F\"uhrt zum Fehlverhalten: Es wird keine Meldung 
+ausgegeben, falls der erste Knoten nicht existiert. Lt.~Spezifikation
+w"are eine Fehlermeldung zu erwarten gewesen.
+
+
+% \item Fehler in Funktion ``t\_are\_siblings'', Zeile 143:
+% die Fehlermeldung, da"s der Knoten nicht gefunden wurde, fehlt.
+% 
+% \{Omission, Kontrolle\}
+% 
+% {\em F\"uhrt zu keinem Fehlverhalten\/}: Da nicht nach dem zweiten Knoten
+% gesucht wird (Fehler 8) kann auch nicht der Fall auftreten, da"s er nicht
+% gefunden wurde.
+% Es wird keine Fehlermeldung 
+% ausgegeben, falls beim Geschwister-Check der rechte Knoten nicht
+% gefunden wird (der zweite Parameter im ``sibs''-Kommando).
+
+
+% 
+% \item Fehler in Funktion ``print\_tree\_nodes'', Zeile 154:
+% die Variable "`rc"' wird nicht initialisiert
+% 
+% \{Omission, Initialisierung\}
+% 
+% Alternativ: Zeile 153, 161, 162: "`rc"' ist \"uberfl"ussig und der
+% Kode kann gestrichen werden.
+% 
+% \{Comission, Kontrolle\}
+% 
+% F\"uhrt zum Fehlverhalten: Der Baum wird nur bis zum ersten Blatt ausgegeben.
+% Da das erste Blatt aufgrund von Fehler 2 das erste Kind von Root ist, werden
+% maximal zwei Baumeintr"age ausgegeben: Root und sein erstes Kind.
+% 
+
+\item Fehler in Funktion ``print\_tree\_nodes'', Zeile 164:
+die printf-Funktion gibt nur zwei Leerzeichen aus.
+
+\{Comission, Kosmetik\}
+
+F\"uhrt zum Fehlverhalten: Die Ebenen des Baumes werden nur um jeweils 2 statt
+4 Leerzeichen einger"uckt.
+ 
+
+\item Fehler in Funktion ``t\_print'', Zeile 180:
+die Funktion wird mit 1 statt 0 aufgerufen.
+
+\{Comission, Schnittstelle\}
+
+F\"uhrt zum Fehlverhalten:  In der Ausgabe ist f"ur die
+Wurzel die Ebene 1 statt 0 angegeben.
+
+\end{enumerate}
+
+Und einige Bemerkungen:
+
+\begin{enumerate}
+
+\item Bemerkung zu Funktion ``t\_are\_siblings'', Zeile 139: die
+zwei Knoten werden nicht mit einander verglichen, um festzustellen, ob
+ein und derselbe Knoten zweimal uebergegeben wurde.  Dies ist auch
+kein Fehler, da die Spezifikation klar sagt, da{\ss} jeder Knoten sein 
+eigener Geschwister ist.
+
+\item Bemerkung zu Funktion ``fuehre\_kommandos\_aus'', Zeile 201/213: die
+L\"ange wird nur f\"ur die Kommandozeile beachtet, nicht f\"ur die
+einzelnen Teile.
+
+\item Bemerkung zu Funktion ``fuehre\_kommandos\_aus'', Zeile 212, die
+Kommandos werden nicht \"uberpr\"uft, ob ``root'' als erstes vorkam.
+Dies ist ein Fehler aber es wurde auch klar gesagt, da{\ss} die
+Test-Umgebung nicht zu testen war.
+
+\end{enumerate}
+

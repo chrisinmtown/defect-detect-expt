@@ -1,0 +1,40 @@
+
+\subsection*{Name}
+
+count -- Zeilen, Woerter und Zeichen zaehlen
+
+\subsection*{Verwendung}
+
+{\bf count} Eingabedatei [ Eingabedatei ... ]
+
+\subsection*{Beschreibung}
+
+{\it count} z\"ahlt die Anzahl der Zeilen, W\"orter und Zeichen in
+den angegeben Dateien.
+W\"orter sind Zeichenfolgen, getrennt durch ein oder mehrere
+Leerzeichen, Tabulatoren oder Zeilenumbr\"uche (Carriage Return).
+
+Ist eine Datei im Dateisystem nicht vorhanden, soll eine
+entsprechende Fehlermeldung ausgegeben werden, mit der Bearbeitung der
+anderen Dateien soll jedoch fortgefahren werden. Ist keine Datei
+angegeben, so wird von der Standard-Eingabe gelesen.
+
+Die ermittelten Werte sind sowohl fuer jede Datei einzeln anzugeben
+(inkl. Name bei durch Parameter von `count' spezifizierten Dateien),
+als auch als Summe der gesamten Werte.  Wird nur eine Datei bzw. nur
+die Standard-Eingabe bearbeitet, wird dann keine Summe
+ausgedruckt. Die Reihenfolge der Ausgabedaten ist Zeilenanzahl,
+Woerteranzahl, Zeichenanzahl und eventuell Dateiname, `total' bei der
+Summe. Bei Eingabe ueber Standard-Eingabe oder nur einer Datei soll
+die vierte Information entfallen. 
+
+\subsection*{Optionen}
+
+Keine.
+
+\subsection*{Beispiel}
+
+\begin{verbatim}
+  % count datei
+       84     462    3621 datei
+\end{verbatim}

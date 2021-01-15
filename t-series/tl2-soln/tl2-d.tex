@@ -1,0 +1,130 @@
+
+
+Die folgenden Tabellen zeigen eine Menge m\"ogliche Equivalenzklassen
+f"ur das Programm ``series.''
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|r|c|l|}
+\hline
+Nr. & G/I$^*$ & Equivalenzklasse \\
+\hline
+\hline
+  1 &   G & Zahl der Argumente ist 2   \\
+\hline
+  2 &   G & Zahl der Argumente ist 3   \\
+\hline
+  3 &   U & Zahl der Argumente ist weder 2 noch 3\\
+\hline
+\hline
+  4 &   U & 1. Argument ist keine Zahl  \\
+\hline
+  5 &   U & 2. Argument ist keine Zahl  \\
+\hline
+  6 &   U & 3. Argument ist keine Zahl  \\
+\hline
+  7 &   G & alle Argumente sind Zahlen  \\
+\hline
+\hline
+  8 &   G & Startwert ist gr\"o{\ss}er als Endwert  \\
+\hline
+  9 &   G & Startwert ist kleiner als Endwert  \\
+\hline
+ 10 &   G & Startwert ist gleich Endwert  \\
+\hline
+\hline
+ 11 &   U & Inkrement ist 0  \\
+\hline
+ 12 &   G & Inkrement ist gr\"o{\ss}er als abs(Endwert - Startwert)  \\
+\hline
+ 13 &   G & Inkement ist kleiner als abs(Endwert - Startwert)  \\
+\hline
+\hline
+ 14 &   G & Alle Argumente sind ganze Zahlen  \\
+\hline
+ 15 &   G & Mindestens ein Argument ist Gleitpunktzahl  \\
+\hline
+\multicolumn{3}{l}{$^*$G = g\"ultige \"Aquivalenzklasse, U = ung\"ultige
+\"Aquivalenzklasse}
+\end{tabular}
+\end{center}
+\caption{Equivalenczklassen f"ur Programm ``series''}
+\label{T:equiv-classes-series}
+\end{table}
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|r|l|l|l|}
+\hline
+Nr. & Testfall    & Equiv.-kl.      & Erwartete Ausgabe \\
+\hline
+\hline
+1 & series 1       & 3               & Fehlermeldung \\
+\hline
+2 & series x 2     & 1, 4            & Fehlermeldung  \\
+\hline
+3 & series 1 x     & 1, 5            & Fehlermeldung  \\
+\hline
+4 & series 1 2 x   & 2, 6	     & Fehlermeldung  \\
+\hline
+5 & series 10 0    & 1, 7, 8, 14     & 10, 9, 8, ..., 1, 0\\
+\hline
+6 & series 1 2 0.1 & 2, 7, 9, 13, 15 & 1.0, 1.1, 1.2, ..., 1.9, 2.0\\
+\hline
+7 & series 7 7     & 1, 7, 10, 14    & die Zahl '7' \\
+\hline
+8 & series 1 2 0   & 2, 7, 9, 11, 14 & Fehlermeldung \\
+\hline
+9 & series 2 1 0.1 & 2, 7, 8, 13, 15 & 2.0, 1.9, 1.8, ..., 1.1, 1.0\\
+\hline
+10 & series 1 2 3  & 2, 7, 9, 12, 14 & die Zahl '1' \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Testf\"alle f"ur Programm ``series''}
+\label{T:tests-equiv-classes-series}
+\end{table}
+
+
+
+Fehlverhalten:
+\begin{enumerate}
+\item Testfall 2: Ein nicht-numerisches erstes Argument wird als
+solches erkannt, aber in der Fehlermeldung wird das zweite Argument
+(2) genannt (in der Fehlermeldung wird das erste fehlerhafte Argument
+erwartet). 
+
+\item Testfall 3: Es wird kein Fehler erkannt, wenn das zweite
+Argument nicht-numerisch ist (erwartet wird eine Fehlermeldung).
+
+\item Testfall 7: Falls der Abstand zwischen Startwert und Endwert
+null ist, werden zwei Werte ausgegeben und der Endwert wird
+\"uberschritten (nur der Startwert wird erwartet). 
+
+\item Testall 5, 9: Wenn der Startwert gr\"o{\ss}er als der Endwert
+ist, wird keine Ausgabe produziert (erwartet wird eine Folge von
+Zahlen in absteigender Ordnung).  
+\end{enumerate}
+
+Fehler:
+\begin{enumerate}
+\item	Fehlverhalten:
+
+Zeile 43: Die Variable ,endingstr" wird statt ,startstr" in printf()
+verwendet 
+
+\item Fehlverhalten:
+
+Zeile 46: Die Variable ,startstr" wird statt ,endingstr" in der
+if-Klausel verwendet 
+
+\item	Fehlverhalten:
+
+Zeile 81: Wert der Variablen ,nitems" muß auf 1 statt 2 gesetzt werden
+
+\item Fehlverhalten:
+
+Zeile 74-80: Die Behandlung des Falls start > end wurde vergessen
+(Step mu{\ss} negiert werden) 
+
+\end{enumerate}

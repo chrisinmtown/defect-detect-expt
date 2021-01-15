@@ -1,0 +1,32 @@
+\File{cmdline.h},{06:53},{Dec 26 1994}
+\L{\LB{\#ifndef CMDLINEDOTH}}
+\L{\LB{\#define CMDLINEDOTH}}
+\L{\LB{}}
+\L{\LB{\#define HILFE}\Tab{16}{0}}
+\L{\LB{\#define MASS}\Tab{16}{1}}
+\L{\LB{\#define GKOM}\Tab{16}{2}}
+\L{\LB{\#define LKOM}\Tab{16}{3}}
+\L{\LB{\#define LKHM}\Tab{16}{4}}
+\L{\LB{\#define GKHM}\Tab{16}{5}}
+\L{\LB{\#define LIHE}\Tab{16}{6}}
+\L{\LB{\#define GIHE}\Tab{16}{7}}
+\L{\LB{\#define ALLE}\Tab{16}{8}}
+\L{\LB{\#define MAX}\Tab{16}{9}}
+\L{\LB{\#define DURCH}\Tab{16}{10}}
+\L{\LB{\#define MIN}\Tab{16}{11}}
+\L{\LB{\#define UNTER}\Tab{16}{12}}
+\L{\LB{\#define UEBER}\Tab{16}{13}}
+\L{\LB{}}
+\L{\LB{struct keyword\_entry \{}}
+\L{\LB{  char \*keyword; }}
+\L{\LB{  int min\_len;}}
+\L{\LB{  int id;}}
+\L{\LB{\};}}
+\L{\LB{}}
+\L{\LB{struct aufgabe \{}}
+\L{\LB{  double zahl;}}
+\L{\LB{  char \*mass;}}
+\L{\LB{  char \*such;}}
+\L{\LB{\};}}
+\L{\LB{}}
+\L{\LB{\#endif}}

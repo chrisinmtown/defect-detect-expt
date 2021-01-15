@@ -1,0 +1,33 @@
+
+Dies ist das Erg\"anzungsblatt bez\"uglich des Programms "`cmdline"'
+f\"ur "code-reading"'.
+
+\subsection*{Kurze Beschreibung der verwendeten Bibliotheks-Funktionen}
+
+\begin{itemize}
+\item {\tt int strlen(char *s)}\\
+	Liefert die L"ange des Strings {\tt s} 
+	zur"uck (Null-Zeichen am Ende wird nicht mitgez"ahlt).
+\item {\tt int strcmp(char *s1, char *s2)}\\
+	Vergleicht zwei Strings. Liefert einen Wert gr"o"ser als, gleich, oder
+	kleiner als 0 zur"uck, abh"angig davon, ob {\tt s1} lexikographisch
+	(d.h.~ASCII-Zeichenwert) gr"o"ser, gleich, oder 
+	kleiner als {\tt s2} ist.	
+\item {\tt int strncmp(char *s1, char *s2, int n)}\\
+	Wie {\tt strcmp}, vergleicht maximal {\tt n} Zeichen.
+\item {\tt int fprintf(stderr,"Text"...)}\\
+	Gibt den Text auf der Standardfehlerausgabe aus.
+\item {\tt int isdigit(char c)}\\
+	Liefert {\em true\/}, wenn das Zeichen {\tt c} eine Ziffer ist,
+	ansonsten {\em false\/}.
+\item {\tt int atoi(char *str)}\\
+	Wandelt den String {\tt str} in einen Integer um. F"uhrende 
+	"`white-spaces"' werden ignoriert, das scannen des Strings wird mit dem
+	ersten Zeichen, das keine Ziffer ist, abgebrochen. Konnte keine Ziffer
+	gelesen werden, wird 0 zur"uckgegeben.
+\end{itemize}
+
+\subsection*{Hinweis}
+
+Machen Sie keine Abstraktionen von den Testumgebungs-Funktionen.
+

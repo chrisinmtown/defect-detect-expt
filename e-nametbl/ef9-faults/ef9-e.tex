@@ -1,0 +1,87 @@
+%
+% faults in nametbl
+%
+
+The classification of each fault is given in braces.
+
+\begin{enumerate}
+
+% 1
+\item Fault in file ``nametbl.h'', line 7:  The constants ``FUNCTION''
+and ``DATA'' are swapped.
+
+\{Comission, Data\}
+
+Causes failure: If the resource type of a symbols is entered with the
+command ``trt'' to be ``FUNCTION,'' then the symbol is prointed as
+having the type ``DATA''.
+
+% 2
+\item Fault in function ``insert\_entry'', line 61: The variable {\tt
+numitems} is not incremented.
+
+\{Omission, Computation\}
+
+Causes failure: The count of entries in the print-out of the symbol
+tables does not reflect how many elements were inserted (remains 0).
+
+% 3
+\item Fault in function ``setObjType'', line 94: The variable ``new\_ot'' 
+is not stored.
+
+\{Omission, Data\}
+
+Causes failure: The value for the object type is not stored; only the
+default value appears in the output (``OT\_NO\_INF'').
+
+% 4 
+\item Fault in function ``setResType'', line 108/111: The curly
+brackets are missing.
+
+\{Omission, Control\}
+
+Causes failure: If a node is not found, the null pointer is
+dereferenced (written) and causes (in most cases) a core dump.
+
+% 5 
+\item Fault in function ``ins'', line 124: The last parameter in the
+function call is missing.
+
+\{Omission, Interface\}
+
+Causes no failure.  The field for the resource type receives a 
+random value (apparently null when gcc is used, which reflects the
+encoding of the value ``FUNCTION'').
+
+% 6
+\item Fault in function ``ins'', line 128: The word ``Tabelle'' is
+written without the ``a''.
+
+\{Commission, Cosmetic\}
+
+Causes failure: A misspelled word appears in the output.
+
+
+% 7 
+\item Fault in function ``trt'', line 177: The enumerated type value
+"FUNCTION'' was written with a ``K'' instead of a C.
+
+\{Commission, Control\}
+
+Causes failure: The resource type is not recognized.
+
+% 8 
+\item Fault in function ``sch'', line 205: missing error message.
+
+\{Omission, Control\}
+
+Causes failure: No error message is printed if the name is not found.
+
+\end{enumerate}
+
+Comments:
+\begin{enumerate}
+\item Lines 144/173: The tests for  OT\_NO\_INF und RT\_NO\_INF are
+superfluous according to the specification, but this is not considered
+a fault.
+\end{enumerate}

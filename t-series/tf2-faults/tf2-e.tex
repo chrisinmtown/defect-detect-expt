@@ -1,0 +1,52 @@
+%
+% faults in component series
+%
+
+The classification of each fault is given in braces.
+
+\begin{enumerate}
+
+\item Fault in line 54: 
+The variable ``endingstr'' is used in the ``printf()'' instead of
+``startstr''.
+
+\{Comission, Data\}
+
+Causes failure:
+Although a non-numeric first argument is recognized as an error, the
+corresponding error message shows the second argument.
+
+
+\item Fault in line 57: 
+The variable ``startstr'' is used in the if-condition instead of
+``endingstr''.
+
+\{Comission, Data\}
+
+Causes failure:
+The program does not recognize a non-numeric second argument as an
+error. 
+
+
+\item Fault in line 88: 
+The value of the variable ``nitems'' is set to 2 instead of 1.
+
+\{Comission, Initialization\}
+
+Causes failure:
+If the distance between the first and second parameter is evaluated to
+zero, then two lines are produced as output although only one was
+expected.
+
+
+\item Fault in line 82--83: 
+Treatment of the case ``end < start'' was forgotten.
+
+\{Omission, Computation\}
+
+Causes failure:
+No output is produced in the case that the starting value is greater
+then the ending value.
+
+\end{enumerate}
+

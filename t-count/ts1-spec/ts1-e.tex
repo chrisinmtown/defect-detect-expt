@@ -1,0 +1,41 @@
+%
+% specification for program ``count''
+%
+
+\subsection*{Name}
+
+count -- count lines, words, and characters
+
+\subsection*{Usage}
+
+count filename [ filename ... ]
+
+\subsection*{Description}
+
+{\bf count} counts the number of lines, words, and characters in the
+named files.  Words are sequences of characters that are separated by
+one or more spaces, tabs, or line breaks (carriage return).
+
+If a file supplied as argument does not exist, a corresponding error
+message is printed and processing of any other files continues.
+If no file is supplied as an argument, {\bf count} reads from the
+standard input.
+
+The computed values are given for each file (including the name of the
+file) as well as the sum of all values.
+If only a single file or if the standard input is processed, then no
+sum is printed.
+The output is printed in the order lines, words, characters, and
+either the file name or the word ``total'' for the sum.
+If the standard input is read, the fourth value (name) is not printed.
+
+\subsection*{Options}
+None.
+
+\subsection*{Example}
+\begin{verbatim}
+    % count datei
+         84     462    3621 datei
+\end{verbatim}
+
+

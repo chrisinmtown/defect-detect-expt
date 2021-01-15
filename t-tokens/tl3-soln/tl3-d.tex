@@ -1,0 +1,197 @@
+%
+% sample solution for exercise tokens
+%
+
+Die Komponente ``tokens'' hat die folgenden Fehler und weist die
+entsprechenden Fehlverhalten auf:
+
+\begin{enumerate}
+
+\item Fehler in Funktion ``treeprint'', Zeile 25: Das Zeichen `$>$'
+sollte `$>=$' sein. 
+
+F"uhrt zum Fehlverhalten:
+Falls ein Grenzwert mit dem Argument ``-m'' 
+angegeben wird (``n''), wird n + 1 verwendet.
+
+
+\item Fehler in Funktion ``getword'', Zeile 64/77: Die L"ange der
+Eingabe wird nicht kontrolliert. 
+
+F"uhrt zum Fehlverhalten:
+Falls ein "uberlanges Wort eingelesen wird,
+bricht das Programm mit einem Core-Dump ab.
+
+
+\item Fehler in Funktion ``main'', Zeile 97 (circa): Das Array
+``MapAllowed'' wird nie initialisiert. 
+
+F"uhrt zum Fehlverhalten:  Compiler-Abh"angig; nicht alphanumerische
+Zeichen k"onnten akzeptiert werden.
+
+
+\item Fehler in Funktion ``main'', Zeile 101: Die Variable ``Alpha''
+wird mit 0 statt mit 1 initialisiert.  
+
+F"uhrt zum Fehlverhalten:
+Das Argument ``-a'' hat keine Auswirkung.
+
+
+\item Fehler in Funktion ``main'', Zeile 110: Es wird nicht gepr\"uft,
+ob eine g\"ultige Zahl angegeben wurde.
+
+F"uhrt zum Fehlverhalten: 
+Ung\"ultige Zahlen werden ohne Fehlermeldung akzeptiert.
+
+
+\item Fehler in Funktion ``main'', Zeile 115: Das Argument ``-a''
+fehlt in der Usage-Meldung. 
+
+F"uhrt zum Fehlverhalten:
+Die Hilfemeldung des Programs schweigt sich "uber das Argument ``-a'' aus. 
+
+\end{enumerate}
+
+\newpage
+
+Die folgenden Testf"alle erzielen die maximal m"oglichen
+"Uberdeckungwerte f"ur das Programm.  
+
+
+\begin{enumerate}
+\item Testfall: Unbekannte Option.
+
+\begin{description}
+\item[Aufruf mit:] -q
+\item[Eingabe:] keine.
+\item[Erwartete Ausgabe:] Fehlermeldung, Hilfemeldung f"ur das Programm.
+\end{description}
+
+\item Testfall: Keine Optionen, Leere Datei.
+
+\begin{description}
+\item[Aufruf mit:] $<$ /dev/null
+\item[Eingabe:] keine.
+\item[Erwartete Ausgabe:] keine.
+\end{description}
+
+\item Testfall: Eine Option, Leere Datei.
+
+\begin{description}
+\item[Aufruf mit:] -c '' $<$ /dev/null
+\item[Eingabe:] keine.
+\item[Erwartete Ausgabe:] keine.
+\end{description}
+
+\item Testfall: Wenige Optionen, sehr kurze Datei.
+
+\begin{description}
+\item[Aufruf mit:] -c / $<$ shortfile
+\item[Eingabe:] Eine Datei namens ``shortfile'' mit dem einzelnen Wort
+``nonl'' und keinen weiteren Zeichen vor dem Ende der Datei; d.h.,
+kein sogen.\ `newline'. 
+\item[Erwarte Ausgabe:]  Die folgende Einzelzeile:
+
+	\begin{quote}
+	1 nonl
+	\end{quote}
+\end{description}
+
+\item Testfall: Viele Optionen, kurze Datei.
+
+\begin{description}
+\item[Aufruf mit:] -a -i -c /. -m 1 $<$ infile
+\item[Eingabe:] Eine Datei namens ``infile'' mit folgenden Eintr"agen:
+
+	\begin{quote}
+	word1\\
+	word1\\
+	word1\\
+	word2\\
+	word2\\
+	$*$\\
+	b\\
+	a
+	\end{quote}
+
+\item[Erwartete Ausgabe:] Die folgende Zeilen:
+
+	\begin{quote}
+	1 a\\
+	1 b\\
+	3 word1\\
+	2 word2
+	\end{quote}
+\end{description}
+\end{enumerate}
+Ende der notwendigen Testf"alle.
+
+\newpage
+
+Nachdem die oben aufgelisteten Testf"alle ausgef\"uhrt werden,
+werden die folgenden "Uberdeckungswerte erreicht.
+
+{\small
+\begin{verbatim}
+% gsummary test-dir/GCTLOG 
+BINARY BRANCH INSTRUMENTATION (38 conditions total)
+2 ( 5.26%) not satisfied.
+36 (94.74%) fully satisfied.
+
+SWITCH INSTRUMENTATION (5 conditions total)
+0 ( 0.00%) not satisfied.
+5 (100.00%) fully satisfied.
+
+LOOP INSTRUMENTATION (21 conditions total)
+7 (33.33%) not satisfied.
+14 (66.67%) fully satisfied.
+
+OPERATOR INSTRUMENTATION (15 conditions total)
+0 ( 0.00%) not satisfied.
+15 (100.00%) fully satisfied.
+
+SUMMARY OF ALL CONDITION TYPES (79 total)
+9 (11.39%) not satisfied.
+70 (88.61%) fully satisfied.
+\end{verbatim}
+}
+
+\noindent
+Die Werte, die 100\%  unterschreiten, k"onnen mit dem Kommando 
+``greport'' n"aher erl"autert werden.  Das Kommando liefert die
+folgende Ausgabe:
+{\small
+\begin{verbatim}
+% greport test-dir/GCTLOG 
+"tokens.c", line 38: if was taken TRUE 5, FALSE 0 times.
+"tokens.c", line 64: loop zero times: 0, one time: 3, many times: 8.
+"tokens.c", line 118: loop zero times: 0, one time: 0, many times: 3.
+"tokens.c", line 120: loop zero times: 0, one time: 0, many times: 3.
+"tokens.c", line 122: if was taken TRUE 3, FALSE 0 times.
+"tokens.c", line 123: loop zero times: 0, one time: 0, many times: 3.
+\end{verbatim}
+}
+
+\noindent
+Diese Zeilen/Konstrukte k"onnen aus den folgenden Gr\"unden nicht
+besser \"uberdeckt werden:
+
+\begin{description}
+\item[Zeile 38:] Diese ``if''-Bedingung "uberpr"uft, ob ``calloc''
+tats\"achlich Speicher allokiert hat.  Es ist schwierig zu
+provozieren, da{\ss} ``calloc'' keinen Speicher allokiert, insbesondere
+f"ur Benutzer, die das ``limit''-Kommando der Shell nicht kennen.
+
+\item[Zeile 64:] Es handelt sich hier um eine Endlos-Schleife (die
+Terminierungskriterien der Schleife sind leer).  Daher wird diese
+Schleife immer mindestens einmal ausgef"uhrt.
+
+\item[Zeilen 118, 120, und 123:]  Diese ``for''-Schleifen haben
+hartkodierte, fixierte Terminierungskriteren, die gr\"o{\ss}er als
+eins sind und werden daher immer mehr als einmal ausgef\"uhrt.
+
+\item[Zeile 122:] Diese ``if''-Bedingung ist immer wahr aufgrund eines
+Fehlers im Programm (der ``Alpha''-Variable wird kein Wert zugewiesen).
+
+\end{description}
+

@@ -1,0 +1,78 @@
+
+\medskip
+\textbf{\large Name}
+
+\textbf{tokens} -- alphanumerische W\"orter sortieren und z\"ahlen
+
+\medskip
+\textbf{\large Verwendung}
+
+\textbf{tokens} [ --ai ] [ --c Zeichen ] [ --m Zahl ]
+
+
+\medskip
+\textbf{\large Beschreibung}
+
+\textbf{tokens} liest W\"orter von der Standardeingabe (``stdin'').
+Ein Wort ist eine Folge von aufeinanderfolgenden Zeichen aus einem
+eingeschr\"ankten Zeichensatz.
+In diesem Zeichensatz sind sowohl die alphabetischen Zeichen
+\mbox{A--Z} und \mbox{a--z} als auch die numerischen Zeichen
+\mbox{0--9} erlaubt.  
+Abh\"angig von den Optionen (siehe unten) k\"onnen die numerische
+Zeichen entfernt bzw.\ andere Zeichen hinzugef\"ugt werden.
+Unerlaubte Zeichen trennen W\"orter voneinander, werden aber 
+ansonsten ignoriert.
+Am Ende der Eingabe wird jedes Wort mit der H\"aufigkeit seines
+Auftretens genau einmal ausgegeben.  Dabei sind die W\"orter  
+in aufsteigender lexikographischer Ordnung sortiert.
+
+
+\medskip
+\textbf{\large Optionen}
+
+\begin{itemize}
+
+\item ``--a'': Ein Wort darf nur die alphabetischen Zeichen \mbox{A--Z}
+und \mbox{a--z} beinhalten (keine Ziffer 0--9).
+
+\item ``--c Zeichen'': Ein Wort darf zus\"atzlich die angegebenen
+Zeichen beinhalten.
+
+\item ``--i'':  Der Unterschied zwischen Gro{\ss}buchstaben und
+Kleinbuchstaben wird ignoriert.  Alle Gro{\ss}buchstaben werden zu
+Kleichbuchstaben umgewandelt.
+
+\item ``--m Zahl'':  Das Programm gibt nur W\"orter aus, deren
+H\"aufigkeit in der Eingabe gr\"o{\ss}er oder gleich dieser Zahl ist.
+
+\end{itemize}
+
+
+
+\medskip
+\textbf{\large Beispiel}
+
+Um alle alphabetischen W\"orter in Datei ``xyz'' zu sortieren und
+z\"ahlen: 
+{\small
+\begin{verbatim}
+tokens -a < xyz
+\end{verbatim}
+}
+
+
+\medskip
+\textbf{\large Einschr\"ankungen}
+
+Die maximale Anzahl von verschiedenen W\"orter ist durch den Speicher
+des Rechners begrenzt.
+Die maximale Anzahl des Auftretens eines Worts ist durch
+die L\"ange eines ``long integer'' begrenzt.
+
+
+\medskip
+\textbf{\large Autor}
+
+Gary Perlman 
+

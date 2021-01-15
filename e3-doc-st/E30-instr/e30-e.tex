@@ -1,0 +1,256 @@
+%
+% instructions for structural testing
+%
+
+Please follow the directions on the supplemental sheet entitled 
+``Structural testing with program $x$,'' which is included in this
+packet of materials. 
+
+\begin{enumerate}
+
+\item Before beginning, read over the data-collection form ``E32:
+Structural testing.'' 
+Enter your identifier and fill out the section entitled ``Before beginning.''
+
+\end{enumerate}
+
+\subsection*{Produce test data}
+
+\begin{enumerate}
+\addtocounter{enumi}{1}
+
+\item Enter the time when you began the experiment under question~4.
+
+\item Briefly read through the code to gain an overview of this component.  
+If you happen to notice faults during this or one of the following
+steps, mark them.  However, please do not invest any time in a precise
+analysis; i.e., don't isolate the faults.  Isolation of faults begins
+in step 18. 
+
+\item Begin to generate test data that will lead to 100\% coverage of
+the following criteria:  branch coverage, loop coverage,
+multiple condition coverage, and relational operator coverage.  
+If you feel that you do not completely understand these criteria,
+please turn to the end of these instructions and read the appendix
+about coverage criteria.
+Special properties of the component are noted on the supplemental sheet.
+Think carefully in this step in order to avoid time-consuming 
+``test-data hacking'' later.
+
+\item After you are finished with generating test data, enter the time
+you required under question~5.
+
+\item Log yourself in on a computer/Xstation.  Enter the computer name
+and time under question~6.
+Fetch the necessary files (see the supplemental sheet).
+Convince yourself that all necessary files and directories are there!
+
+\item Type in your test cases in files under the directory ``test-dir''.
+In order to make your task easier, the component has been equipped
+with a command-line interface.
+This interface is used by an automatic tester.  The tester reads the
+parameter files and invokes the component with the parameters
+specified in the files.
+The results are written into a file.
+A complete test of the component is accomplished in this way.
+
+You must create the parameter and (when necessary) input files.
+A test case $=$ a parameter file.
+The expressions in a parameter file specify one invocation of the
+program for a run of the automatic tester.
+Parameter files are named with ``.test'' as the file suffix.
+Example: If the component ``comp'' should be invoked as \mbox{\tt comp -i
+in\_file1}, then the expression \mbox{\tt -i in\_file1} should be entered
+into the parameter file.
+
+Input files are only created for components which read from files.
+Input files should be named sensibly, for example ``empty,'' but the
+name may not use the suffix ``.test'' at all.
+
+Convince yourself that the files hold what you really want them to
+hold!
+
+\end{enumerate}
+
+\subsection*{Run tests}
+
+\begin{enumerate}
+\addtocounter{enumi}{7}
+
+\item Apply the test cases to the component by typing in the command 
+``run-suite'' and watching. 
+
+\item Look at the summary of coverage with the help of the commands 
+``gsummary'' und ``greport''.  For example:
+\begin{verbatim}
+% gsummary test-dir/GCTLOG
+% greport  test-dir/GCTLOG
+\end{verbatim}
+
+\item Try to bring all coverage values up to 100\% by generating
+further tests. 
+You can add new tests in directory ``test-dir''.
+After you have changed the test data, run the tests again by issuing
+the following sequence of commands:
+\begin{verbatim}
+% make clean 
+% run-suite 
+% gsummary test-dir/GCTLOG 
+% greport  test-dir/GCTLOG
+\end{verbatim}
+
+\item After you have reached coverage of 100\%, or you have convinced
+yourself that various reasons prevent you from ever reaching 100\%
+coverage (the reasons had better be good), you are done with the first
+part of this exercise.
+
+\item Enter the number of test cases that you generated in this
+exercise under question~7 and the coverage values which you attained
+under question~8.
+Also please enter the time you required under question~9.
+
+\item The results are in individual files under the directory
+``test-dir'' and are also summarized in a file ``test-results.summary''.
+Print out the summary on the line printer {\em twice}.
+
+\item Log out and fetch your output from the printer.
+
+\item Note on one copy of the print-out of your results your
+identifier, which test method you worked with, and in which directory
+your test cases can be found.  Give this print-out to the experiment
+leader; in return, you will receive the specification.  Please do not
+delete your test cases!
+
+\end{enumerate}
+
+\subsection*{Search for failures}
+
+\begin{enumerate}
+\addtocounter{enumi}{15}
+
+\item Enter the current time under question~10.
+Read the specification and search for possible failures by comparing
+the expected results according to the specification with the output of
+your test cases. 
+Mark the detected failures in the output with circles, etc.
+Enter the detected failures in the worksheet supplied for that purpose,
+and don't forget to enter your identifier on that sheet as well.
+Please number the failures which you found from 1 to $n$ in the
+column labeled ``Fail. Nr.'' (failure number) in the worksheet for
+failures and similarly number the failures which you marked in the 
+output.
+
+\item When you believe that you have detected all failures, please
+enter the time you required under question~11.
+
+\end{enumerate}
+
+\subsection*{Isolate faults}
+
+\begin{enumerate}
+\addtocounter{enumi}{17}
+
+\item Enter the current time under question~12.
+Try to isolate the faults responsible for the failures which you
+detected.
+Enter the isolated faults in the worksheet  provided for that purpose,
+and again don't forget to enter your identifier on that sheet.
+
+Record the faults which you isolated by using the line number.
+Classify the faults according to the different types and classes of
+faults [\{Omission, Comission\}, \{Initialization, Control,
+Interface, Data, Computation, Cosmetic\}]. 
+Then characterize the fault briefly; e.g., ``initial value was 1 instead
+of 0.''
+Also give the number(s) of the failure(s) which resulted from this fault.
+
+If you by chance recognize any faults that did not manifest themselves
+in failures in your test results, you may list them also.  But please
+mark clearly on the worksheet that these faults did not cause any
+failures in your test results. 
+These faults receive just a dash in the column ``Fail. Nr.''
+
+\item When you are finished isolating faults, enter the time you
+required under question~13.
+
+\item Please fill out the rest of the form (questions~14--16).
+
+\item Give the data-collection form and all other worksheets to the
+experiment leader, and you're all done.
+
+\end{enumerate}
+
+\section*{GCT Coverage Criteria}
+
+This appendix discusses the coverage criteria supported by GCT, the
+Generic Coverage Tool.
+
+\subsection*{Branch coverage}
+
+Fulfilling the branch coverage criteria makes certain that each branch
+in a component was executed at least once.  Branches in C programs are
+created by  {\tt if}, {\tt ?}, {\tt for}, {\tt while}, and {\tt
+do-while} statements.  Each of these statements creates two
+conditions (branches): the evaluation of the test expression must
+yield true once and false once.  In GCT terminology, this type of
+branch coverage is called {\bf binary branch instrumentation}.
+
+Branches are also created by the {\tt switch-case} construct.
+To test all branches, all {\tt case} labels must be branched to at
+least once.  This includes the {\tt default} label, even if it was not
+explicitly written in the source code.  Each {\tt case} label produces
+a single condition.  In GCT terminology, this type of branch coverage
+is called {\bf switch instrumentation}.
+
+\subsection*{Loop coverage}
+
+A {\tt do-while} loop creates two conditions for this criteria: one
+ one for executing the loop exactly one time, and one for executing
+the loop more than one time. 
+The {\tt for} and {\tt while} loop add a third condition: the idea of
+executing the loop zero times; i.e., the test expression is false when
+it is evaluated for the first time.
+
+These loop coverage criteria reveal faults in loops that reveal
+themselves only after a certain number of passes through the loop.
+
+
+\subsection*{Multiple condition coverage}
+
+Multiple conditions are expressions constructed using the operators
+``logical and'' ({\tt \&\&}) and/or ``logical or''~({\tt{||}}).  To
+fulfill these criteria for a two-part expression (i.e., an expression
+with exactly one logical operator), each side of the expression must
+be true once and false once.  In other words, a two-part
+multiple-condition expression creates four conditions: false/false,
+true/false, false/true, and true/true.  Nested expressions create
+correspondingly more conditions.
+
+When checking the coverage of multiple conditions, all expressions
+that evaluate to a boolean value are checked, not only the test
+expressions from {\tt if} statements.
+
+\subsection*{Relational operator coverage}
+
+The relational operators ({\tt <}, {\tt <=}, {\tt >}, {\tt >=}) 
+are often the cause of faults, whether because of swapped
+operators (e.g., {\tt <} instead of {\tt >}), incorrect use
+(e.g., {\tt <} instead of {\tt <=}), or incorrect boundary
+values (e.g., ``{\tt a < 99}'' instead of ``{\tt a < 100}'').
+
+A relational operator creates three conditions:
+
+\begin{enumerate}
+
+\item The left side must not equal the right side.
+
+\item The left side must equal the right side.
+
+\item And for scalar values (integer, char):
+        \begin{enumerate}
+                \item for the operators {\tt <=} und {\tt >}:
+                       the left side must be 1 smaller than the right side
+                \item for the operators {\tt >=} und {\tt <}:
+                       the left side must be 1 larger than the right side
+        \end{enumerate}
+\end{enumerate}

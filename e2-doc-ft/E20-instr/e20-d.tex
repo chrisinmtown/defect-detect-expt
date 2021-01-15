@@ -1,0 +1,129 @@
+
+Beachten Sie bitte auch das Erg"anzungsblatt "`Funktionales Testen mit 
+Programm $x$"', was im Ihnen vorliegenden Material enthalten ist.
+
+\begin{enumerate}
+
+\item Lesen Sie sich den Fragebogen "`E22: Funktionales Testen"'
+durch. Tragen Sie Ihre Kennung ein und f"ullen Sie die Rubrik
+"`Vorbetrachtungen"' aus. 
+
+\subsection*{Test generieren}
+
+\item Tragen Sie die Uhrzeit zu der Sie mit dem Experiment beginnen 
+unter Frage 4 ein.
+
+\item Lesen Sie sich die Spezifikation durch. Leiten Sie daraus
+die \"Aquivalenzklassen ab.
+Tragen Sie deren Anzahl unter Frage 5 des Fragebogens ein.
+Bitte beantworten Sie zugleich Frage 6.
+
+\item Generieren Sie Testf\"alle, indem Sie aus den \"Aquivalenzklassen 
+die Grenzf\"alle w"ahlen.
+%\item W\"ahlen Sie die Grenzf\"alle aus den \"Aquivalenzklassen aus
+%und generieren Sie die Testf\"alle. 
+Verzichten Sie dabei auf die oberen Grenzen f\"ur Anzahl der
+Parameter o.\"a.~(siehe auch Erg\"anzungsblatt).
+Wenn Sie damit fertig sind, tragen Sie die Anzahl der Testf\"alle
+unter Frage 7 und Ihren Zeitbedarf unter Frage 8 ein.
+
+\item Loggen Sie sich bei einem Rechner bzw.~Xstation ein.  
+Tragen Sie den Rechnernamen und Zeitpunkt unter Frage 9 ein.  
+Holen Sie sich das notwendige Dateipaket (siehe Erg\"anzungsblatt).
+\"Uberzeugen Sie sich davon, da{\ss} alle Dateien bzw.~Verzeichnisse
+vorhanden sind! 
+
+\item Tippen Sie Ihre vorbereitete Testf\"alle in Dateien im
+Verzeichnis "`test-dir"' ein. Um Ihnen die Arbeit zu erleichtern, ist die
+Komponente mit einer Kommandozeilenschnittstelle versehen worden. Diese
+Schnittstelle wird von einem automatischen Tester angesteuert. Der Tester
+lie"st {\em Parameterdateien\/} und ruft die Komponente mit den darin
+spezifizierten Parametern auf. Die Resultate werden in eine Datei geschrieben.
+Auf diese Weise wird ein kompletter Test der Komponente durchf"uhrt. 
+
+Sie m"ussen die Parameter- und ggf.~{\em Eingabedateien} anlegen. Ein 
+Testfall $=$ eine Parameterdatei. Die 
+Ausdr"ucke in einer Parameterdatei spezifizieren einen Aufruf der
+Komponente f"ur einen Lauf des automatischen Testers. Parameterdateien werden
+mit ``.test'' als Dateikennung benannt. Beispiel: Soll die Komponente 'komp'
+mit {\tt komp -i in\_file1} aufgerufen werden, dann geh"ort in
+die Parameterdatei der Ausdruck {\tt -i in\_file1}.
+
+{\em Eingabedateien\/} werden f"ur Komponenten angelegt, die aus
+Dateien lesen. Eingabedateien sollten sinnvoll benannt werden,
+z.B. ``leer'', sie d"urfen {\bf nicht} die Dateikennung ``.test'' aufweisen.
+
+\"Uberzeugen Sie sich, da{\ss} in den Dateien auch wirklich das
+enthalten ist, was Sie wirklich wollen!
+
+\subsection*{Test durchf"uhren}
+
+\item Wenden Sie die Testf\"alle auf die Komponente an indem Sie das
+Kommando "`run-suite"' eingeben. 
+Falls Sie sich vertippt haben und einige Testf\"alle deswegen
+nicht das getestet haben, was Sie getest haben wollten, korrigieren
+Sie jetzt die Fehler, tippen sie "`make clean"' und lassen sie
+dann "`run-suite"' wieder laufen.   
+Aber bitte generieren Sie keine weiteren Testdaten! 
+
+\item Haben Sie w\"ahrend des Eintippens bzw.~Durchf\"uhrens der
+Testf\"alle irgendwelche Pausen gemacht, so vermerken Sie nur den aktiven
+Anteil an der gesamten Zeit (d.h. der Anteil ohne Pausen, etc.) unter
+Punkt 10. 
+
+\item Die Resultate stehen sowohl in einzelnen Dateien im Verzeichnis 
+"`test-dir"' als auch in einer zusammenh\"angende Datei
+"`test-results.summary"', worin die einzelnen Resultate getrennt sind.
+Drucken Sie die Resultate zweimal auf dem Zeilendrucker aus. 
+
+\item Loggen Sie sich aus und holen Sie Ihre Ausgabe vom Zeilendrucker.
+
+\subsection*{Fehlverhalten diagnostizieren}
+
+\item Tragen Sie die Startzeit unter Frage 11 ein.
+Schauen Sie sich die Testresultate genau an.
+Finden Sie etwaige Fehlverhalten, indem sie die Ergebnisse
+lt.~Spezifikation mit den Ausgaben Ihrer Testf\"alle vergleichen. 
+Markieren Sie die entdeckten Fehlverhalten in der Ausgabe 
+durch Umkreisen, o."a. Tragen Sie die Fehlverhalten in das Formblatt f\"ur
+Fehlverhalten ein. Nummieren Sie die Fehlverhalten von 1 bis $n$ in der
+Spalte "`Fv-Nr."' (Fehlverhaltensnummer) des Formblatts und entsprechend
+die Umkreisungen im Ausdruck.
+
+\item Wenn Sie Ihrer Meinung nach alle Fehlverhalten gefunden haben,
+so tragen Sie bitte Ihren Zeitbedarf daf\"ur unter Frage 12 ein.
+
+
+\item Notieren Sie auf einem Ausdruck Ihrer Resultate Ihre Praktikumskennung,
+mit welcher Testmethode Sie gearbeitet haben und in welchem Verzeichnis
+Ihre Testf"alle zu finden sind. Geben Sie diesen Ausdruck 
+beim Betreuer ab und nehmen Sie den Quellkode entgegen. Bitte l"oschen Sie
+nicht Ihre Testf"alle !
+
+\subsection*{Fehler lokalisieren}
+
+\item Bitte tragen Sie die Uhrzeit unter Frage 13 ein.
+Versuchen Sie die Fehler, die zu den von Ihnen erkannten
+Fehlverhalten gef\"uhrt haben zu isolieren. Tragen Sie die Ergebnisse
+in das Formblatt f\"ur Fehler ein. 
+
+Geben Sie an welche Fehler Sie entdeckt haben [Zeilennummer].
+Klassifizieren Sie dabei nach den
+vorgestellten Fehlertypen [{Omission, Comission}, {Initialization, Control,
+Interface, Data, Computation, Cosmetic}]. Charakterisieren Sie dann 
+kurz den Fehler, z.B. `Initialwert 1 statt 0'.  Geben Sie auch
+die Nummer des Fehlverhaltens an, zu dem der Fehler f"uhrt.
+
+Sollten Sie zuf\"alligerweise auch Fehler erkennen, die nicht zu
+Fehlverhalten bei Ihren Testergebnisse gef\"urt haben, d\"urfen
+Sie sie auch auflisten.  In diesem Fall geh"ort in die Spalte
+"`Fv-Nr."' ein Strich.
+
+\item Wenn Sie mit der Suche nach Fehler fertig sind, tragen Sie unter
+Punkt 14 Ihren Zeitbedarf ein.
+
+\item F"ullen Sie bitte den Rest des Fragebogens (Fragen 15 bis 17) aus.
+Geben Sie den Fragebogen und alle Formbl"atter bei Ihrem Betreuer ab,
+	sch\"onen Feierabend.
+
+\end{enumerate}

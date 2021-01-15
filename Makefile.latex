@@ -1,0 +1,97 @@
+#
+# Makefile for working with LaTeX documents (e.g., article).
+# Supports dvi previewing, postscript previewing, bibtex, etc.
+# This file supports a stub Makefile; the stub should use an "include" directive.
+# 950202 Ch. Lott <lott@bellcore.com>
+#
+# Targets are:
+#     make		- Generate the pdf file from the LaTeX source file.
+#     make force	- Force regeneration of pdf file from the source
+#			  (e.g., for second run to get table of contents)
+#     make bbl		- Generate the bibliography from a BibTeX database.
+#     make preview	- Generate and preview the dvi file using xdvi.
+#     make pspreview	- Generate postscript version and preview that.
+#     make ps2preview	- Generate postscript with 2 pages on 1 physical sheet
+#			  and preview that. 
+#     make print	- Print the dvi file on the specified laser printer.
+#     make print2	- Like print, but 2 logical pages per physical page
+#     make count	- Rough word count
+#     make spell	- Check spelling of English documents.
+#     make clean	- Remove all generated files.
+#
+# The name of the primary document and its dependencies should be
+# entered in a file named "Makefile" in the appropriate directory.
+# That stub Makefile file only needs to define these variables:
+#	TEXDOC    (your latex source file)
+#	DEPENDS   (any files used by your source file)
+#	LATEX	  (latex, dlatex, latex2e, etc.)
+# Then use the following line:
+# 	include $HOME/..path../Makefile.latex
+
+# The default typesetter.  Can also be overridden in the stub Makefile.
+LATEX=pdflatex
+
+# The default printer.  Can also be overridden in the stub Makefile.
+PRINTER=ps1
+
+DOCBASE = $(TEXDOC:%.tex=%)
+PDFDOC  = $(DOCBASE).pdf
+BBLDOC  = $(DOCBASE).bbl
+
+# define a pattern for latex -> pdf files
+%.pdf : %.tex
+	$(LATEX) $<
+
+# define a pattern for generating a .bbl file, which depends on the aux file.
+# To keep this Makefile simple, depend on the dvi file (created with .aux)
+%.bbl: %.dvi
+	bibtex $*
+
+# Default rule: make the .pdf file
+# depends on the source file and all dependencies.
+$(PDFDOC):   $(TEXDOC) $(DEPENDS)
+
+# .bbl file depends on the .aux file, which depends on the source file
+$(BBLDOC):	$(TEXDOC)
+
+# if a bibliography must be made, format the document twice after doing so
+bbl: $(BBLDOC)
+	$(LATEX)  $(TEXDOC)
+	$(LATEX)  $(TEXDOC)
+
+# force a reformat of the source file
+force:
+	$(LATEX) $(TEXDOC)
+
+# how long is the document
+count:
+	@echo "counting words in document $(TEXDOC)."
+	detex $(TEXDOC) | wc -w
+
+# check the spelling in the source file; only works for English
+spell:  
+	@if [ ! -f spell-words ]; then \
+		echo ""; \
+		echo -n "NOTE:  To create a file with the following "; \
+		echo "list of words in it, ";\
+		echo -n "type 'make spell-words'   "; \
+		echo "(An empty file was created for you.)";\
+		echo ""; \
+		touch spell-words; \
+	fi
+	detex $(TEXDOC) | spell | comm -23 - spell-words
+
+# build the file with the words that should not be reported as spelling errors
+# e.g., s
+spell-words: $(TEXDOC)
+	detex $(TEXDOC) | spell | tee spell-words
+
+# remove all output files that can be recreated from $(TEXDOC)
+clean:
+	rm -f $(PDFDOC) $(DOCBASE).aux $(DOCBASE).log
+
+clobber: clean
+
+# Additional dependencies in the following form:
+#
+#    product: source

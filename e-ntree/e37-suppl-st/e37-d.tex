@@ -1,0 +1,145 @@
+
+Dies ist das Erg\"anzungsblatt bez\"uglich des Programms "`ntree"'
+f\"ur strukturelles Testen.
+
+\bigskip
+
+In dieser Aufgabe werden haupts\"achlich einige C-Funktionen
+ausgetestet.  
+Um Ihnen Zeit und Arbeit bei dieser
+Aufgabe zu sparen, wurde eine Testumgebung angelegt.  Die dazu notwendigen
+Treiberfunktionen befinden sich in der schon kompilierten Datei
+"`driver.o"' und werden beim Linken eingebunden.  
+Die Treiber erledigen Funktionen wie \"Uberpr\"ufen und \"Offnen von
+Eingabedateien, Allokierung von notwendigem Speicher usw.  Siehe auch
+weitere Notizen bez\"uglich einer sichtbaren Treiberfunktion unten.
+
+\subsection*{Notwendige Eingaben}
+
+\begin{itemize}
+
+\item Welche Dokumente geh"oren zu dieser Aufgabe?
+
+\begin{enumerate}
+\item Dokument ES7, die Spezifikation der Komponente (erhalten Sie, nachdem
+   Sie Testf"alle erstellt und Fehlverhalten diagnostiziert haben)
+\item Dokument EQ7, der Quellcode der Komponente
+\end{enumerate}
+
+\item Wie hole ich mir das Dateipaket, das ich brauche?
+
+%Das Dateipaket befindet sich auf unseren Anlage in einer tar-Datei.
+% Der folgende Proze{\ss} soll gefolgt werden.
+Gehen Sie wie folgt vor:
+
+\begin{enumerate}
+
+\item Zuerst legen Sie ein neues Verzeichnis daf\"ur an mittels des 
+"`mkdir"'-Kommandos.
+\begin{verbatim}
+    mkdir st-ntree
+\end{verbatim}
+
+\item Dann wechseln Sie in das neue Verzeichnis mittels des 
+"`cd"'-Kommandos.
+\begin{verbatim}
+    cd st-ntree
+\end{verbatim}
+
+\item Zuletzt geben Sie folgendes Kommando ein:
+\begin{verbatim}
+    tar xf ~uebung00/Experiment/st-ntree.tar
+\end{verbatim}
+
+\end{enumerate}
+
+\item Was mu"s vorhanden sein ?
+
+Die folgende Dateien m\"ussen vorhanden sein:
+\begin{verbatim}
+    Makefile     gct-map     ntree     run-suite     test-dir
+\end{verbatim}
+
+% \item Wie wird die Umgebung initialisiert ?
+% \begin{verbatim}
+%    % make gct
+% \end{verbatim}
+% Es erscheint:
+% \begin{verbatim}
+%    gct-init
+%    make ntree CC=gct
+%    gct -g  -target sun4 -c  ntree.c
+%    gct -o ntree ntree.o str-driver.o
+% \end{verbatim}
+
+\end{itemize}
+
+
+\subsubsection*{Schreiben von Testf"allen}
+
+Getestet werden alle Funktionen des Programms grunds"atzlich durch den
+Aufruf 
+\begin{verbatim}
+ntree <Eingabedatei>
+\end{verbatim}
+Eine Parameterdatei enth"alt folglich nur den Namen der Eingabedatei. Dies
+ist zwar etwas umst"andlich, aber aus Konsistenzgr"unden n"otig.
+Das Format der Eingabedatei ist wie folgt:
+\begin{verbatim}
+Kommando1 Parameter1 Paramter2
+Kommando2 ParamterX
+...
+\end{verbatim}
+
+Welche Kommandos in der Eingabe erlaubt sind und welche Funktionen
+dadurch aufgerufen werden, entnehmen Sie der Funktion 
+{\tt fuehre\_kommandos\_aus} in der Datei {\tt ntree.c}.
+Da diese Funktion zur Testumgebung geh"ort und nicht Bestandteil der 
+eventuellen Anwendung sein wird, ist sie nicht besonders robust.
+Sie k\"onnen davon ausgehen, da{\ss} diese Funktion, obwohl
+relativ sensibel, doch fehlerfrei ist.
+Eine T\"atigkeit des Treibers aus {\tt driver.o} ist es, 
+die erste Datei auf der Kommandozeile zu \"offnen 
+und die Funktion {\tt fuehre\_kommandos\_aus} mit einem Zeiger 
+auf der ge\"offneten Datei aufzurufen. 
+Schreiben Sie keine Testf"alle zur "Uberdeckung der Testumgebung !
+
+
+\subsection*{Kurze Beschreibung des verwendeten Bibliotheks-Funktionen}
+
+\begin{itemize}
+	\item {\tt assert(expression)}\\
+		Makro, der erwartet, da"s {\tt expression} zum Zeitpunkt der Ausf"uhrung
+		{\tt true} ist und in diesem Fall nichts tut. Ansonsten wird eine 
+		Fehlermeldung mit der {\tt expression} ausgegeben.
+	\item {\tt char* malloc(size)}\\
+		Liefert ein Pointer auf einen Speicherblock zur"uck, der mindestens 
+		{\tt size}
+		Bytes gro"s ist. Bei Mi"serfolg wird NULL zur"uckgegeben.
+	\item {\tt int free(ptr)}\\
+		Gibt einen zuvor alloziierten Block zur"uck. {\tt ptr} mu"s mit 
+		{\tt malloc} o."a. alloziiert worden sein. Bei Erfolg wird 1, sonst
+ 		0 zur"uckgegeben.
+	\item {\tt int strcmp(s1,s2)}\\
+		Vergleicht zwei Strings. Liefert einen Wert gr"o"ser als, gleich, oder
+		kleiner als 0 zur"uck, abh"angig davon, ob {\tt s1} lexikographisch
+		(d.h.~ASCII-Zeichenwert) gr"o"ser, gleich, oder 
+		kleiner als {\tt s2} ist.	
+	\item {\tt void bcopy(b1,b2,length)}\\
+		Kopiert {\tt length} Bytes von String {\tt b1} nach String {\tt b2}. 
+		"Uberlappende Strings werden korrekt behandelt.
+	\item {\tt int sscanf(s,format,pointer)}\\
+		Lie"st Zeichen von String {\tt s} und wandelt sie entsprechend dem
+		spezifizierten {\tt format} um und schreibt die Resultate in die Variablen
+		auf die die {\tt pointer} zeigen. Dies ist die Umkehrfunktion 
+		von {\tt printf}, die Formatspezifikationen sind identisch. 
+	\item {\tt char *fgets(s,n,stream)}\\
+		Lie"st Zeichen aus dem Stream {\tt stream} bis zum NEWLINE oder EOF und
+		schreibt sie in den String {\tt s}, bis {\tt n-1} Zeichen gelesen wurden.
+		Bei EOF wird NULL zur"uckgegeben, sonst {\tt s}.
+	\item {\tt char *strdup(s1)}\\
+		Dupliziert den String {\tt s1}. Alloziiert zu diesem Zweck Speicher
+		mit {\tt malloc()} und gibt bei Erfolg von {\tt malloc} den 
+		Pointer darauf zur"uck, sonst NULL.
+\end{itemize}
+

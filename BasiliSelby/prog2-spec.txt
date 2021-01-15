@@ -1,0 +1,37 @@
+                            Program 2
+
+Given ordered pairs (x,y) of either positive or negative Integers as
+input, the program plots them on a grid with a horizontal x-axis and a
+vertical y-axis which are appropriately labeled.  A plotted point on
+the grid should appear as an asterisk (*).  
+
+The vertical and horizontal scaling is handled as follows.  If the
+maximum absolute value of any y-value is less than or equal to twenty
+(20), the scale of vertical spacing will be one line per integral unit
+(e.g., the point (3,6) should be plotted on the sixth Iine; two lines
+above the point (3,4)). Note that the origin (point (0,0)) would
+correspond to an asterisk at the the intersectlon of the axes (the
+x-axis is referred to as the Oth line).  If the maximum absolute value
+of any x-value is less than or equal to thirty (30), the scale for
+horizontal spacing will be one space per integral unit (e.g., the
+point (4,5) should be plotted four spaces to the right of the y-axis;
+two spaces to the right of (2,5)).  However, if the maximum absolute
+value of any y-value is greater than twenty (20), the scale for
+vertical spacing will be one line per every (max abs of yval)/20
+rounded-up.  (E.g., If the maximum absolute value of any y-value to be
+plotted is 66, the vertical line spacing will be a line for every four
+(4) integral units.  In such a data set,  points with y-values greater
+than or equal to eight  and less than twelve will show up as asterisks
+in the second line, points with y-values greater than or equal to
+twelve and less than sixteen will show up as asterisks in the third
+line, etc.  Continuing the example, the point (3,15) should be plotted
+on the third line; two lines above the point (3,5).) Horizontal
+scallng is handled analogously.
+
+If two or more of the points to be plotted would show up as the same
+asterisk in the grid (like the points (9,13) and (9,15) ln the above
+example), a number '2' (or whatever number is approprlate) should be
+printed instead of the asterisk.  Points whose asterisks will lie on a
+axis or grid marker should show up in place of the marker.
+
+(End of specification.)

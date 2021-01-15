@@ -1,0 +1,90 @@
+%
+% sample solution for training exercise series
+%
+
+The following tables show example equivalence classes and test cases
+based on the equivalence classes for program ``series.'' These tables
+may be useful as example solutions. 
+
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|r|c|l|}
+\hline
+Nr. & V/I$^*$ & Equivalence class \\
+\hline
+\hline
+  1 &   V & Argument count is 2   \\
+\hline
+  2 &   V & Argument count is 3   \\
+\hline
+  3 &   I & Argument count is neither 2 nor 3   \\
+\hline
+\hline
+  4 &   I & First argument is not a number \\
+\hline
+  5 &   I & Second argument is not a number \\
+\hline
+  6 &   I & Third argument is not a number \\
+\hline
+  7 &   V & All arguments are numbers \\
+\hline
+\hline
+  8 &   V & Start value is larger than end value \\
+\hline
+  9 &   V & Start value is smaller than end value \\
+\hline
+ 10 &   V & Start value equals end value \\
+\hline
+\hline
+ 11 &   I & Increment is zero \\
+\hline
+ 12 &   V & Increment is larger than abs(end -- start) \\
+\hline
+ 13 &   V & Increment is smaller than abs(end--start) \\
+\hline
+\hline
+ 14 &   V & All arguments are integer \\
+\hline
+ 15 &   V & At least one argument is a real\\
+\hline
+\multicolumn{3}{l}{$^*$V = equivalence class for valid input, 
+I = e. c. for invalid input}
+\end{tabular}
+\end{center}
+\caption{Equivalence classes for program ``series''}
+\label{T:equiv-classes-series}
+\end{table}
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|r|l|l|l|}
+\hline
+Nr. & Test case    & Equiv. class    & Expected output \\
+\hline
+\hline
+1 & series 1       & 3               & error message \\
+\hline
+2 & series x 2     & 1, 4            & error message  \\
+\hline
+3 & series 1 x     & 1, 5            & error message  \\
+\hline
+4 & series 1 2 x   & 2, 6	     & error message  \\
+\hline
+5 & series 10 0    & 1, 7, 8, 14     & 10, 9, 8, ..., 1, 0\\
+\hline
+6 & series 1 2 0.1 & 2, 7, 9, 13, 15 & 1.0, 1.1, 1.2, ..., 1.9, 2.0\\
+\hline
+7 & series 7 7     & 1, 7, 10, 14    & the number '7' \\
+\hline
+8 & series 1 2 0   & 2, 7, 9, 11, 14 & error message \\
+\hline
+9 & series 2 1 0.1 & 2, 7, 8, 13, 15 & 2.0, 1.9, 1.8, ..., 1.1, 1.0\\
+\hline
+10 & series 1 2 3  & 2, 7, 9, 12, 14 & the number '1' \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Tests based on equivalence classes for program ``series''}
+\label{T:tests-equiv-classes-series}
+\end{table}

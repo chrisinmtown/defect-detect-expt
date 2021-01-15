@@ -1,0 +1,56 @@
+%
+% faults in program tokens
+%
+
+The classification of each fault is given in braces.
+
+\begin{enumerate}
+
+\item Fault in function ``treeprint'', line 25: 
+The symbol ``>'' should be ``>=''.
+
+\{Comission, Control\}
+
+Causes failure:
+If a boundary value $n$ is given with the ``-m'' argument, 
+the value $n + 1$ is used instead of just $n$.
+
+
+\item Fault in function ``getword'', line 64/77: 
+The length of the input is not checked.
+
+\{Omission, Data\}
+
+Causes failure:
+The program dumps core if a very long word is read.
+
+
+\item Fault in function ``main'', line 97 (circa): 
+The array ``MapAllowed'' is never initialized.
+
+\{Omission, Initialization\}
+
+Causes failure:  Compiler-dependent; non-alphanumeric symbols could
+be mistakenly accepted.
+
+
+\item Fault in function ``main'', line 101: 
+The variable ``Alpha'' is initialized with 0 instead of 1.
+
+\{Comission, Initialization\}
+
+Causes failure:
+The argument ``-a'' has no effect.
+
+
+\item Fault in function ``main'', line 115:
+The argument ``-a'' is not documented in the usage message.
+
+\{Omission, Cosmetic\}
+
+Causes failure:
+The help message says nothing about the ``-a'' argument.
+
+\end{enumerate}
+
+

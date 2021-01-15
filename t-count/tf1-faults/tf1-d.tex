@@ -1,0 +1,94 @@
+
+In Klammern ist die Kategorisierung des Fehlers angegeben.
+
+\begin{enumerate}
+
+
+\item Fehler in Zeile 10: 
+Die Variablen m\"ussen mit 0 statt 1 initialisiert werden.
+
+\{Comission, Initialisierng\} 
+
+F\"uhrt zum Fehlverhalten:
+Die Summen sind alle eins zu gro{\ss}.
+
+\item Fehler in Zeile 14: Die Variable ``fp'' wird nicht initialisiert f\"ur den
+Fall, da{\ss} die Eingabe von ``stdin'' gelesen werden soll.
+
+\{Omission, Initialisierung\} 
+
+F\"uhrt zum Fehlverhalten:
+`count' kann nicht von der Standard-Eingabe (stdin) lesen.
+
+
+\item Fehler in Zeile 15: Statt ``stderr'' wird in der fprintf-Aufruf
+``stdout'' verwendet.
+
+\{Comission, Interface\} 
+
+F\"uhrt zum Fehlverhalten:
+Fehlermeldungen erscheinen auf der Standard-Ausgabe (stdout) 
+statt auf der Standardfehler-Ausgabe (stderr).
+
+
+\item Fehler in Zeile 16: Komponente wird mit `exit (1)'
+verlassen. Richtig w\"are hier die Verwendung des C-statements
+`continue' gewesen, welches die n\"achste Iteration einer umgebenden
+Schleife bewirkt.  
+
+\{Comission, Kontrolle\}
+
+F\"uhrt zum Fehlverhalten:
+Ist ein als Parameter spezifiziertes File nicht im Dateisystem
+vorhanden, so bricht das Programm ab.  Weitere Parameter werden nicht
+ber\"ucksichtigt. Ebenso erfolgt keine Ausgabe der Summe.
+
+
+\item Fehler in Zeile 19: Die Variable ``inword'' wird mit 1
+initialisiert statt 0.
+
+ \{Comission, Initialisierung\}
+
+F\"uhrt zum Fehlverhalten:
+`count' bestimmt bei n W\"ortern in einer Datei manchmal n,
+manchmal n + 1 (abhaengig davon ob der erste Zeichen ein Leerzeichen
+ist).  
+
+
+\item Fehler in Zeile 34: *argv wird statt argv[i] verwendet.
+
+\{Comission, Daten\}
+
+F\"uhrt zum Fehlverhalten:
+In der Ausgabe wird statt der Dateiname immer der Name des
+Programmes ausgedruckt. 
+
+
+\item Fehler in Zeile 41: Argc wird mit 1 verglichen; es mu{\ss} aber mit 2
+verglichen werden.
+
+\{Comission, Berechnung\}
+
+F\"uhrt zum Fehlverhalten:
+Das Programm druckt auch eine Zeile mit ``Total'' aus in den
+F\"allen worin nur eine Datei gelesen wurde.
+
+
+\item Fehler in Zeile 42: Statt ``tlinect'' wird lediglich ``linect''
+verwendet. 
+
+\{Comission, Daten\}
+
+F\"uhrt zum Fehlverhalten:
+Die Summen werden nicht korrekt ausgedruckt.
+\begin{verbatim}
+% ./count file2 file2 file2
+      1       2      14 ./count
+      1       2      14 ./count
+      1       2      14 ./count
+      1       7      43 total
+\end{verbatim}
+
+
+
+\end{enumerate}

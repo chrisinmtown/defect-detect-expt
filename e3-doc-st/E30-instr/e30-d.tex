@@ -1,0 +1,251 @@
+Beachten Sie bitte auch das Erg"anzungsblatt "`Strukturelles Testen mit
+Programm $x$"', was im Ihnen vorliegenden Material enthalten ist.
+
+\begin{enumerate}
+
+\item Lesen Sie sich den Fragebogen "`E32: Strukturelles Testen"'
+durch. Tragen Sie Ihre Kennung ein und f"ullen Sie die Rubrik
+"`Vorbetrachtungen"' aus. 
+
+\subsection*{Test generieren}
+
+\item Tragen Sie die Uhrzeit zu der Sie mit dem Experiment beginnen 
+unter Frage 4 ein.
+
+\item Lesen Sie sich den Kode der Komponente durch, um einen "Uberblick zu
+gewinnen. Falls Ihnen jetzt oder in
+den folgenden Schritten bereits m"ogliche Fehler auffallen, dann
+markieren Sie diese. Investieren Sie bitte keine Zeit in die
+genaue Analyse, isolieren Sie keine Fehler !!!
+Fehlerisolation erfolgt ab Schritt 18.
+
+\item Fangen Sie an, Testdaten zu generieren, die zu 100-prozentiger
+"Uberdeckung der folgenden Kriterien f\"uhren werden: Zweig"uberdeckung
+($C_{1}$), Schleifen"uberdeckung, Mehrfachbedingungs"uberdeckung
+($C_{1}^{OP}$, $C_{1}^{AP}$) und Relationaloperator-"Uberdeckung.
+Sollten Ihnen diese Kriterien unbekannt sein, dann schlagen Sie bitte auf
+Seite \pageref{kriterien} dieser Anleitung nach.
+Besondere Eigenschaften der Komponente entnehmen Sie dem
+Erg\"anzungsblatt.
+Entwerfen Sie Ihre Testdaten sorgf"altig, so vermeiden Sie sp"ater
+zeitaufwendiges "`Testdaten hacking"'.
+
+\item Nachdem Sie mit der Testdatengenerierung fertig sind, tragen 
+Sie Ihren Zeitbedarf unter Frage 5 ein.
+
+\item Loggen Sie sich bei einem Rechner bzw.~Xstation ein.  
+Tragen Sie den Rechnername und Zeitpunkt unter Frage 6 ein.  
+Holen Sie sich das notwendige Dateipaket (siehe Erg\"anzungsblatt).
+% Tippen Sie
+% \begin{quote}
+% 	{\tt \% make gct}
+% \end{quote}
+% damit die Testumgebung initialisiert wird.
+\"Uberzeugen Sie sich davon, da{\ss} alle Dateien bzw.~Verzeichnisse
+vorhanden sind! 
+
+\item Tippen Sie Ihre vorbereitete Testf\"alle in Dateien im
+Verzeichnis "`test-dir"' ein. Um Ihnen die Arbeit zu erleichtern, ist die
+Komponente mit einer Kommandozeilenschnittstelle versehen worden. Diese
+Schnittstelle wird von einem automatischen Tester angesteuert. Der Tester
+lie"st {\em Parameterdateien\/} und ruft die Komponente mit den darin
+spezifizierten Parametern auf. Die Resultate werden in eine Datei geschrieben.
+Auf diese Weise wird ein kompletter Test der Komponente durchf"uhrt.
+
+Sie m"ussen die Parameter- und ggf.~{\em Eingabedateien} anlegen. Ein
+Testfall $=$ eine Parameterdatei. Die
+Ausdr"ucke in einer Parameterdatei spezifizieren einen Aufruf der
+Komponente f"ur einen Lauf des automatischen Testers. Parameterdateien werden
+mit ``.test'' als Dateikennung benannt. Beispiel: Soll die Komponente 'komp'
+mit {\tt komp -i in\_file1} aufgerufen werden, dann geh"ort in
+die Parameterdatei der Ausdruck {\tt -i in\_file1}.
+
+{\em Eingabedateien\/} werden f"ur Komponenten angelegt, die aus
+Dateien lesen. Eingabedateien sollten sinnvoll benannt werden,
+z.B. ``leer'', sie d"urfen {\bf nicht} die Dateikennung ``.test'' aufweisen.
+
+\"Uberzeugen Sie sich, da{\ss} in den Dateien auch wirklich das
+enthalten ist, was Sie wirklich wollen!
+
+
+% \item Tippen Sie Ihre vorbereitete Testf\"alle in Dateien im
+% Verzeichnis "`test-dir"' ein. 
+% Versehen Sie bitte jede Datei mit der Endung `.test'.
+% \"Uberzeugen Sie sich, da{\ss} in den Dateien auch wirklich das
+% enthalten ist, was Sie wirklich wollen!
+
+\subsection*{Test durchf"uhren}
+
+\item Wenden Sie die Testf\"alle auf die Komponente an indem Sie das
+Kommando "`run-suite"' eingeben. 
+
+\item Schauen Sie sich die Zusammenfassung der \"Uberdeckungen an
+mit Hilfe der Kommandos "`gsummary"' und "`greport"'.
+Zum Beispiel:
+\begin{verbatim}
+% gsummary test-dir/GCTLOG
+% greport  test-dir/GCTLOG
+\end{verbatim}
+
+\item Versuchen Sie jetzt durch Generierung weiterer Tests alle Werte
+auf 100\% zu bringen. Sie k\"onnen neue Tests (im Verzeichnis
+`test-dir') hinzuf\"ugen.  Nachdem Sie die Testdaten ge\"andert haben,
+testen Sie weiter indem Sie die folgende Befehlssequenz ausf\"uhren: 
+\begin{verbatim}
+% make clean 
+% run-suite 
+% gsummary test-dir/GCTLOG 
+% greport  test-dir/GCTLOG
+\end{verbatim}
+
+\item Nachdem Sie ein \"Uberdeckungsma{\ss} von 100\% erreicht haben,
+oder sich \"uberzeugt haben, da{\ss} 100-prozentige \"Uberdeckung aus
+gutem Grunde nicht zu erreichen ist (mu{\ss} gut begr\"undet
+werden!), sind Sie mit dem ersten Teil dieser Aufgabe fertig.
+
+\item Tragen Sie die Anzahl der Testf\"alle, die Sie in dieser Aufgabe
+generiert haben,  unter Frage 7 und die erreichten \"Uberdeckungswerte
+unter Frage 8 ein.  
+Bitte tragen Sie auch gleich Ihren Zeitbedarf unter Frage 9 ein.
+
+\item Die Resultate stehen sowohl in einzelnen Dateien im Verzeichnis 
+"`test-dir"' als auch in einer zusammenh\"angende Datei
+"`test-results.summary"', worin die einzelnen Resultate getrennt sind.
+Drucken Sie die Resultate zweimal auf dem Zeilendrucker aus. 
+
+\item Loggen Sie sich aus und holen Sie Ihre Ausgabe vom Zeilendrucker.
+
+\item Notieren Sie auf einem Ausdruck Ihrer Resultate Ihre Praktikumskennung,
+mit welcher Testmethode Sie gearbeitet haben und in welchem Verzeichnis
+Ihre Testf"alle zu finden sind. Geben Sie diesen Ausdruck
+beim Betreuer ab und nehmen Sie die Spezifikation entgegen. Bitte l"oschen Sie
+nicht Ihre Testf"alle !
+
+
+%\item Geben Sie jetzt einen Ausdruck Ihrer Resultate beim Betreuer ab. Sie 
+%erhalten dann die Spezifikation der Komponente. 
+
+\subsection*{Fehlverhalten diagnostizieren}
+
+\item Tragen Sie die momentane Uhrzeit unter Frage 10 ein.
+Lesen Sie die Spezifikation und suchen Sie nach Fehlverhalten in den
+Testergebnissen. Markieren Sie die entdeckten Fehlverhalten in der Ausgabe
+durch Umkreisen, o."a. Tragen Sie die entdeckten Fehlverhalten in das 
+Formblatt ein.  Nummieren Sie die Fehlverhalten von 1 bis $n$ in der
+Spalte "`Fv-Nr."' (Fehlverhaltensnummer) des Formblatts und entsprechend
+die Umkreisungen im Ausdruck.
+
+%Vergessen Sie nicht, auf dem Formblatt Ihre Praktikums-Kennung anzugeben.
+
+\item Wenn Sie meinen, alle Fehlverhalten entdeckt zu haben, 
+tragen Sie bitte Ihren Zeitbedarf f"ur die Suche unter Frage 11 ein.
+
+\subsection*{Fehler lokalisieren}
+
+\item Tragen Sie die momentane Uhrzeit unter Frage 12 ein.
+Versuchen Sie jetzt die Fehler, die zu den von Ihnen erkannten
+Fehlverhalten gef\"uhrt haben, zu isolieren.
+Tragen Sie die isolierten Fehler in das Formblatt ein, vergessen Sie
+nicht, dort auch Ihre Praktikums-Kennung anzugeben.
+
+Geben Sie an welche Fehler Sie entdeckt haben
+[Zeilennummer]. Klassifizieren Sie dabei nach den vorgestellten
+Fehlertypen [{Omission, Comission}, {Initialization, Control,
+Interface, Data, Computation, Cosmetic}]. Charakterisieren Sie dann
+kurz den Fehler, z.B. `Initialwert 1 statt 0'. Geben Sie auch
+die Nummer des Fehlverhaltens an, zu dem der Fehler f"uhrt.
+
+Sollten Sie zuf\"alligerwise auch Fehler erkennen, die nicht zu
+Fehlverhalten bei Ihren Testergebnisse gef\"urt haben, d\"urfen
+Sie sie auch auflisten.  In diesem Fall geh"ort in die Spalte
+"`Fv-Nr."' ein Strich.
+
+\item Nachdem Sie mit der Fehlerisolation fertig sind, tragen Sie
+Ihren Zeitbedarf unter Frage 13 ein.
+
+\item F"ullen Sie bitte den Rest des Fragebogens aus (Fragen 14--16).
+Geben Sie den Fragebogen und alle Formbl"atter bei Ihrem Betreuer ab,
+   sch\"onen Feierabend.
+
+%\item Geben Sie den Fragebogen und alle Formbl"atter bei Ihrem Betreuer ab.
+%R\"aumen Sie Ihren Arbeitsplatz auf. Verlassen Sie den
+%Terminalraum, sch\"onen Feierabend.
+
+\end{enumerate}
+
+\subsection*{Anhang: "Uberdeckungskriterien}
+\label{kriterien}
+
+\subsubsection*{Zweig"uberdeckung}
+
+Die Erf"ullung des Zweig"uberdeckungskriteriums stellt sicher, da"s jeder
+Zweig in einer Komponente mindestens einmal ausgef"uhrt wurde. Zweige in
+C-Programmen werden erzeugt durch die {\tt {if}}-, {\tt {?}}-, {\tt {for}}-,
+{\tt {while}}- und {\tt {do-while}}-Anweisungen. Jede dieser Anweisungen
+erzeugt zwei Bedingungen: Die Auswertung des Testausdrucks mu"s einmal
+{\tt {true}} und einmal {\tt {false}} ergeben. In GCT Terminologie
+hei"st diese Art der Zweig"uberdeckung {\bf binary branch instrumentation}.
+
+
+Auch durch das {\tt {switch}}-Konstrukt entstehen verschiedene Programmzweige.
+Um alle Zweige zu durchlaufen, m"ussen alle {\tt {case}}-Marken einmal
+angesprungen werden. Das gilt auch f"ur die {\tt {default}}-Marke, selbst
+wenn sie gar nicht im Quelltext aufgef"uhrt wird. Jede {\tt {case}}-Marke
+erzeugt also eine Bedingung. In GCT Terminologie
+hei"st diese Art der Zweig"uberdeckung {\bf switch instrumentation}.
+
+
+\subsubsection*{Schleifen"uberdeckung (GCT: loop instrumentation)}
+
+F"ur dieses Kriterium erzeugt eine {\tt {do-while}}-Schleife zwei Bedingungen:
+eine f"ur das einmalige Ausf"uhren des Rumpfes und eine f"ur das mehrmalige
+Ausf"uhren. {\tt {for}}- und {\tt {while}}-Schleifen erzeugen noch eine
+dritte: der Testausdruck mu"s schon bei der ersten Auswertung {\tt {false}}
+ergeben, der Rumpf darf also keinmal ausgef"uhrt werden.
+
+Durch das Schleifen"uberdeckungskriterium werden Fehler in
+Schleifen entdeckt, die sich erst bei einer bestimmten Anzahl von Durchl"aufen
+bemerkbar machen.
+
+
+\subsubsection*{Mehrfachbedingungs"uberdeckung (GCT: multiple condition 
+instrumentation)}
+
+Mehrfachbedingungen sind aus den Operatoren "`logisches und"' ({\tt {\&\&}}) und
+"`logisches oder"' ({\tt {||}}) zusammengesetzte Ausdr"ucke. Zur Erf"ullung
+dieses Kriteriums m"ussen beide Seiten eines solchen Ausdrucks einmal
+{\tt {true}} und einmal {\tt {false}} werden. Eine Mehrfachbedingung erzeugt
+also vier Bedingungen{\footnote{Geschachtelte Ausdr"ucke entsprechend mehr!}}:
+linke und rechte Seite des Ausdrucks mu"s je einmal {\tt {true}}
+und {\tt {false}} sein.
+
+Bei der "Uberpr"ufung von Mehrfachbedingungen werden nicht nur die
+Testausdr"ucke von {\tt {if}}-Anweisungen und Schleifen erfa"st, sondern
+alle Ausdr"ucke, deren Auswertung einen booleschen Wert ergeben.
+
+
+\subsubsection*{Relationaloperator-"Uberdeckung (GCT: operator instrumentation)}
+
+Relationaloperatoren ({\tt {<}}, {\tt {<=}}, {\tt {>}}, {\tt {>=}}) sind oft
+die Ursache von Fehlern, sei es aufgrund von Vertauschungen (z. B.
+{\tt {<}} und {\tt {>}}), aufgrund falschen Gebrauchs (z. B. {\tt {<}}
+statt {\tt {<=}}) oder falscher Grenzwerte (z.B. a < 99 statt a < 100).
+
+Ein Relationaloperator erzeugt drei Bedingungen:
+
+\begin{enumerate}
+
+\item die linke Seite mu"s ungleich der rechten sein
+
+\item die linke Seite mu"s gleich der rechten sein
+
+\item 
+	\begin{enumerate}
+		\item F"ur die Operatoren {\tt {<=}} und {\tt {>}}:
+			die linke Seite mu"s um "`epsilon"' kleiner als die rechte sein
+		\item F"ur die Operatoren {\tt {>=}} und {\tt {<}}:
+			die linke Seite mu"s um "`epsilon"' gr"o"ser als die rechte sein
+	\end{enumerate}
+	"`epsilon"' ist in der aktuellen Implementierung '1'.
+\end{enumerate}
+

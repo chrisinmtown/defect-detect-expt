@@ -1,0 +1,130 @@
+
+\subsection*{Name}
+
+ntree -- Funktionen zur Verwaltung eines Baumes
+
+\subsection*{Verwendung}
+
+{\bf ntree} Eingabedatei
+
+\subsection*{Beschreibung}
+
+{\it ntree} liesst Kommandos aus einer Datei und bearbeitet sie, um
+einige Funktionen auszutesten.
+Die Funktionen implementieren gemeinsam einen Baum, wobei
+jeder Knoten beliebig viele Kinder haben kann.  
+Die Anzahl von Kinder wird durch das Programm nicht begrenzt. 
+Ein Knoten enthaelt zwei Strings (Schluessel, Inhalt). 
+
+\subsection*{Optionen}
+
+Keine.
+
+\subsection*{Eingabe}
+
+Nur die folgenden Kommandos sind in der Eingabedatei zulaessig.
+Jedes Kommando muss in einer neuen Zeile anfangen.
+Klein- und Grossschreibung wird bei den Schluesseln unterschieden.
+Trennzeichen zwischen Kommandos und Argumenten ist immer ein
+Leerzeichen; d.h., Leerzeichen duerfen nicht innerhalb eines
+Strings vorkommen.
+In dieser Implementierung sind Kommandozeilen (also, Kommando plus
+entsprechenden Parametern) auf einer maximalen Laenge von 1024
+beschraenkt. 
+
+\begin{itemize}
+
+\item {\tt root <Schluessel> <Inhalt>}
+
+Erzeugt und initialisiert die Wurzel des Baumes.
+Dieses Kommando muss das erste Kommando in der Eingabedatei sein.
+Falls es nicht als erstes vorkommt, oder falls das Kommando wiederholt
+wird, ist das Verhalten des Programms nicht definiert.
+
+\item {\tt child <Vater-Schluessel> <Kind-Schluessel> <Kind-Inhalt>}
+
+Fuegt an den Vater-Knoten einen neuen Kind-Knoten 
+mit den angegebenen Daten an.
+Falls der Vater-Knoten im Baum nicht gefunden wird, wird eine
+entsprechende Fehlermeldung ausgegeben.
+Falls der Schluessel des Vater-Knotens mehrfach im Baum vorhanden
+ist, wird der neue Sohn an den ersten gefundenen Knoten angehaengt
+(siehe auch "search" unten).
+
+\item {\tt search <Schluessel>}
+
+Es wird im Baum nach dem Knoten mit dem <Schluessel> gesucht.
+Der Baum wird von links nach rechts nach der "depth-first
+search"-Methode durchsucht, wobei der Inhalt eines Knotens beim ersten
+Besuch gecheckt wird ("preorder traversal").
+Falls der Knoten mit dem angegebenen Schluessel gefunden wird, wird
+sein Inhalt, falls nicht, wird eine entsprechende Fehlermeldung
+ausgegeben.  Gibt es mehrere Knoten mit dem gleichen Schluessel, dann
+wird nur der zuerst gefundene ausgegeben.  
+
+\item {\tt sibs <Schluessel1> <Schluessel2>}
+
+Stellt fest, ob die Knoten mit den angegebenen Schluessel Geschwister
+sind (d.h., denselben Vater-Knoten teilen).  Falls einer oder der
+andere Schluessel im Baum nicht gefunden wird, wird eine entprechende
+Fehlermeldung ausgegeben.  Jeder Knoten zaehlt als sein eigener
+Geschwister. 
+Siehe auch "search" oben fuer eine Beschreibung der Such-Methode.
+
+\item {\tt print}
+
+Druckt den gesamten Inhalt des Baumes aus. Zu jedem Knoten wird in 
+jeweils einer neuen Zeile Schluessel, Inhalt sowie seine Tiefe
+ausgegeben. Korrespondierend zur Tiefe wird die Zeile um jeweils
+4 Leerzeichen eingerueckt.
+
+\end{itemize}
+
+\subsection*{Beispiel}
+Da die folgende Beispielausgabe des Programms durch ein Textsatzprogramm 
+formatiert wurde, entspricht die hier dargestellte Einrueckung nicht der
+tatsaechlichen Einrueckung. 
+
+{\small
+\begin{verbatim}
+% cat eingabe
+root Lamb SE:_Planning_for_Change
+child Lamb Rombach Software_Specifications:_A_Framework
+child Lamb Brackett Software_Requirements
+child Rombach Parnas Predicate_Logic_for_SE
+print
+
+% ntree eingabe
+
+Eingabedatei `eingabe' wird bearbeitet.
+
+Die Zeile `root Lamb SE:_Planning_for_Change' wird ausgewertet:
+
+Die Zeile `child Lamb Rombach Software_Specifications:_A_Framework' wird ausgewertet:
+
+Die Zeile `child Lamb Brackett Software_Requirements' wird ausgewertet:
+
+Die Zeile `child Rombach Parnas Predicate_Logic_for_SE' wird ausgewertet:
+
+Die Zeile `print' wird ausgewertet:
+Knoten (Ebene 0): Schluessel 'Lamb', Inhalt 'SE:_Planning_for_Change'
+    Knoten (Ebene 1): Schluessel 'Rombach', Inhalt 'Software_Specifications:_A_Framework'
+        Knoten (Ebene 2): Schluessel 'Parnas', Inhalt 'Predicate_Logic_for_SE'
+    Knoten (Ebene 1): Schluessel 'Brackett', Inhalt 'Software_Requirements'
+
+Ende der Eingabedatei `eingabe'.
+\end{verbatim}
+} % small
+
+\subsection*{Autor}
+
+Ch.\ Lott
+
+\subsection*{Bugs}
+
+Die Funktionalitaet zum Einlesen von Dateien und Erkennen von
+Kommandos ist nur zu Testzwecken gedacht und ist deswegen nicht
+besonders fehlertolerant.  Zum Beispiel kann man davonausgehen, 
+dass falsch buchstabierte Kommandos oder fehlende bzw. zu
+viele Argumente bei einem Kommando nicht besonders sorgfaeltig
+behandelt werden. 

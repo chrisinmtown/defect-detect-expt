@@ -1,0 +1,87 @@
+
+Dies ist das Erg\"anzungsblatt bez\"uglich des Programms "`tokens"'
+f\"ur strukturelles Testen.
+
+\subsection*{Notwendige Eingaben}
+
+\begin{itemize}
+
+\item Welche Dokumente geh"oren zu dieser Aufgabe?
+
+\begin{enumerate}
+\item Dokument TS3, die Spezifikation der Komponente (erhalten Sie, nachdem
+   Sie Testf"alle erstellt und Fehlverhalten diagnostiziert haben)
+\item Dokument TQ3, der Quellcode der Komponente
+\end{enumerate}
+
+\item Wie hole ich mir das Dateipaket, das ich brauche?
+
+%Das Dateipaket befindet sich auf unseren Anlage in einer tar-Datei.
+% Der folgende Proze{\ss} soll gefolgt werden.
+Gehen Sie wie folgt vor:
+
+\begin{enumerate}
+
+\item Zuerst legen Sie ein neues Verzeichnis daf\"ur an mittels des 
+"`mkdir"'-Kommandos.
+\begin{verbatim}
+    mkdir st-tokens
+\end{verbatim}
+
+\item Dann wechseln Sie in das neue Verzeichnis mittels des 
+"`cd"'-Kommandos.
+\begin{verbatim}
+    cd st-tokens
+\end{verbatim}
+
+\item Zuletzt geben Sie folgendes Kommando ein:
+\begin{verbatim}
+    tar xf ~prakt00/Aufgabe5/st-tokens.tar
+\end{verbatim}
+
+\end{enumerate}
+
+\item Was mu"s vorhanden sein ?
+
+Die folgende Dateien m\"ussen vorhanden sein:
+\begin{verbatim}
+    Makefile     gct-map      run-suite    test-dir     tokens
+\end{verbatim}
+
+% 
+% \item Wie wird die Umgebung initialisiert ?
+% \begin{verbatim}
+%     % make gct
+% \end{verbatim}
+% Es erscheint:
+% \begin{verbatim}
+%     gct-init
+%     make tokens CC=gct
+%     gct -g  -target sun4 -c  tokens.c
+%     gct -o tokens tokens.o
+% \end{verbatim}
+% 
+
+\end{itemize}
+
+
+\subsubsection*{Schreiben von Testf"allen}
+
+Getestet werden alle Funktionen des Programms grunds"atzlich durch den
+Aufruf 
+\begin{verbatim}
+tokens
+\end{verbatim}
+Das Programm lie{\ss}t seine Eingabe von der Standard-Eingabe (stdin) und
+kann "uber Optionen beeinflu"st werden. Eine Parameterdatei enth"alt folglich 
+die Option(en), den Namen der Eingabedatei 
+und das notwendige Zeichen, um der Inhalt der Datei zum Programm
+umzulenken (``<'').
+%Dies ist zwar etwas umst"andlich, aber aus Konsistenzgr"unden n"otig.
+Das Format der Parameterdatei ist wie folgt:
+\begin{verbatim}
+    -Option1 -Option2 < file1
+\end{verbatim}
+
+Welche Optionen erlaubt sind und wie die Eingabedatei gestaltet sein
+mu"s, entnehmen Sie den Funktionen der Komponente. 

@@ -1,0 +1,122 @@
+
+\subsection*{Name}
+
+nametbl -- Funktionen fuer eine Symboltabelle 
+
+\subsection*{Verwendung}
+
+{\bf nametbl} Eingabedatei
+
+\subsection*{Beschreibung}
+
+{\it nametbl} liesst Kommandos aus der Eingabedatei und bearbeitet
+sie, um einige Funktionen auszutesten.
+Die Funktionen implementieren gemeinsam eine einfache Symboltabelle
+fuer eine (gewisse) Computersprache. 
+Es gibt fuer Symbole nur den Gueltigkeitsbereich "global". 
+Es findet keine Pruefung von Semantik statt.
+
+Die Symboltabelle speichert folgende Informationen zu jedem Symbol:\\
+Symbolname,\\
+Objekttyp des Symbols: \{OT\_NO\_INF, SYSTEM, RESOURCE\},\\
+Resourcetyp des Symbols: \{RT\_NO\_INF, RT\_SYSTEM, FUNCTION, DATA\}.
+
+\subsection*{Optionen}
+Keine.
+
+\subsection*{Eingabe}
+
+Nur die folgenden Kommandos sind in der Eingabedatei zulaessig.
+Jedes Kommando muss in einer neuen Zeile anfangen.
+Klein- und Grossschreibung wird bei den Symbolen und den 
+Objekt- und Resourcetypbezeichnern unterschieden.
+Der Trenner zwischen Kommandos und Argumenten ist immer ein
+Leerzeichen; d.h., Leerzeichen duerfen nicht innerhalb eines
+Bezeichners vorkommen.
+
+\begin{itemize}
+
+\item {\tt ins <Symbol>}
+
+F\"ugt das Symbol in die Tabelle ein.
+Der Objekttyp des Symbols bekommt den Wert "OT\_NO\_INF" und der
+Resourcetyp den Wert "RT\_NO\_INF".
+Falls das Symbol schon in der Tabelle existiert, wird eine
+Fehlermeldung ausgegeben. 
+
+\item {\tt tot <Symbol> <ObjTyp>}
+
+Traegt zum Symbol <Symbol> den Objekttyp <ObjTyp> ein,
+wobei <ObjTyp> entweder "SYSTEM" oder "RESOURCE" sein muss; 
+der Wert "OT\_NO\_INF" ist nicht zulaessig.
+Das Symbol muss in der Tabelle eingetragen sein, ansonsten wird eine
+entsprechende Fehlermeldung ausgegeben.
+Der vorherige Objekttyp wird ueberschrieben und geht somit verloren.
+
+\item {\tt trt <Symbol> <ResTyp>}
+
+Traegt zum Symbol <Symbol> den Resourcetyp <ResTyp> ein,
+wobei <ResTyp> entweder "RT\_SYSTEM", "FUNCTION" oder "DATA" sein
+muss;
+der Wert "RT\_NO\_INF" ist nicht zulaessig.
+(Der Wert "RT\_SYSTEM" ist fuer den Fall vorgesehen, dass 
+der Objekttyp des Symbols den Wert "SYSTEM" hat und Information
+bezueglich des Resourcetyps deswegen nicht noetig ist.)
+Das Symbol muss in der Tabelle eingetragen sein, ansonsten wird eine
+entsprechende Fehlermeldung ausgegeben.
+Der vorherige Resourcetyp wird ueberschrieben und geht somit verloren.
+
+\item {\tt sch <Symbol>}
+
+Sucht nach dem Symbol <Symbol> und druckt die dazugehoerigen
+Informationen aus.
+Falls das Symbol nicht in der Tabelle gefunden wird, wird eine
+entprechende Fehlermeldung ausgegeben.
+
+\item {\tt prt}
+
+Druckt die Anzahl der Eintraege in der Symboltabelle und den kompletten
+Inhalt aus.
+
+\end{itemize}
+
+\subsection*{Beispiel}
+\begin{verbatim}
+% cat eingabe
+ins qwe
+ins rty
+tot qwe SYSTEM
+prt
+% nametbl eingabe
+Eingabedatei `eingabe' wird bearbeitet.
+
+Die Zeile `ins qwe' wird ausgewertet:
+
+Die Zeile `ins rty' wird ausgewertet:
+
+Die Zeile `tot qwe SYSTEM' wird ausgewertet:
+
+Die Zeile `prt' wird ausgewertet:
+Die Tabelle hat die folgenden 2 Eintraege:
+Name    : qwe
+oType   : SYSTEM
+rType   : RT_NO_INF
+-----
+Name    : rty
+oType   : OT_NO_INF
+rType   : RT_NO_INF
+-----
+Ende der Eingabedatei `eingabe'.
+\end{verbatim}
+
+\subsection*{Authors}
+Goldmann, Klemke, Knecht, Lott.
+
+\subsection*{Bugs}
+
+Die Funktionalitaet zum Einlesen von Dateien und Erkennen von
+Kommandos ist nur zu Testzwecken gedacht und ist deswegen nicht
+besonders fehlertolerant.  Zum Beispiel kann man davonausgehen, 
+dass fehlende Argumente, zu viele Argumente oder falsch buchstabierte
+Argumente bei einem Kommando nicht besonders sorgfaeltig behandelt
+werden. 

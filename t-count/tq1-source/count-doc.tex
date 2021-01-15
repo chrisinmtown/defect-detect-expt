@@ -1,0 +1,23 @@
+\documentstyle[expconfig,listings]{article}
+\pagestyle{myheadings}
+\ifenglish
+\markright{Component ``count''}
+\fi
+\ifgerman
+\markright{Komponente ``count''}
+\fi
+\textheight25cm
+\parindent0pt
+\begin{document}
+\ifenglish
+\section*{Document TQ1: Source code for component ``count''}
+\fi
+\ifgerman
+\section*{Document TQ1: Quellkode der Komponente "`count"'}
+\fi
+
+{\bf count.c:}
+\smallskip
+\lstinputlisting{../count.c}
+
+\end{document}

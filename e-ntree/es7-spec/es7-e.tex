@@ -1,0 +1,126 @@
+%
+% specification for ntree
+%
+
+\subsection*{Name}
+
+ntree -- Functions for managing a tree
+
+\subsection*{Usage}
+{\bf ntree} input-file
+
+\subsection*{Description}
+{\bf ntree} reads commands from a file and processes them in order to
+test a few functions. 
+Considered together, the functions implement a tree in which each node
+can have any number of child nodes.
+The number of children is not limited by the program.
+A node holds two strings (key, content).
+
+\subsection*{Options}
+None.
+
+\subsection*{Input Data}
+Only the following commands are allowed in the input files.
+Each command must start on a new line.
+Lower and upper case is relevant in the keys.
+The separator between commands and arguments is a space; this means that
+spaces may not appear within a string.
+In this implementation, command lines (command plus corresponding
+parameters) read from the file are limited to a maximum length of
+1024. 
+
+
+\begin{itemize}
+
+\item {\tt root <key> <content>}
+
+Creates and initializes the root of the tree.
+This command must be the first command in the input file.
+If it does not appear as the first command, or if the command is
+repeated, the behavior of the program is not defined.
+
+\item {\tt child <father-key> <child-key> <child-content>}
+
+Attaches the new child node with the given data onto the given father
+node. 
+If the father node is not found in the tree, a corresponding error
+message is printed. 
+If the key of the father-node appears more than once in the tree, the
+new child is attached to the first node found (see also ``search''
+below).
+
+\item {\tt search <key>}
+
+The tree is searched for the node with the key ``<key>''.
+The tree is searched from left to right using depth-first search,
+in which the key of a node is checked on the first visit (preorder
+traversal). 
+If the node with the given key is found, the contents are printed out;
+if not, a corresponding error message is printed.
+If multiple nodes have the same key, only the contents of the first
+one found are printed. 
+
+\item {\tt sibs <key1> <key2>}
+
+Tests whether the nodes with the given keys are siblings; i.e.,
+whether they share the same father node.
+If one or the other key is not found in the tree, a corresponding
+error message is printed.
+Every node counts as its own sibling.  
+See also ``search'' for a description of the search method.
+
+\item {\tt print}
+
+Prints out the complete contents of the tree.  A new line is printed
+for each node with the key, content, and the depth in the tree.
+Each line is indented to correspond with the depth of the
+node (4 blanks per level).
+
+\end{itemize}
+
+\subsection*{Example}
+
+Because the output of the program as presented here was formatted by a
+typesetting program, the indentation shown here may not correspond
+exactly with the actual indentation.
+
+{\small
+\begin{verbatim}
+% cat eingabe
+root Lamb SE:_Planning_for_Change
+child Lamb Rombach Software_Specifications
+child Lamb Brackett Software_Requirements
+child Rombach Parnas Predicate_Logic_for_SE
+print
+
+% ntree eingabe
+
+Eingabedatei `eingabe' wird bearbeitet.
+
+Die Zeile `root Lamb SE:_Planning_for_Change' wird ausgewertet:
+
+Die Zeile `child Lamb Rombach Software_Specifications' wird ausgewertet:
+
+Die Zeile `child Lamb Brackett Software_Requirements' wird ausgewertet:
+
+Die Zeile `child Rombach Parnas Predicate_Logic_for_SE' wird ausgewertet:
+
+Die Zeile `print' wird ausgewertet:
+Knoten (Ebene 0): Schluessel 'Lamb', Inhalt 'SE:_Planning_for_Change'
+    Knoten (Ebene 1): Schluessel 'Rombach', Inhalt 'Software_Specifications'
+        Knoten (Ebene 2): Schluessel 'Parnas', Inhalt 'Predicate_Logic_for_SE'
+    Knoten (Ebene 1): Schluessel 'Brackett', Inhalt 'Software_Requirements'
+
+Ende der Eingabedatei `eingabe'.
+\end{verbatim}
+}
+\subsection*{Author}
+Ch. Lott
+\subsection*{Bugs}
+The functionality for reading files is only for test purposes and is
+therefore not especially fault-tolerant.  For example, one can assume
+that incorrectly spelled commands, commands with missing arguments, or
+commands with too many arguments will not be handled especially
+carefully. 
+

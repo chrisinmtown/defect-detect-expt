@@ -1,0 +1,16 @@
+%
+% language.sty
+% this file tells TeX about the language to use
+%
+\newif\ifgerman\germanfalse
+\newif\ifenglish\englishfalse
+%
+% set only ONE to true
+%
+% \germantrue
+\englishtrue
+
+% load proper hyphenation rules for German
+\ifgerman
+\input{germanb.sty}
+\fi

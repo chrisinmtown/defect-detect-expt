@@ -1,0 +1,52 @@
+
+In Klammern ist die Kategorisierung des Fehlers angegeben.
+
+\begin{enumerate}
+
+\item Fehler in Funktion ``treeprint'', Zeile 25: Das Zeichen > sollte >= sein.
+
+\{Comission, Kontrolle\}
+
+F\"uhrt zum Fehlverhalten:
+Falls ein Grenzwert mit dem Argument ``-m'' 
+angegeben wird (``n''), wird n + 1 verwendet.
+
+
+\item Fehler in Funktion ``getword'', Zeile 64/77: Die L\"ange der
+Eingabe wird nicht kontrolliert. 
+
+\{Omission, Daten\}
+
+F\"uhrt zum Fehlverhalten:
+Falls ein \"uberlanges Wort eingelesen wird,
+schmei{\ss}t das Program eine Core-Datei.
+
+
+\item Fehler in Funktion ``main'', Zeile 97 (circa): Der Array
+``MapAllowed'' wird nie initialisiert. 
+
+\{Omission, Initialisierung\}
+
+F\"uhrt zum Fehlverhalten:  Compiler-Abh\"angig; nicht alphanumerische
+Zeichen k\"onnten akzeptiert werden.
+
+
+\item Fehler in Funktion ``main'', Zeile 101: Die Variable ``Alpha''
+wird mit 0 statt mit 1 initialisiert.  
+
+\{Comission, Initialisierung\}
+
+F\"uhrt zum Fehlverhalten:
+Das Argument ``-a'' hat keine Auswirkung.
+
+
+\item Fehler in Funktion ``main'', Zeile 115: Das Argument ``-a''
+fehlt in der Usage-Meldung. 
+
+\{Omission, Kosmetik\}
+
+F\"uhrt zum Fehlverhalten:
+Die Hilfemeldung des Programs schweigt \"uber das Argument ``-a'' aus. 
+
+\end{enumerate}
+

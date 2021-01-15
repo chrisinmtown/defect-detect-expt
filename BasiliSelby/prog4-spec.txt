@@ -1,0 +1,92 @@
+                               Program 4
+
+(Note that a 'file' is the same thlng as an IBM 'dataset'.)
+
+The program maintains a database of bibliographic references.
+It first reads a master file of current references, then reads a file
+of reference updates, merges the two, and produces an updated master
+file and a cross reference table of keywords. The first input file,
+the master, contains records of 74 characters with the following
+format: 
+
+column   comment
+
+------------------------------------------------
+
+1- 3 each reference has a unique reference key
+
+4 -14 author of publicatlon
+
+15 - 72 title of publication
+
+73 - 74 year issued
+
+
+The key should be a three (3) character unique Identifier consisting
+of letters between A-Z. The next input file, the update file, contains
+records of 75 characters ln length. The only difference from a master
+file record is that an update record has either an 'A' (capital A
+meaning add) or a 'R' (capital R meaning replace) in column 75. Both
+the master and update files are expected to be already sorted
+alphabetically by reference key when read into the program. Update
+records with action replace are substituted for the matching key
+record in the master file. Records with action add are added to the
+master file at the appropriate location so that the file remains
+sorted on the key field. For example, a valld update record to be read
+would be (including a numbered line just for reference)
+
+123456789012345678901234567890123456789012345678901234567890123456789012345
+
+BITbaker      an introduction to program testing                        83A
+
+The program should produce two pieces of output.  It should first
+print the sorted list of records in the updated master file in the
+same format as the original master file.  It should then print a
+keyword cross reference list.  All words greater than three characters
+in a publication's title are keywords.  These keywords are listed
+alphabetically followed by the key fields from the applicable updated
+master file entries.  For example, if the updated master file
+contained two records,
+
+ABCkermit   introduction to software testing                            82
+
+DDXjones    the realities of software management                        81
+
+then the keywords are introduction, testing, realities, software, and
+management.  The cross reference list should look like
+
+introduction
+
+   ABC
+
+management
+
+  DDX
+
+realities
+
+  DDX
+
+software
+
+  ABC
+
+  DDX
+
+testing
+
+  ABC
+
+
+Some possible error conditions that could arise and the subsequent
+actions include the followlng.  The master and update files should be
+checked for sequence, and if a record out of sequence is found, a
+message similar to 'key ABC out of sequence' should appear and the
+record should be discarded.  If an update record indicates replace and
+the matching key can not be found, a message similar to 'update key
+ABC not found' should appear and the update record should be ignored.
+If an update record indicates add and a matching key is found,
+something like 'key ABC already in file' should appear and the record
+should be ignored.
+
+(End of specification.) 

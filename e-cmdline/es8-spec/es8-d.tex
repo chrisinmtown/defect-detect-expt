@@ -1,0 +1,117 @@
+
+\textbf{\large Name}
+
+cmdline -- Syntaktische und semantische Analyse einer Kommandozeile
+
+
+\medskip
+\textbf{\large Verwendung}
+
+{\bf cmdline} --hilfe
+
+{\bf cmdline} --mass $<$MASS$>$ [ Suchoption ] Datei [ Datei ... ]
+
+
+\medskip
+\textbf{\large Beschreibung}
+
+{\bf cmdline} analysiert eine Kommandozeile eines Messwerkzeugs auf
+syntaktische und teilweise auch auf semantische Korrektheit. 
+Der Benutzer mu{\ss} dem Programm genau ein Ma{\ss} und mindestens
+einen Dateiname \"ubergeben.
+Die Einheiten, die evtl. gemessen werden sollten, sind in Dateien
+gespeichert. 
+Zu den Argumenten (Ma{\ss}, Dateinamen usw.) darf noch genau eine
+sogenannte Suchoption \"ubergeben werden.
+Die Reihenfolge zwischen Ma{\ss}angabe und Suchoption ist beliebig.
+Bei der Auswertung der Kommandozeile werden alle Argumente ab 
+(und einschlie{\ss}lich) dem ersten Argument, welches keine Option ist,
+als Dateinamen interpretiert.  
+Ob Dateinamen zu existierenden Dateien korrespondieren wird aber nicht
+gepr\"uft. 
+
+Bei Erfolg (d.h., wenn sowohl die Syntax als auch die Semantik der
+Argumente als zul\"assig befunden wurde) wird eine Zusammenfassung der
+gepr\"uften Argumente ausgegeben, ansonsten eine erkl\"arende
+Fehlermeldung.  Die Zusammenfassung besteht aus dem zu 
+berechnenden Ma{\ss}, ggf.\ der Suchoption (mit Wert bei --unter und
+--ueber) und einer Auff\"uhrung der einzulesenden Dateien.
+
+
+\medskip
+\textbf{\large Optionen}
+
+Optionen und Argumente f\"ur Optionen k\"onnen bis auf ihren eindeutigen
+Anfang gek\"urzt werden. 
+Im folgenden Text steht der eindeutige Teil vor den eckigen Klammern.
+Es kann maximal eine Suchoption verwendet werden. 
+
+\begin{itemize}
+\item --h[ilfe] 
+
+Hilfeoption.  Es wird nur ein Hilfstext ausgegeben und sonst nichts gemacht.
+
+\item --?
+
+Hilfeoption. Siehe Option ``--hilfe''.
+
+\item --mas[s] $<$MASS$>$
+
+Zul\"assige Ma{\ss}angaben f\"ur $<$MASS$>$ sind GKO[M],  LKO[M], GKH[M],
+LKH[M], GI[HE] und  LI[HE].
+
+\item --a[lle]
+
+Suchoption. Das Programm soll das Ma{\ss} f\"ur alle Einheiten bestimmen.
+
+\item --max
+
+Suchoption. Das Programm soll den maximalen Wert des Ma{\ss}es f\"ur alle
+Einheiten bestimmen.
+
+\item --mi[n]
+
+Suchoption.  Das Programm soll den minimalen Wert des Ma{\ss}es f\"ur alle
+Einheiten bestimmen.
+
+\item --du[rchschnitt]
+
+Suchoption.  Das Programm soll den durchschnittlichen Wert des Ma{\ss}es
+f\"ur alle Einheiten bestimmen.
+
+\item --un[ter] $<$Grenzwert$>$
+
+Suchoption.  Das Programm soll alle Einheiten identifiziern,
+deren Wert f\"ur das angegebene Ma{\ss} unter dem Grenzwert liegt.
+Der angegebene Grenzwert kann eine beliebige Realzahl sein.
+
+\item --ue[ber] $<$Grenzwert$>$
+
+Suchoption.  Das Programm soll alle Einheiten identifiziern,
+deren Wert f\"ur das angegebene Ma{\ss} \"uber dem Grenzwert liegt.
+Der angegebene Grenzwert kann eine beliebige Realzahl sein.
+
+\end{itemize}
+
+
+
+\medskip
+\textbf{\large Beispiel}
+
+{\small
+\begin{verbatim}
+% cmdline -mass GKHM -alle datei1
+Die Aufgabe ist:
+Mass:  GKHM
+Suche: -alle
+Anzahl der zu lesenden Dateien: 1
+Die Dateien sind:
+   datei1
+\end{verbatim}
+}
+
+
+\medskip
+\textbf{\large Autoren}
+
+Baumg\"artner, Cla{\ss}en, Gieseke, Lott.

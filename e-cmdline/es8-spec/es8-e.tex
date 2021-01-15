@@ -1,0 +1,100 @@
+%
+% specification for cmdline
+%
+
+\subsection*{Name}
+cmdline -- Syntactic and semantic analysis of a command line
+
+\subsection*{Usage}
+{\bf cmdline} -mass <MASS> [Search-option] MIL/MDL-File [MIL/MDL-File...]
+
+\subsection*{Description}
+{\bf cmdline} analyzes a command line for syntactic and partially for
+semantic correctness.
+The user must give the program at a minimum one measure and one file
+as argument; in addition, exactly one so-called search option may also
+be given. 
+The order of the measurement options and search options is not
+important. 
+When the command line is evaluated, all arguments beginning with the
+first non-option are treated as file names.  The extistence of such
+files is not checked.
+
+If successful (i.e., if the syntax and meaning of the arguments is
+found to be legal), a summary of the arguments is printed out,
+otherwise an explanatory error message is printed.
+The summary consists of the measure to be computed, the search options
+if any were given (including a value for -unter and -ueber), and a
+list of the MIL/MDL files to be read.
+
+\subsection*{Options}
+Options and arguments for options can be shortened to their unique
+prefixes.
+In the following text, the unique prefix of each option comes before
+the square brackets.
+A maximum of one search option may be used.
+
+\begin{itemize}
+
+\item {\tt -h[ilfe] }
+
+Help option.  A helpful text is printed and nothing else is done.
+
+\item {\tt -?}
+
+Help option.  See above.
+
+\item {\tt -mas[s] <MASS>}
+
+Acceptable measures are GKO[M], LKO[M], GKH[M], LKH[M], GI[HE], and LI[HE].
+
+\item {\tt -a[lle]}
+
+Search option.  The measure should be evaluated for all units.
+
+\item {\tt -max}
+
+Search option.  Determines the maximum value of the measure for all
+units.
+
+\item {\tt -mi[n]}
+
+Search option.  Determines the minimum value of the measure for all
+units.
+
+\item {\tt -du[rchschnitt]}
+
+Search option.  Determines the average value of the measure for all
+units.
+
+\item {\tt -un[ter] <value>}
+
+Search option.  All units for which the measure lies under the
+boundary value will be identified.
+The <value> may be a real number.
+
+\item {\tt -ue[ber] <value>}
+
+Search option.  All units for which the measure lies over the boundary
+value will be identified.
+The <value> may be a real number.
+
+\end{itemize}
+
+
+\subsection*{Example}
+
+{\small
+\begin{verbatim}
+% cmdline -mass GKHM -alle datei1
+Die Aufgabe ist:
+Mass:  GKHM
+Suche: -alle
+Anzahl der zu lesenden Dateien: 1
+Die Dateien sind:
+   datei1
+\end{verbatim}
+}
+
+\subsection*{Authors}
+Baumg\"artner, Cla{\ss}en, Gieseke, Lott.

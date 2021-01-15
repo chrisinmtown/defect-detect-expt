@@ -1,0 +1,28 @@
+\documentstyle[expconfig,listings]{article}
+\parindent0pt
+\pagestyle{myheadings}
+\ifenglish
+\markright{Component ``cmdline''}
+\fi
+\ifgerman
+\markright{Komponente "`cmdline"'}
+\fi
+\begin{document}
+\ifenglish
+\section*{Document EQ8: Source code for component ``cmdline''}
+\fi
+\ifgerman
+\section*{Document EQ8: Quellkode der Komponente "`cmdline"'}
+\fi
+
+\subsection*{File ``cmdline.h''}
+\smallskip
+\lstinputlisting{../cmdline.h}
+\newpage
+
+\subsection*{File ``cmdline.c''}
+\smallskip
+\lstinputlisting{../cmdline.c}
+
+\end{document}
+

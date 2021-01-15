@@ -1,0 +1,114 @@
+%
+% paper.sty
+% define paper type to use
+%
+\newif\ifafour\afourfalse
+\newif\ifletter\letterfalse
+%
+% use ONE of the following
+% \afourtrue
+\lettertrue
+
+\ifafour
+%
+% set up for a4 paper
+%
+
+% first the height of the page
+\topmargin-10.0mm 
+\ifcase \@ptsize\relax
+  \textheight54\baselineskip   % 10 pt
+\or
+  \textheight48\baselineskip   % 11pt
+\or
+  \textheight45\baselineskip   % 12pt
+\fi
+\addtolength{\textheight}{\topskip}
+
+% now the width and margins
+\newlength{\aiv@width} \setlength{\aiv@width}{210mm}
+\newlength{\tmp@width} \setlength{\tmp@width}{\aiv@width}
+
+\if@twocolumn
+  \textwidth175mm \marginparsep2.5mm
+\else   % einspaltig
+  \ifcase \@ptsize\relax
+    \textwidth145mm   % 10pt
+  \or
+    \textwidth148.6mm   % 11pt (was 154)
+  \or
+    \textwidth164mm   % 12pt
+  \fi
+  \marginparsep4mm
+\fi
+
+\addtolength{\tmp@width}{-\textwidth}
+
+\if@twoside
+  \setlength{\oddsidemargin}{0.42\tmp@width}
+  \setlength{\evensidemargin}{0.58\tmp@width}
+  \columnsep5mm
+\else   % einseitig
+  \setlength{\oddsidemargin}{0.5\tmp@width}
+  \setlength{\evensidemargin}{\oddsidemargin}
+\fi
+
+\setlength{\marginparwidth}{\evensidemargin}
+\addtolength{\marginparwidth}{-\marginparsep}
+\addtolength{\marginparwidth}{-6mm}
+
+\addtolength{\oddsidemargin}{-1in}  
+\addtolength{\evensidemargin}{-1in}
+\fi
+
+\ifletter
+%
+% set up for US Letter
+%
+
+% first the height of the page
+\topmargin-.254in
+\ifcase \@ptsize\relax
+\textheight50\baselineskip   % 10 pt
+\or
+\textheight44\baselineskip   % 11pt
+\or
+\textheight41\baselineskip   % 12pt
+\fi
+\addtolength{\textheight}{\topskip}
+
+% now the width and margins
+\newlength{\aiv@width} \setlength{\aiv@width}{8.5in}
+\newlength{\tmp@width} \setlength{\tmp@width}{\aiv@width}
+
+\if@twocolumn
+\textwidth7in \marginparsep1in
+\else   % einspaltig
+  \ifcase \@ptsize\relax
+    \textwidth6in   % 10pt
+  \or
+    \textwidth6.1in % 11pt
+  \or
+    \textwidth6.6in % 12pt
+  \fi
+  \marginparsep0.2in
+\fi
+
+\addtolength{\tmp@width}{-\textwidth}
+
+\if@twoside
+  \setlength{\oddsidemargin}{0.42\tmp@width}
+  \setlength{\evensidemargin}{0.58\tmp@width}
+  \columnsep5mm
+\else
+  \setlength{\oddsidemargin}{0.5\tmp@width}
+  \setlength{\evensidemargin}{\oddsidemargin}
+\fi
+
+\setlength{\marginparwidth}{\evensidemargin}
+\addtolength{\marginparwidth}{-\marginparsep}
+\addtolength{\marginparwidth}{-6mm}
+
+\addtolength{\oddsidemargin}{-1in}  
+\addtolength{\evensidemargin}{-1in}
+\fi

@@ -1,0 +1,98 @@
+
+This is the supplemental sheet 
+for applying technique ``functional testing''
+to the program ``cmdline.'' 
+
+\subsection*{Necessary inputs}
+
+\begin{itemize}
+
+\item Which documents belong to this exercise?
+
+\begin{enumerate}
+\item Document ES8, the specification of the component
+\item Document EQ8, the source code of the component, which you will
+receive after you have written test cases and diagnosed failures.
+\end{enumerate}
+
+\item How do I fetch the files which I need?
+
+Do the following:
+
+\begin{enumerate}
+
+\item First create a new directory for this exercise with the
+``mkdir'' command.
+\begin{verbatim}
+    mkdir ft-cmdline
+\end{verbatim}
+
+\item Then change to the new directory with the ``cd'' command.
+\begin{verbatim}
+    cd ft-cmdline
+\end{verbatim}
+
+\item Finally, enter the following command:
+\begin{path}
+\begin{verbatim}
+    tar xf ~prakt00/Exercise5/ft-cmdline.tar
+\end{verbatim}
+\end{path}
+
+\end{enumerate}
+
+
+\item What should I have?
+
+The following files must be available.
+\begin{verbatim}
+    Makefile        cmdline         run-suite       test-dir
+\end{verbatim}
+
+\end{itemize}
+
+\subsection*{Creating equivalence classes and test cases}
+
+The component ``cmdline'' can almost be tested directly.
+The arguments for the individual invocations of ``cmdline'
+must still be saved in parameter files.
+No MIL/MDL input files are required.
+
+\newpage
+\noindent {\Large\bf Document E28, part 2: To be given out with the code!}
+
+\subsection*{Brief description of the library functions used}
+
+\begin{itemize}
+
+\item {\tt int strlen(char *s)}
+
+Returns the length of the string {\tt s} (the null character on the end
+is not counted).
+
+\item {\tt int strcmp(char *s1, char *s2)}
+
+Compares two strings.  Returns a value greater than, equal to, or less
+than 0 depending on whether {\tt st1} is lexicographically (i.e.,
+ASCII value) greater than, equal, or less than {\tt s2}.
+
+\item {\tt int strncmp(char *s1, char *s2, int n)}
+
+Like {\tt strcmp}, but compares maximum {\tt n} characters.
+
+\item {\tt int fprintf(stderr, "Text"...)}
+
+Prints the text on the standard-error output stream.
+
+\item {\tt int isdigit(char c)}
+Returns {\em true} if the character is a digit, otherwise {\em false}.
+
+\item {\tt int atoi(char *str)}
+
+Converts the string {\tt str} to an integer.
+Leading white space is ignored, and scanning of the string ends
+with the first non-numeric character.
+If no numeric characters could be read, 0 is returned.
+
+\end{itemize}
+

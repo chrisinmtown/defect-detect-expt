@@ -1,0 +1,108 @@
+
+
+Die Komponente ``cmdline`' weist die folgenden Fehlverhalten auf:
+
+\begin{enumerate}
+
+\item Die Option --ueber wird nicht erkannt.
+
+\item In der Ausgabe kommt ein falsch buchstabiertes Wort
+(``Suchption'') vor. 
+
+\item Abgek"urzte Optionen werden generell als eindeutig interpretiert
+und mit der ersten passenden Option assoziiert. 
+Z.B. wird ``--m'' als ``--mass'' erkannt
+obwohl der eindeutige Anfang nicht gesehen wurde.
+
+\item Suchoptionen ohne Ma"sangabe stellen keine Fehleingabe dar.
+
+\item Wenn Option ``-mass'' ohne Ma"sangabe angegeben wurde,
+wird die Fehlermeldung ``es ist kein g"ultiges Ma"s angegeben''
+ausgegeben, sofern weitere Argumente vorhanden waren, ansonsten
+Absturz. 
+
+\item Das Ma"s LKHM wird immer durch LKOM ersetzt.
+
+\item Bei Angabe der Option --min erscheint die 
+Fehlermeldung ``Zuviele Suchargumente angegeben'', da noch die
+Option ``--unter'' ausgewertet wird.
+
+\item Reele Zahlen werden zu Integern umgewandelt.
+
+\item Negative Zahlen werden nicht als g"ultige Zahlen erkannt.
+
+\item Wenn alle Optionen korrekt erkannt werden
+konnten, wird das Fehlen von Dateien nicht bemerkt. Es werden der 
+Kommandoname und die angegebenen Optionen als zu lesende Dateien
+aufgef"uhrt. 
+
+\end{enumerate}
+
+Auf der n"achsten Seite werden die notwendigen "Aquivalenzklassen und
+Testf"alle aufgelistet, die die obigen Fehlverhalten sichtbar machen.
+
+\newpage
+
+\textbf{"Aquivalenzklassen:}
+\smallskip
+
+\begin{tabular}{l|l}
+g"ultige Klassen         		& ung"ultige Klassen \\ \hline
+$G_1$ := \{genau 1 Ma{\ss}\}  		& $U_1$ := \{kein Ma{\ss}\} , $U_2$ := \{mehr als 1 Ma{\ss}\} \\
+$G_2$ := \{max. 1 Option\}              & $U_3$ := \{mehr als eine Option\} \\
+$G_3$ := \{mind. 1 Datei\}              & $U_4$ := \{keine Datei\} \\
+$G_4$ := \{eindeutig verk"urzte Option\}& $U_5$ := \{nicht eindeutig verk"urzte Option\} \\
+$G_5$ := \{"uber/unter-Wert reell\}     & $U_6$ := \{kein "uber/unter Wert\}  \\
+$G_6$ := \{Reihenfolge Ma{\ss} Option\}    &                                     \\
+$G_7$ := \{Reihenfolge Option Ma{\ss}\}    &                                     \\
+$G_{81}$:= \{Option -max\}              &                                   \\
+$G_{82}$:= \{Option -min\}              &                                   \\
+$G_{83}$:= \{Option -durch\}            &                                   \\
+$G_{84}$:= \{Option -unter\}            &                                   \\
+$G_{85}$:= \{Option -ueber\}            &                                   \\
+$G_{86}$:= \{Option -alle\}             &                                   \\
+$G_{87}$:= \{Option -hilfe -?\}         &                                   \\
+$G_{91}$:= \{Ma{\ss} -LKOM\}               & $U_7$ :=\{kein bekanntes Ma{\ss}\}   \\
+$G_{92}$:= \{Ma{\ss} -GKOM\}               &                                   \\
+$G_{93}$:= \{Ma{\ss} -GKHM\}               &                                   \\
+$G_{94}$:= \{Ma{\ss} -LKHM\}               &                                   \\
+$G_{95}$:= \{Ma{\ss} -GIHE\}               &                                   \\
+$G_{96}$:= \{Ma{\ss} -LIHE\}               &                                   \\
+\end{tabular}
+
+\medskip
+\textbf{Testf"alle:}
+\smallskip
+
+\begin{tabular}{l|l|l|l}
+Nr. & abgedeckte Klassen  	& Aufruf des Testling 		& Fehlver.-Nr. \\ \hline
+1   & $U_1$         		& cmdline -max Datei1                       & 4   \\
+2   & $U_2$                     & cmdline -mass LKOM -mass GKOM -max Datei1 & --- \\
+3   & $U_3$                     & cmdline -mass LKOM -alle -min Datei       & 7   \\
+4   & $U_4$                     & cmdline -mass LKOM -durch                 & 10   \\
+5   & $U_5$                     & cmdline -mass LKOM -m Datei1              & 3   \\
+6   & $U_6$                     & cmdline -mass GIHE -unter Datei1          & --- \\
+7   & $U_7$                     & cmdline -mass T Datei1                    & --- \\
+8   & $G_1,G_2,G_3,G_{92},G_{82},G_6$& cmdline -mass GKOM -min  Datei1     & 7   \\
+9   & $G_4, G_6, G_7 G_{91}, G_{83}$& cmdline -du -mass LKO Datei1          & --- \\
+10  & $G_{93}, G_{85}, G_5$     & cmdline -mass GKHM -ueber 4.2 Datei1    & 1   \\
+11  & $G_{94}, G_{81}, G_2$     & cmdline -mass LKHM -max Datei1 Datei2   & 6   \\
+12  & $G_{95}, G_{84}, G_6$     & cmdline -mass GIHE -unter 3.14 Datei1   & 8   \\
+13  & $G_{95}, G_{84}, G_6$     & cmdline -mass GIHE -unter -2 Datei1     & 9   \\
+14  & $G_{96}, G_{86}$          & cmdline -mass LIHE -alle Datei1         & --- \\
+15  & $G_{87}$                  & cmdline -hilfe                          & 2   \\
+16  & $U_1, U_4$                & cmdline -mass                           & 5   \\
+\end{tabular}
+
+\medskip
+Bemerkung 1: Bei g\"ultigen Klassen werden nur jeweils die genannt, die
+zum ersten Mal abgedeckt werden
+
+\smallskip
+Bemerkung 2: Den Testfall Nummer 16 erh"alt man, indem man zwei
+ung"ultige "Aquivalenzklassen in einem Testfall abdeckt. Dieses
+widerspricht zwar dem Vorgehen nach dem Schema zur Verwendung von
+\"Aquivalenzklassen, ist jedoch die einzige M"oglichkeit, das
+Fehlverhalten 5 zu entdecken. Ein Beispiel daf"ur, da{\ss} keine Methode
+perfekt ist.   
+

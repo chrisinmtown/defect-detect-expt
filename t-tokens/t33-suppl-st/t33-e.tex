@@ -1,0 +1,78 @@
+
+This is the supplemental sheet 
+for applying technique ``structural testing''
+to the program ``tokens.'' 
+
+
+
+\subsection*{Necessary inputs}
+
+\begin{itemize}
+
+\item Which documents belong to this exercise?
+
+\begin{enumerate}
+\item Document ES7, the specification of the component, which you will
+receive after you have created test cases and attempted to reach 100\%
+coverage.
+\item Document EQ7, the source code of the component
+\end{enumerate}
+
+\item How do I fetch the files which I need?
+
+Do the following:
+
+\begin{enumerate}
+
+\item First create a new directory for this exercise with the
+``mkdir'' command.
+\begin{verbatim}
+    mkdir st-tokens
+\end{verbatim}
+
+\item Then change to the new directory with the ``cd'' command.
+\begin{verbatim}
+    cd st-tokens
+\end{verbatim}
+
+\item Finally, enter the following command:
+\begin{path}
+\begin{verbatim}
+    tar xf ~prakt00/Exercise5/st-tokens.tar
+\end{verbatim}
+\end{path}
+
+\end{enumerate}
+
+\item What should I have?
+
+The following files must be available:
+\begin{verbatim}
+Makefile     gct-map      run-suite    test-dir    tokens
+\end{verbatim}
+
+\end{itemize}
+
+
+\subsubsection*{Writing test cases}
+
+All of the program's functions are fundamentally tested via the
+invocation 
+\begin{verbatim}
+tokens 
+\end{verbatim}
+The programs reads its input from the standard input (stdin) and
+can be influences using options.
+A parameter file holds the options, the name of the input file plus
+the necessary symbol to direct the contents of the file to the 
+program (``<''). 
+This is somewhat awkward, but necessary to allow applying 
+the test driver consistently.
+The format of the parameter file is as follows:
+\begin{verbatim}
+-Option1 -Option2 < inputfile
+\end{verbatim}
+
+Which options are understood, what input is allowed, and which
+functions are triggered by that input can be seen in the functions 
+in {\tt tokens.c}. 

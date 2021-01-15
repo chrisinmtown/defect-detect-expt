@@ -1,0 +1,39 @@
+#!/bin/sh
+#
+# run-suite script
+#
+
+# nach Test-Verzeichnis wechseln
+cd test-dir
+
+pgmdir=..
+pgmname=cmdline
+summdir=..
+summfile=test-results.summary
+outsuffix=".out"
+
+files=`/bin/ls *.test`
+
+echo "Testen wurde gestartet"
+echo ""
+for file in ${files} 
+do
+	args=`cat $file`
+	ausgabe=${file}${outsuffix}
+	cp /dev/null ${ausgabe}
+	msg="-- Testfall $file: '${pgmname} ${args}'"
+	echo ${msg}
+	echo ${msg} >> ${ausgabe}
+	sh -c "${pgmdir}/${pgmname} ${args}" >> ${ausgabe} 2>&1
+	msg="-- Ende des Testfalls"
+	echo ${msg}
+	echo $msg >> ${ausgabe}
+	msg=""
+	echo ${msg}
+	echo $msg >> ${ausgabe}
+done
+
+cp /dev/null ${summdir}/${summfile}
+cat *${outsuffix} > ${summdir}/${summfile}
+
+echo "Alle Ergebnisse liegen in der Datei '${summfile}' vor"

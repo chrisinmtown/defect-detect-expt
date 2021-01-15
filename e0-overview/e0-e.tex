@@ -1,0 +1,208 @@
+The experiment consists of two parts, namely a set of exercises to
+introduce you to the techniques and experimental procedures (the
+training phase) and the actual comparison (the live experiment).
+
+\section*{The Training Phase}
+
+The training phase offers you the chance to familiarize yourself
+with the techniques and the procedures that will be used during the
+experiment.
+
+\paragraph{Procedure:}
+All participants will apply the technique ``code reading'' to the
+program ``count,'' will apply ``functional testing'' to ``series,''
+and will apply  ``structural testing'' to ``tokens.''
+Pick up the necessary materials at your convenience, follow the
+instructions, and turn in the completed data collection forms.
+{\bf Please work alone.}
+
+\medskip
+
+Each technique is fundamentally performed in four separate steps:
+\begin{enumerate}
+	\item Testing: create test data; Reading: create own specification.
+	\item Testing: run tests; Reading: no such step.
+	\item Testing: identify failures; Reading: identify inconsistencies.
+	\item Isolate faults.
+\end{enumerate}
+
+
+\section*{The Live Experiment}
+
+The experiment will be run over three days at fixed times.
+All participants will see the same program on the same day,
+but will apply different techniques.
+The experiment is otherwise performed exactly the way the training
+phase worked.
+
+
+\paragraph{Procedure:} 
+Information about the times, dates, and division of exercises is
+listed on the next page.
+Meetings will be held on the times and dates listed. to discuss the
+experiment and to distribute the required materials.
+You should plan to spend a minimum of three (3) hours per day on these
+exercises.
+{\bf Please arrive on time!}
+
+
+\begin{quote}
+\bf 
+If it is simply impossible for you to participate at your preassigned
+time, please contact the person responsible for the experiment
+immediately.
+\end{quote}
+
+\bigskip
+
+A group feedback session has been planned for 14 June 19xx at 10:00.
+
+\bigskip
+
+% An overview of the process to be followed while applying each
+% defect-detection technique is repeated here.
+
+%------------------------------------------------------------------------------
+
+\newpage
+
+\subsection*{Times, dates, and assignment of exercises}
+
+\begin{center}
+\begin{tabular}{|r|c|l|l|}
+\hline
+\bf Time and date         & \bf Groups  & \bf Technique        & \bf Program\\
+\hline
+Tuesday, 7 June 19xx      &  5, 6       &  Structural testing  &  ntree\\
+$10^{00}$ or $15^{00}$    &  3, 4       &  Functional testing  & \\
+                          &  1, 2       &  Code reading        & \\
+\hline
+Wednesday, 8 June 19xx    &  2, 4       &  Structural testing  & cmdline \\
+$15^{00}$                 &  1, 6       &  Functional testing  & \\
+                          &  3, 5       &  Code reading        & \\
+\hline
+Thursday, 9 June 19xx     &  1, 3       &  Structural testing  & nametbl \\
+$14^{00}$                 &  2, 5       &  Functional testing  & \\
+                          &  4, 6       &  Code reading        & \\
+\hline
+\end{tabular}
+\end{center}
+
+
+\subsection*{Division into groups}
+
+\begin{center}
+
+\begin{tabular}{|l|c|}
+\hline
+\bf Identifier &  \bf Group \\
+\hline
+prakt01       &      1      \\
+prakt02       &      2      \\
+prakt03       &      3      \\
+prakt04       &      4      \\
+prakt06       &      5      \\
+\hline
+prakt07       &      6      \\
+prakt08       &      1      \\
+prakt09       &      2      \\
+prakt10       &      3      \\
+prakt11       &      4      \\
+\hline
+prakt12       &      5      \\
+prakt13       &      6      \\
+prakt15       &      1      \\
+prakt17       &      2      \\
+prakt18       &      3      \\
+\hline
+prakt19       &      4      \\
+prakt20       &      5      \\
+prakt21       &      6      \\
+prakt22       &      1      \\
+prakt23       &      2      \\
+\hline
+prakt24       &      3      \\
+prakt25       &      4      \\
+prakt26       &      5      \\
+prakt27       &      6      \\
+prakt28       &      1      \\
+\hline
+prakt29       &      2      \\
+prakt30       &      3      \\
+prakt31       &      4      \\
+\hline
+\end{tabular}
+
+\end{center}
+
+\newpage
+
+\section*{Classifying Faults}
+
+This document gives a brief overview of the fault-classification
+scheme defined by Basili \& Selby (1987) for their experiment and
+reused in the Kamsties \& Lott experiment (1995).
+
+The first facet for classifying faults is to distinguish whether
+something was forgotten or incorrectly written.
+
+\begin{itemize}
+
+\item Omission: Something was forgotten.
+Example faults of class ``omission'' are a missing assignment, a
+missing variable initialization, or a missing parameter in a function
+call. 
+
+\item Comission: Something was written incorrectly.
+Example faults of class ``comission'' are using ``+'' instead of
+``-'', assigning an incorrect initial value, or checking the wrong
+case in an if-condition.
+
+\end{itemize}
+
+Faults can also be classified according to the semantic problem
+expressed by the fault, as follows.
+
+\begin{itemize}
+
+\item Initialization:  The value of a variable has a different value
+than expected when it is first accessed.
+For example, a control variable in a for-loop is initialized to 1
+instead of 0.
+
+\item Computation: The value of an express is computed incorrectly.
+For example, a ``+'' is used instead of ``-'' or the wrong constant
+value is used.
+
+\item Control: The path of control differs from the expected path.
+For example, a conditition was written incorrectly in an if-statement
+or a loop.
+
+\item Interface: The interface of an element or module was understood
+and used incorrectly.
+For example, many C library functions that process strings expect the
+string variable to be null terminated; handing the function a string
+that is null terminated (or omitting a parameter entirely) would be an
+interface fault. 
+
+\item Data: Data was used incorrectly.
+For example, an element in a linked list is missed or the computation
+of an array element is incorrect.
+
+\item Cosmetic: The presentation of the component to the user is
+false.
+For example, an incorrectly spelled word that is printed in an error
+is an example of a cosmetic fault.
+
+
+\end{itemize}
+
+With the exception of simple cases such as missing parameters in a
+function call, classifying faults into these semantic classes is
+frequently not obvious or repeatable.  
+Classification depends strongly on some idea of how the code should
+have been written, and therefore depends on the tester's subjectivity.
+Different testers will sometimes identify different ways in which the
+fault can be removed, which in turn changes the classification of the
+fault.
+

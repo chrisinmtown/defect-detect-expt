@@ -1,0 +1,183 @@
+
+This is the supplemental sheet 
+for applying technique ``functional testing''
+to the program ``nametbl.'' 
+
+\subsection*{Necessary inputs}
+
+\begin{itemize}
+
+\item Which documents belong to this exercise?
+
+\begin{enumerate}
+\item Document ES9, the specification of the component
+\item Document EQ9, the source code of the component, which you will
+receive after you have written test cases and diagnosed failures.
+\end{enumerate}
+
+\item How do I fetch the files which I need?
+
+Do the following:
+
+\begin{enumerate}
+
+\item First create a new directory for this exercise with the
+``mkdir'' command.
+\begin{verbatim}
+    mkdir ft-nametbl
+\end{verbatim}
+
+\item Then change to the new directory with the ``cd'' command.
+\begin{verbatim}
+    cd ft-nametbl
+\end{verbatim}
+
+\item Finally, enter the following command:
+\begin{path}
+\begin{verbatim}
+    tar xf ~prakt00/Exercise5/ft-nametbl.tar
+\end{verbatim}
+\end{path}
+
+\end{enumerate}
+
+
+\item What should I have?
+
+The following files must be available:
+\begin{verbatim}
+    Makefile        nametbl         run-suite       test-dir
+\end{verbatim}
+
+\end{itemize}
+
+\subsection*{Creating equivalence classes and test cases}
+
+The test scaffolding offers commands and their parameters
+to simplify addressing the program's functions.
+Do not create equivalence classes for syntactically incorrect
+commands!  That would only test the test scaffolding.
+Examples of unnecessary test cases:
+\begin{verbatim}
+delete all
+\end{verbatim}
+Command not defined.
+\begin{verbatim}
+ins
+\end{verbatim}
+Argument is missing.
+
+\subsection*{Reminder}
+
+Make sure that your test cases generate output so that you can
+detect failures!
+
+
+\newpage
+\noindent {\Large \bf Document E29, part 2: To be given out with the code!}
+
+\subsection*{Brief description of the library functions used}
+
+\begin{itemize}
+
+\item {\tt assert(expression)}
+
+Macro that expects the expression to be true at the time the
+program is executed and in that case does nothing.  Otherwise an error
+message with the expression is printed and the program is ended.
+
+\item {\tt char* malloc(unsigned size)}
+
+Returns a pointer to a block of memory that is at least as large as
+{\tt size} bytes.  In case of failure, NULL is returned.
+
+\item {\tt int free(ptr)}
+
+Gives a previously allocated block back to the system.  
+{\tt ptr} must have been  allocated using {\tt malloc} or a similar
+function.  If successful, 1 is returned; otherwise 0 is returned.
+
+\item {\tt int strcmp(s1,s2)}
+
+Compares two strings.  Returns a value greater than, equal to, or less
+than 0 depending on whether {\tt st1} is lexicographically (i.e.,
+ASCII value) greater than, equal, or less than {\tt s2}.
+
+\item {\tt char *strdup(s1)}
+
+Duplicates the string {\tt s1}.  Allocates memory for this purpose
+using {\tt malloc()} and returns a pointer to the duplicate if
+successful, otherwise NULL.
+
+\item {\tt int sscanf(s,format,pointer)}
+
+Reads characters from string {\tt s}, converts them according to
+the specification string {\tt format}, and writes the result into
+the variables pointed to by the {\tt pointer}s.
+This is the reverse function of {\tt printf}; the format specification
+strings are identical.
+
+\item {\tt char *fgets(s,n,stream)}
+
+Reads characters from the stream {\tt stream} and writes them in the
+string {\tt s}, until either {\tt n-1} characters have been read or
+one of NEWLINE or EOF are seen.
+At EOF the value NULL is returned, otherwise {\tt s}.
+
+\item {\tt char *tsearch(char *key, char **rootp, int (*compar)())}
+\item {\tt char *tfind(char *key, char **rootp, int (*compar)())}
+\item {\tt void twalk(char *root, void (*action)())}
+
+These functions implement a binary search tree.  All required
+comparisons are performed with the function {\tt compar}, which the
+user must provide for use by the tree functions.
+The function {\tt compar} is made known to the tree functions with the
+help of a function pointer.  
+{\tt compar} is invoked with two arguments, which point to the
+elements to be compared.
+The return value must be less than, equal to, or larger than 0,
+depending on whether the first element is less than, equal to, or
+larger than the second (analogous to {\tt strcmp}).
+
+{\tt tsearch} can both build and search a tree.
+If an element is found which has the same key as the element to which
+{\tt key} points, a pointer is returned.  This pointer points to a
+pointer which points to the element that was found.  
+Otherwise the element pointed to by {\tt key} is inserted into the
+tree and a pointer-to-a-pointer to the new element is returned.
+An illustration about the double indirection:
+\begin{verbatim}
+    returned   +--+          +--------+ 
+    ---------->|  |--------->|  node  |
+    pointer    +--+ pointer  +--------+ 
+                                /  \
+\end{verbatim}
+Only pointers are copied; i.e., the user is responsible for reserving
+memory for the tree elements (e.g., with {\tt malloc}).
+{\tt rootp} points to a variable and this variable points to the root
+of the tree.
+To produce the first node in the tree (the root), NULL must be stored
+in the variable, thereafter the variable receives a pointer to the
+root of the tree.
+
+{\tt tfind} is identical to {\tt tsearch}, with the exception that if
+the element is not found, NULL is returned and no new node is added to
+the tree. 
+
+{\tt twalk} traverses a tree or a subtree, because any node can be
+used for the {\tt root} argument.  Take note that only a pointer to
+{\tt root} can be given, not a pointer-to-a-pointer as used by
+{\tt tsearch} and {\tt tfind}.
+{\tt action} is the function which is invoked for each node in the
+tree.
+This function must also be provided by the user.  It receives
+three arguments: a pointer to the tree element, information about when
+the element is visited, and the depth of the tree element (root = 0).
+The visit information is an enumerated type  {\tt typedef enum
+\{preorder, postorder, endorder, leaf \} VISIT;} where {\tt preorder},
+{\tt postorder}, and {\tt endorder} represent the first, second, and
+third visit during a depth-first, left-to-right traversal of the
+tree. 
+{\tt leaf} refers to the leaf of a tree.
+
+\end{itemize}

@@ -1,0 +1,41 @@
+
+\subsection*{Name}
+
+tokens -- sort/count alphanumeric tokens
+
+\subsection*{Usage}
+{\bf tokens } [--ai] [--c chars] [--m count]
+
+
+\subsection*{Description}
+{\bf tokens} reads its input from the standard input and counts all
+alphanumeric tokens and prints their counts in increasing
+lexicographic order. 
+
+\subsection*{Options}
+
+\begin{itemize}
+
+\item ``--a'': Allow only alphabetic characters in tokens (no digits 0--9).
+
+\item ``--c chars'': Allow chars to be part of tokens.
+
+\item ``--i'':
+The {\bf --i} flag causes the program to ignore the difference between
+upper and lower case by mapping all input to lower case. 
+
+\item ``--m count'':
+The {\bf --m}  flag indicates the minimum count needed for the entry to
+be printed. 
+
+\end{itemize}
+
+\subsection*{See also}
+
+wc(1), sort(1), uniq(1)
+
+\subsection*{Author}
+Gary Perlman 
+
+\subsection*{Status}
+May have bugs for the amusement of software engineering students.
